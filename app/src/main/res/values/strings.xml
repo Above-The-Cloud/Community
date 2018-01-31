@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Community</string>
+    <string name="index">index</string>
+    <string name="publish">publish</string>
+    <string name="notice">notice</string>
+    <string name="mine">mine</string>
 </resources>
