@@ -4,7 +4,7 @@
     <string name="publish">publish</string>
     <string name="notice">notice</string>
     <string name="mine">mine</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Community</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
