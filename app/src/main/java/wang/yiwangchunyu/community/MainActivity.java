@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import static android.widget.RadioGroup.*;
 
 public class MainActivity extends AppCompatActivity implements OnCheckedChangeListener{
-
+    private static final String TAG = "MainActivity";
     private RadioGroup rg_tab_bar;
     private RadioButton rb_channel;
 
