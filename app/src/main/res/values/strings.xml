@@ -18,4 +18,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="account_empty">用户名不合法</string>
+    <string name="pwd_empty">密码不合法</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_fail">登陆失败</string>
 </resources>
