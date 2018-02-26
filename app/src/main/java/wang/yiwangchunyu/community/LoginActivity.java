@@ -50,7 +50,7 @@ public class LoginActivity extends Activity {                 //登录界面活�
         mPwd = (EditText) findViewById(R.id.login_edit_pwd);
         mRegisterButton = (Button) findViewById(R.id.login_btn_register);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
-        mCancleButton = (Button) findViewById(R.id.login_btn_cancle);
+        //mCancleButton = (Button) findViewById(R.id.login_btn_cancle);
         loginView=findViewById(R.id.login_view);
         loginSuccessView=findViewById(R.id.login_success_view);
         loginSuccessShow=(TextView) findViewById(R.id.login_success_show);
@@ -73,7 +73,7 @@ public class LoginActivity extends Activity {                 //登录界面活�
 
         mRegisterButton.setOnClickListener(mListener);                      //采用OnClickListener方法设置不同按钮按下之后的监听事件
         mLoginButton.setOnClickListener(mListener);
-        mCancleButton.setOnClickListener(mListener);
+        //mCancleButton.setOnClickListener(mListener);
         mChangepwdText.setOnClickListener(mListener);
 
 //        ImageView image = (ImageView) findViewById(R.id.logo);             //使用ImageView显示logo
@@ -95,9 +95,9 @@ public class LoginActivity extends Activity {                 //登录界面活�
                 case R.id.login_btn_login:                              //登录界面的登录按钮
                     login();
                     break;
-                case R.id.login_btn_cancle:                             //登录界面的注销按钮
-                    cancel();
-                    break;
+                //case R.id.login_btn_cancle:                             //登录界面的注销按钮
+                //    cancel();
+                //    break;
                 case R.id.login_text_change_pwd:                             //登录界面的注销按钮
 //                    Intent intent_Login_to_reset = new Intent(Login.this,Resetpwd.class) ;    //切换Login Activity至User Activity
 //                    startActivity(intent_Login_to_reset);
