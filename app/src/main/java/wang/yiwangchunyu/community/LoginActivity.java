@@ -88,16 +88,14 @@ public class LoginActivity extends Activity {                 //登录界面活�
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.login_btn_register:                            //登录界面的注册按钮
-//                    Intent intent_Login_to_Register = new Intent(Login.this,Register.class) ;    //切换Login Activity至User Activity
-//                    startActivity(intent_Login_to_Register);
-//                    finish();
+                    Intent intent_Login_to_Register = new Intent(LoginActivity.this,RegisterActivity.class) ;    //切换Login Activity至User Activity
+                    startActivity(intent_Login_to_Register);
+                    finish();
                     break;
                 case R.id.login_btn_login:                              //登录界面的登录按钮
                     login();
                     break;
-                //case R.id.login_btn_cancle:                             //登录界面的注销按钮
-                //    cancel();
-                //    break;
+
                 case R.id.login_text_change_pwd:                             //登录界面的注销按钮
 //                    Intent intent_Login_to_reset = new Intent(Login.this,Resetpwd.class) ;    //切换Login Activity至User Activity
 //                    startActivity(intent_Login_to_reset);
