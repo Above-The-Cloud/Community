@@ -1,96 +1,141 @@
+
 package wang.yiwangchunyu.community;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
-    private EditText mAccount;                        //用户名编辑
-    private EditText mPwd;                            //密码编辑
-    private EditText mPwdCheck;                       //密码编辑
-    private Button mSureButton;                       //确定按钮
-    private Button mCancelButton;                     //取消按钮
-    private UserDataManager mUserDataManager;         //用户数据管理类
+public class RegisterActivity extends Activity implements HttpResponeCallBack {
+
+    private EditText loginNick;//用户名
+    private EditText phonenumber;//用户手机号
+    private EditText password;//注册密码
+    private EditText repeatpassword;//重复输入密码
+    private EditText identifyingcode;//验证码
+    private Button registBtnCode;//注册验证码
+    private Button registBtn;//注册
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mAccount = (EditText) findViewById(R.id.resetpwd_edit_name);
-        mPwd = (EditText) findViewById(R.id.resetpwd_edit_pwd_old);
-        mPwdCheck = (EditText) findViewById(R.id.resetpwd_edit_pwd_new);
 
-        mSureButton = (Button) findViewById(R.id.register_btn_sure);
-        mCancelButton = (Button) findViewById(R.id.register_btn_cancel);
-
-        mSureButton.setOnClickListener(m_register_Listener);      //注册界面两个按钮的监听事件
-        mCancelButton.setOnClickListener(m_register_Listener);
-
-        if (mUserDataManager == null) {
-            mUserDataManager = new UserDataManager(this);
-            mUserDataManager.openDataBase();                              //建立本地数据库
-        }
+        initView();
     }
-    View.OnClickListener m_register_Listener = new View.OnClickListener() {    //不同按钮按下的监听事件选择
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.register_btn_sure:                       //确认按钮的监听事件
-                    register_check();
-                    break;
-                case R.id.register_btn_cancel:                     //取消按钮的监听事件,由注册界面返回登录界面
-                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LoginActivity.class) ;    //切换User Activity至Login Activity
-                    startActivity(intent_Register_to_Login);
-                    finish();
-                    break;
+
+    private void initView() {
+        loginNick = (EditText) findViewById(R.id.register_edit_account);
+        phonenumber = (EditText) findViewById(R.id.register_edit_phonenumber);
+        password = (EditText) findViewById(R.id.register_edit_pwd);
+        repeatpassword = (EditText) findViewById(R.id.register_edit_repeat_pwd);
+        identifyingcode = (EditText) findViewById(R.id.register_edit_identifying_code);
+        registBtn = (Button) findViewById(R.id.register_btn_login);
+        registBtnCode = (Button) findViewById(R.id.register_send_identifying_code);
+
+        registBtnCode.setOnClickListener(new Button.OnClickListener(){//点击发送验证码按钮
+            @Override
+            public void onClick(View view) {
+                String phoneStr = phonenumber.getText().toString();
+                if(!TextUtils.isEmpty(phoneStr)){
+                    if(Utils.isPhoneNumber(phoneStr)){
+                        /*发送验证码
+                        *
+                        *
+                        *
+                        *
+                        *
+                        * */
+                    }else {
+                        Toast.makeText(RegisterActivity.this, "输入手机号有误", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
-        }
-    };
-    public void register_check() {                                //确认按钮的监听事件
-        if (isUserNameAndPwdValid()) {
-            String userName = mAccount.getText().toString().trim();
-            String userPwd = mPwd.getText().toString().trim();
-            String userPwdCheck = mPwdCheck.getText().toString().trim();
-            //检查用户是否存在
-            int count=mUserDataManager.findUserByName(userName);
-            //用户已经存在时返回，给出提示文字
-            if(count>0){
-                Toast.makeText(this, "用户名已存在",Toast.LENGTH_SHORT).show();
-                return ;
+        });
+
+
+        registBtn.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //获得用户输入的信息
+                String nick = loginNick.getText().toString();
+                String phoneStr = phonenumber.getText().toString();
+                String passwordStr = password.getText().toString();
+                String repeatpasswordStr = repeatpassword.getText().toString();
+                String identifyingcodeStr = identifyingcode.getText().toString();
+                if (!TextUtils.isEmpty(nick) &&
+                        !TextUtils.isEmpty(phoneStr)
+                        && !TextUtils.isEmpty(passwordStr) && !TextUtils.isEmpty(identifyingcodeStr)) {
+                    if (passwordStr.equals(repeatpasswordStr)) { //验证两次密码是否一致
+
+                        RequestApiData.getInstance().getRegistData(nick, passwordStr, passwordStr,
+                                AnalyticalRegistInfo.class, RegisterActivity.this);
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(RegisterActivity.this, "输入信息未完全", Toast.LENGTH_SHORT).show();
+                }
             }
-            if(userPwd.equals(userPwdCheck)==false){     //两次密码输入不一样
-                Toast.makeText(this, "两次输入密码须相同",Toast.LENGTH_SHORT).show();
-                return ;
-            } else {
-                UserData mUser = new UserData(userName, userPwd);
-                mUserDataManager.openDataBase();
-                long flag = mUserDataManager.insertUserData(mUser); //新建用户信息
-                if (flag == -1) {
-                    Toast.makeText(this, "注册失败",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "注册成功",Toast.LENGTH_SHORT).show();
-                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LoginActivity.class) ;    //切换User Activity至Login Activity
-                    startActivity(intent_Register_to_Login);
-                    finish();
+        });
+    }
+
+    @Override
+    public void onResponeStart(String apiName) {
+        // TODO Auto-generated method stub
+        Toast.makeText(RegisterActivity.this, "正在请求数据...", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoading(String apiName, long count, long current) {
+        Toast.makeText(RegisterActivity.this, "Loading...", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccess(String apiName, Object object) {
+        // TODO Auto-generated method stub
+        //注册接口
+        if (UrlConstance.KEY_REGIST_INFO.equals(apiName)) {
+            if (object != null && object instanceof AnalyticalRegistInfo) {
+                AnalyticalRegistInfo info = (AnalyticalRegistInfo) object;
+                String successCode = info.getRet();
+                //请求成功
+                if (successCode.equals(Constant.KEY_SUCCESS)) {
+                    UserBaseInfo baseUser = new UserBaseInfo();
+                    baseUser.setEmail(info.getEmail());
+                    baseUser.setNickname(info.getNickname());
+                    baseUser.setUserhead(info.getUserhead());
+                    baseUser.setUserid(String.valueOf(info.getUserid()));
+                    ItLanBaoApplication.getInstance().setBaseUser(baseUser);
+                    UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
+                    UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
+                    UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
+
+
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    RegisterActivity.this.startActivity(intent);
+
+                    Toast.makeText(RegisterActivity.this, "注册成功...", Toast.LENGTH_SHORT).show();
+
+                    RegisterActivity.this.finish();
+
+                } else {
+                    Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                 }
             }
         }
+
     }
-    public boolean isUserNameAndPwdValid() {
-        if (mAccount.getText().toString().trim().equals("")) {
-            Toast.makeText(this, getString(R.string.account_empty),
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (mPwd.getText().toString().trim().equals("")) {
-            Toast.makeText(this, getString(R.string.pwd_empty),
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }else if(mPwdCheck.getText().toString().trim().equals("")) {
-            Toast.makeText(this, "密码不合法", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
+
+    @Override
+    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+        Toast.makeText(RegisterActivity.this, "Failure", Toast.LENGTH_SHORT).show();
     }
 }
+
