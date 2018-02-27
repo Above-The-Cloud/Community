@@ -6,10 +6,8 @@
     android:background="#ebebef"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
+<<<<<<< HEAD
         <ImageView
             android:id="@+id/iv_blur"
             android:layout_width="match_parent"
@@ -99,4 +97,6 @@
         zsg:show_bottomline="false"
         zsg:show_leftimg="@drawable/about"
         zsg:show_text="关于" />
+=======
+>>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
 </LinearLayout>

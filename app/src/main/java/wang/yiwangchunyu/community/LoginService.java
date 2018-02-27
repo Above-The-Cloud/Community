@@ -119,20 +119,25 @@ public class LoginService {
 
             int code = httpURLConnection.getResponseCode();
             Log.d(TAG, "\n" + "ResponseCode: " + code);
-            //读取返回的数据
-            //返回打开连接读取的输入流，输入流转化为StringBuffer类型，这一套流程要记住，常用
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String line = null;
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((line = bufferedReader.readLine()) != null) {
-                //转化为UTF-8的编码格式
-                line = new String(line.getBytes("UTF-8"));
-                stringBuffer.append(line);
+
+            if(code==200){
+                //读取返回的数据
+                //返回打开连接读取的输入流，输入流转化为StringBuffer类型，这一套流程要记住，常用
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String line = null;
+                StringBuffer stringBuffer = new StringBuffer();
+                while ((line = bufferedReader.readLine()) != null) {
+                    //转化为UTF-8的编码格式
+                    line = new String(line.getBytes("UTF-8"));
+                    stringBuffer.append(line);
+                }
+                Log.d("POST请求返回的数据: ", stringBuffer.toString());
+                bufferedReader.close();
+                httpURLConnection.disconnect();
+                return stringBuffer.toString();
             }
-            Log.d("POST请求返回的数据: ", stringBuffer.toString());
-            bufferedReader.close();
-            httpURLConnection.disconnect();
-            return stringBuffer.toString();
+            else return String.valueOf(code);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {

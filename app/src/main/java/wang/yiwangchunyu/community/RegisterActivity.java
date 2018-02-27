@@ -1,3 +1,4 @@
+
 package wang.yiwangchunyu.community;
 
 import android.app.Activity;
@@ -113,10 +114,17 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
                     baseUser.setNickname(info.getNickname());
                     baseUser.setUserhead(info.getUserhead());
                     baseUser.setUserid(String.valueOf(info.getUserid()));
+<<<<<<< HEAD
                     //ItLanBaoApplication.getInstance().setBaseUser(baseUser);
                     //UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
                     //UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
                     //UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
+=======
+//                    ItLanBaoApplication.getInstance().setBaseUser(baseUser);
+//                    UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
+//                    UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
+//                    UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
+>>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
 
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -139,3 +147,4 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
         Toast.makeText(RegisterActivity.this, "Failure", Toast.LENGTH_SHORT).show();
     }
 }
+

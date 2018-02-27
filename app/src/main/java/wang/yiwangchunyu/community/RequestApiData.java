@@ -1,11 +1,14 @@
 package wang.yiwangchunyu.community;
 
+<<<<<<< HEAD
 import com.bumptech.glide.RequestManager;
 
 import java.util.HashMap;
 
 //import java.util.HashMap;
  
+=======
+>>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
 /*
  * 网络接口 wjl
  */
@@ -39,6 +42,7 @@ public class RequestApiData {
 	public void getRegistData(String nickname, String email
 			, String password, Class<AnalyticalRegistInfo> clazz,
 							  HttpResponeCallBack callback) {
+<<<<<<< HEAD
 /*		 mCallBack = callback;
 		 //这是每一个接口的唯一标示
 		 String tagUrl = UrlConstance.KEY_REGIST_INFO;//注册接口
@@ -59,6 +63,28 @@ public class RequestApiData {
 
 		 //请求数据接口
 		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);*/
+=======
+//		 mCallBack = callback;
+//		 //这是每一个接口的唯一标示
+//		 String tagUrl = UrlConstance.KEY_REGIST_INFO;//注册接口
+//		 //将注册的信息保存在map中（须和服务器端一致）
+//		 HashMap<String, String> parameter = new HashMap<String, String>();
+//		 parameter.put("nickname", nickname);
+//		 parameter.put("email",email);
+//		 parameter.put("password",password);
+//
+//		//拼接参数信息，昵称，邮箱，密码，公钥，并用md5进行加密
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(nickname);
+//        builder.append(email);
+//        builder.append(password);
+//        builder.append(UrlConstance.PUBLIC_KEY);
+//
+//        parameter.put(UrlConstance.ACCESSTOKEN_KEY,MD5Util.getMD5Str(builder.toString()));
+//
+//		 //请求数据接口
+//		RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);
+>>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
 
 	}
 
@@ -75,6 +101,7 @@ public class RequestApiData {
 	public void getLoginData(String email , String password,
 							 Class<UserBaseInfo> clazz,
 							 HttpResponeCallBack callback) {
+<<<<<<< HEAD
 	/*	 mCallBack = callback;
 		 //这是每一个接口的唯一标示
 		 String tagUrl = UrlConstance.KEY_LOGIN_INFO;//登录接口
@@ -92,6 +119,25 @@ public class RequestApiData {
 
 		 //请求数据接口
 		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);*/
+=======
+//		 mCallBack = callback;
+//		 //这是每一个接口的唯一标示
+//		 String tagUrl = UrlConstance.KEY_LOGIN_INFO;//登录接口
+//		 HashMap<String, String> parameter = new HashMap<String, String>();
+//		 parameter.put("email", email);
+//		 parameter.put("password", password);
+//
+//			//拼接参数信息，邮箱，密码，公钥，并用md5进行加密
+//			StringBuilder builder = new StringBuilder();
+//			builder.append(email);
+//			builder.append(password);
+//			builder.append(UrlConstance.PUBLIC_KEY);
+//
+//		 parameter.put(UrlConstance.ACCESSTOKEN_KEY,MD5Util.getMD5Str(builder.toString()));
+//
+//		 //请求数据接口
+//		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);
+>>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
 
 	}
 

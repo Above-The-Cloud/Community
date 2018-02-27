@@ -139,5 +139,4 @@
             android:textColor="#ff3f3f3f"
             android:textSize="20.0dip" />
     </RelativeLayout>
-
 </RelativeLayout>
