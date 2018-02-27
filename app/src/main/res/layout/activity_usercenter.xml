@@ -81,17 +81,18 @@
         zsg:show_leftimg="@drawable/xiazai"
         zsg:show_text="离线缓存" />
 
+
     <wang.yiwangchunyu.community.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/bg_white"
         zsg:show_bottomline="true"
-    <wang.yiwangchunyu.community.item_view
         zsg:show_leftimg="@drawable/update"
         zsg:show_text="版本更新" />
 
-    android:layout_width="match_parent"
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_white"
         zsg:show_bottomline="false"

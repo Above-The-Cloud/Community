@@ -18,6 +18,7 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
     private EditText identifyingcode;//验证码
     private Button registBtnCode;//注册验证码
     private Button registBtn;//注册
+    private CircleImageView circleImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
         identifyingcode = (EditText) findViewById(R.id.register_edit_identifying_code);
         registBtn = (Button) findViewById(R.id.register_btn_login);
         registBtnCode = (Button) findViewById(R.id.register_send_identifying_code);
+        circleImageView = (CircleImageView) findViewById(R.id.logo);
 
         registBtnCode.setOnClickListener(new Button.OnClickListener(){//点击发送验证码按钮
             @Override

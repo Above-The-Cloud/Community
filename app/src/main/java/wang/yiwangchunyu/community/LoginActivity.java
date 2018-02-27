@@ -23,8 +23,9 @@ public class LoginActivity extends Activity {                 //登录界面活�
     private EditText mPwd;                            //密码编辑
     private Button mRegisterButton;                   //注册按钮
     private Button mLoginButton;                      //登录按钮
-    private Button mCancleButton;                     //注销按钮
+    //private Button mCancleButton;                     //注销按钮
     private CheckBox mRememberCheck;
+    private CircleImageView circleImageView;        //logo图片
 
     private SharedPreferences login_sp;
     private String userNameValue,passwordValue;
@@ -51,6 +52,7 @@ public class LoginActivity extends Activity {                 //登录界面活�
         mRegisterButton = (Button) findViewById(R.id.login_btn_register);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
         //mCancleButton = (Button) findViewById(R.id.login_btn_cancle);
+        circleImageView = (CircleImageView) findViewById(R.id.logo);
         loginView=findViewById(R.id.login_view);
         loginSuccessView=findViewById(R.id.login_success_view);
         loginSuccessShow=(TextView) findViewById(R.id.login_success_show);

@@ -1,5 +1,7 @@
 package wang.yiwangchunyu.community;
 
+import com.bumptech.glide.RequestManager;
+
 import java.util.HashMap;
  
 /*

@@ -31,15 +31,15 @@ public class item_view extends LinearLayout {
 
     public item_view(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-       LayoutInflater.from(getContext()).inflate(R.layougit remote -vt.activity_usercenter_item_view,this);
+        LayoutInflater.from(getContext()).inflate(R.layout.activity_usercenter_item_view,this);
        /* LayoutInflater mInflater = LayoutInflater.from(context);
         View myView = mInflater.inflate(R.layout.item_view, null);
         addView(myView);*/
         TypedArray ta=context.obtainStyledAttributes(attrs,R.styleable.item_view);
         isbootom=ta.getBoolean(R.styleable.item_view_show_bottomline,true);
-       bottomview=findViewById(R.id.item_bottom);
-        imageView=findViewById(R.id.item_img);
-        textView=findViewById(R.id.item_text);
+        bottomview=(ImageView) findViewById(R.id.item_bottom);
+        imageView=(ImageView) findViewById(R.id.item_img);
+        textView=(TextView) findViewById(R.id.item_text);
 
         textView.setText(ta.getString(R.styleable.item_view_show_text));
         imageView.setBackgroundResource(ta.getResourceId(R.styleable.item_view_show_leftimg,R.drawable.setting));
