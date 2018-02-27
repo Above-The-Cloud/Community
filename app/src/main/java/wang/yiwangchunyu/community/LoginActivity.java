@@ -97,10 +97,8 @@ public class LoginActivity extends Activity {                 //登录界面活�
                 case R.id.login_btn_login:                              //登录界面的登录按钮
                     login();
                     break;
-<<<<<<< HEAD
-=======
 
->>>>>>> d2119c4e50ed558f9ad89cdbc1cc4b15008e57f0
+
                 case R.id.login_text_change_pwd:                             //登录界面的注销按钮
 //                    Intent intent_Login_to_reset = new Intent(Login.this,Resetpwd.class) ;    //切换Login Activity至User Activity
 //                    startActivity(intent_Login_to_reset);
