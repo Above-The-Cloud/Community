@@ -3,6 +3,8 @@ package wang.yiwangchunyu.community;
 import com.bumptech.glide.RequestManager;
 
 import java.util.HashMap;
+
+//import java.util.HashMap;
  
 /*
  * 网络接口 wjl
@@ -37,7 +39,7 @@ public class RequestApiData {
 	public void getRegistData(String nickname, String email
 			, String password, Class<AnalyticalRegistInfo> clazz,
 							  HttpResponeCallBack callback) {
-		 mCallBack = callback;
+/*		 mCallBack = callback;
 		 //这是每一个接口的唯一标示
 		 String tagUrl = UrlConstance.KEY_REGIST_INFO;//注册接口
 		 //将注册的信息保存在map中（须和服务器端一致）
@@ -56,7 +58,7 @@ public class RequestApiData {
         parameter.put(UrlConstance.ACCESSTOKEN_KEY,MD5Util.getMD5Str(builder.toString()));
 
 		 //请求数据接口
-		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);
+		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);*/
 
 	}
 
@@ -73,7 +75,7 @@ public class RequestApiData {
 	public void getLoginData(String email , String password,
 							 Class<UserBaseInfo> clazz,
 							 HttpResponeCallBack callback) {
-		 mCallBack = callback;
+	/*	 mCallBack = callback;
 		 //这是每一个接口的唯一标示
 		 String tagUrl = UrlConstance.KEY_LOGIN_INFO;//登录接口
 		 HashMap<String, String> parameter = new HashMap<String, String>();
@@ -89,7 +91,7 @@ public class RequestApiData {
 		 parameter.put(UrlConstance.ACCESSTOKEN_KEY,MD5Util.getMD5Str(builder.toString()));
 
 		 //请求数据接口
-		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);
+		 RequestManager.post(UrlConstance.APP_URL,tagUrl, parameter, clazz, callback);*/
 
 	}
 

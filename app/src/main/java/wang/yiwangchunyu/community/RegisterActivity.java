@@ -113,10 +113,10 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
                     baseUser.setNickname(info.getNickname());
                     baseUser.setUserhead(info.getUserhead());
                     baseUser.setUserid(String.valueOf(info.getUserid()));
-                    ItLanBaoApplication.getInstance().setBaseUser(baseUser);
-                    UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
-                    UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
-                    UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
+                    //ItLanBaoApplication.getInstance().setBaseUser(baseUser);
+                    //UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
+                    //UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
+                    //UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
 
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
