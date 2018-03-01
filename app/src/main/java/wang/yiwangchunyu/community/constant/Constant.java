@@ -11,11 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.constant;
 
 /**
- * @author wjl
- * IT蓝豹 www.itlanbao.com
+ * @author
+ *
  * 常量类，用于定义一些常量
  */
 public class Constant {
@@ -24,6 +24,6 @@ public class Constant {
     //请求成功0
     public static final String KEY_SUCCESS = "0";
     //表示用户未注册 /登录失败
-    public static final String KEY_NO_REGIST = "1";
+    public static final String KEY_NO_REGIST = "1"; 
  
 }

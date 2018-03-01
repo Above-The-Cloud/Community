@@ -9,6 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import wang.yiwangchunyu.community.constant.Constant;
+import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.utils.Utils;
+import wang.yiwangchunyu.community.webService.AnalyticalRegistInfo;
+import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.webService.RequestApiData;
+import wang.yiwangchunyu.community.webService.UrlConstance;
+
 public class RegisterActivity extends Activity implements HttpResponeCallBack {
 
     private EditText loginNick;//用户名
