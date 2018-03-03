@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community.webService;
+package wang.yiwangchunyu.community;
 
 import android.app.Application;
 

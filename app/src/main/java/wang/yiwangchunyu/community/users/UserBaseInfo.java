@@ -13,9 +13,11 @@ public class UserBaseInfo implements Serializable{
 //	"userid":"11653","email":"123456789@qq.com","role":"0"}
 	private String userid;//用户id
 	private String nickname;//昵称
+	private String gender;//性别
+	private String address;//住址
 	private String userhead;//用户头像路径 
 	private String email;//用户邮件
-	private String ret;//请求状态码
+	private String ret;//请求状态码  0：正常， 1：用户不存在
 	private String errcode;//错误码
 	private String msg;
 	
@@ -73,6 +75,19 @@ public class UserBaseInfo implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
- 
+	public String getGender() {
+		return gender;
+	}
 
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }

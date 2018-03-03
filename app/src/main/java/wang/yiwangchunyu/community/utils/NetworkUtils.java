@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import wang.yiwangchunyu.community.webService.ItLanbaoLibApplication;
+import wang.yiwangchunyu.community.ItLanbaoLibApplication;
 
 /**
  * 网络相关的工具类

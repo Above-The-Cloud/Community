@@ -3,7 +3,7 @@ package wang.yiwangchunyu.community.users;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import wang.yiwangchunyu.community.webService.ItLanbaoLibApplication;
+import wang.yiwangchunyu.community.ItLanbaoLibApplication;
 
 
 public class UserPreference {

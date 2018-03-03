@@ -1,6 +1,7 @@
-package wang.yiwangchunyu.community.webService;
+package wang.yiwangchunyu.community;
 
 import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.webService.RequestApiData;
 
 /**
  * @author  ItLanBaoApplication主要作用是处理一些app全局变量，

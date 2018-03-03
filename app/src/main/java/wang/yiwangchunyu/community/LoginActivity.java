@@ -14,9 +14,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import wang.yiwangchunyu.community.constant.Constant;
+import wang.yiwangchunyu.community.constant.UrlConstance;
+import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.webService.RequestApiData;
+
 import static android.content.ContentValues.TAG;
 
-public class LoginActivity extends Activity {                 //登录界面活动
+public class LoginActivity extends Activity implements HttpResponeCallBack{                 //登录界面活动
 
     public int pwdresetFlag=0;
     private EditText mAccount;                        //用户名编辑
@@ -90,76 +96,39 @@ public class LoginActivity extends Activity {                 //登录界面活�
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.login_btn_register:                            //登录界面的注册按钮
-                    Intent intent_Login_to_Register = new Intent(LoginActivity.this,RegisterActivity.class) ;    //切换Login Activity至User Activity
-                    startActivity(intent_Login_to_Register);
-                    finish();
+                    register();
                     break;
+
                 case R.id.login_btn_login:                              //登录界面的登录按钮
                     login();
                     break;
 
-
-                case R.id.login_text_change_pwd:                             //登录界面的注销按钮
-//                    Intent intent_Login_to_reset = new Intent(Login.this,Resetpwd.class) ;    //切换Login Activity至User Activity
-//                    startActivity(intent_Login_to_reset);
-//                    finish();
-//                    break;
             }
         }
     };
 
     public void login() {                                              //登录按钮监听事件
         if (isUserNameAndPwdValid()) {
-            String userName = mAccount.getText().toString().trim();    //获取当前输入的用户名和密码信息
+            String user_id = mAccount.getText().toString().trim();    //获取当前输入的用户名和密码信息
             String userPwd = mPwd.getText().toString().trim();
             SharedPreferences.Editor editor =login_sp.edit();
 //            int result=mUserDataManager.findUserByNameAndPwd(userName, userPwd);
             Log.w(TAG, "login: LoginService.loginByPost-------" + "\n"
-                    + "userName: " + userName + "\n" + "passPwd: " + userPwd);
-            String result = LoginService.httpUrlConnectionPost(userName, userPwd);
-            Log.w(TAG, "login: -------LoginService.loginByPost: result:  " + result);
-            if(result.equals("success")){                                             //返回说明用户名和密码均正确
-                //保存用户名和密码
-                editor.putString("USER_NAME", userName);
-                editor.putString("PASSWORD", userPwd);
+                    + "userid: " + user_id + "\n" + "passPwd: " + userPwd);
 
-                //是否记住密码
-                if(mRememberCheck.isChecked()){
-                    editor.putBoolean("mRememberCheck", true);
-                }else{
-                    editor.putBoolean("mRememberCheck", false);
-                }
-                editor.commit();
+            RequestApiData.getInstance().getLoginData(user_id, userPwd, UserBaseInfo.class, LoginActivity.this);
 
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class) ;    //切换Login Activity至User Activity
-                startActivity(intent);
-                finish();
-                Toast.makeText(this, getString(R.string.login_success),Toast.LENGTH_SHORT).show();//登录成功提示
-            }else if(result.equals("fail")){
-                Toast.makeText(this, getString(R.string.login_fail),Toast.LENGTH_SHORT).show();  //登录失败提示
-            }
-            else{
-                Toast.makeText(this, "网络错误：" + result, Toast.LENGTH_SHORT).show();
-            }
+
         }
     }
-    public void cancel() {           //注销
-//        if (isUserNameAndPwdValid()) {
-//            String userName = mAccount.getText().toString().trim();    //获取当前输入的用户名和密码信息
-//            String userPwd = mPwd.getText().toString().trim();
-//            int result=mUserDataManager.findUserByNameAndPwd(userName, userPwd);
-//            if(result==1){                                             //返回1说明用户名和密码均正确
-//                Toast.makeText(this, getString(R.string.cancel_success),Toast.LENGTH_SHORT).show();<span style="font-family: Arial;">//注销成功提示</span>
-//                        mPwd.setText("");
-//                mAccount.setText("");
-//                mUserDataManager.deleteUserDatabyname(userName);
-//            }else if(result==0){
-//                Toast.makeText(this, getString(R.string.cancel_fail),Toast.LENGTH_SHORT).show();  //注销失败提示
-//            }
-//        }
+    public void register() {           //注册
+        Intent intent_Login_to_Register = new Intent(LoginActivity.this,TestMobActivity.class) ;    //切换Login Activity至User Activity
+        startActivity(intent_Login_to_Register);
+        finish();
 
     }
     public boolean isUserNameAndPwdValid() {
+        //TODO:表单验证不足
         if (mAccount.getText().toString().trim().equals("")) {
             Toast.makeText(this, getString(R.string.account_empty),
                     Toast.LENGTH_SHORT).show();
@@ -190,5 +159,40 @@ public class LoginActivity extends Activity {                 //登录界面活�
 //            mUserDataManager = null;
 //        }
         super.onPause();
+    }
+
+    @Override
+    public void onResponeStart(String apiName) {
+
+    }
+
+    @Override
+    public void onLoading(String apiName, long count, long current) {
+
+    }
+
+    @Override
+    public void onSuccess(String apiName, Object object) {
+        if (UrlConstance.KEY_LOGIN_INFO.equals(apiName)){
+            //返回数据
+            if (object != null && object instanceof UserBaseInfo) {
+                UserBaseInfo info = (UserBaseInfo) object;
+                if (info.getRet().equals(Constant.KEY_SUCCESS)) {
+                    Intent intent_Login_to_MainActivity = new Intent(LoginActivity.this,MainActivity.class) ;    //切换Login Activity至User Activity
+                    startActivity(intent_Login_to_MainActivity);
+                    finish();
+                    Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
     }
 }

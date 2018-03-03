@@ -10,37 +10,35 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import wang.yiwangchunyu.community.constant.Constant;
+import wang.yiwangchunyu.community.constant.KeyConstance;
+import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.users.UserPreference;
 import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.AnalyticalRegistInfo;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
-import wang.yiwangchunyu.community.webService.RequestApiData;
-import wang.yiwangchunyu.community.webService.UrlConstance;
+import wang.yiwangchunyu.community.webService.registerService.MobSMS;
 
 public class RegisterActivity extends Activity implements HttpResponeCallBack {
 
     private EditText loginNick;//用户名
     private EditText phonenumber;//用户手机号
-    private EditText password;//注册密码
-    private EditText repeatpassword;//重复输入密码
     private EditText identifyingcode;//验证码
     private Button registBtnCode;//注册验证码
     private Button registBtn;//注册
     private CircleImageView circleImageView;
-
+    private MobSMS mobSMS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        mobSMS = new MobSMS();
         initView();
     }
 
     private void initView() {
         loginNick = (EditText) findViewById(R.id.register_edit_account);
         phonenumber = (EditText) findViewById(R.id.register_edit_phonenumber);
-        password = (EditText) findViewById(R.id.register_edit_pwd);
-        repeatpassword = (EditText) findViewById(R.id.register_edit_repeat_pwd);
         identifyingcode = (EditText) findViewById(R.id.register_edit_identifying_code);
         registBtn = (Button) findViewById(R.id.register_btn_login);
         registBtnCode = (Button) findViewById(R.id.register_send_identifying_code);
@@ -52,13 +50,10 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
                 String phoneStr = phonenumber.getText().toString();
                 if(!TextUtils.isEmpty(phoneStr)){
                     if(Utils.isPhoneNumber(phoneStr)){
-                        /*发送验证码
-                        *
-                        *
-                        *
-                        *
-                        *
-                        * */
+                        // TODO 请获取国家信息
+
+                        mobSMS.sendCode("86", phoneStr);
+
                     }else {
                         Toast.makeText(RegisterActivity.this, "输入手机号有误", Toast.LENGTH_SHORT).show();
                     }
@@ -71,23 +66,23 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+                //
                 //获得用户输入的信息
                 String nick = loginNick.getText().toString();
                 String phoneStr = phonenumber.getText().toString();
-                String passwordStr = password.getText().toString();
-                String repeatpasswordStr = repeatpassword.getText().toString();
                 String identifyingcodeStr = identifyingcode.getText().toString();
-                if (!TextUtils.isEmpty(nick) &&
-                        !TextUtils.isEmpty(phoneStr)
-                        && !TextUtils.isEmpty(passwordStr) && !TextUtils.isEmpty(identifyingcodeStr)) {
-                    if (passwordStr.equals(repeatpasswordStr)) { //验证两次密码是否一致
+                if (!TextUtils.isEmpty(nick)  && !TextUtils.isEmpty(identifyingcodeStr)) {
 
-                        RequestApiData.getInstance().getRegistData(nick, passwordStr, passwordStr,
-                                AnalyticalRegistInfo.class, RegisterActivity.this);
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
-                    }
+                        //TODO 此处表单验证不完善，防止代码注入
+
+                        //TODO 缺少国家信息
+                        mobSMS.submitCode("86", phoneStr, identifyingcodeStr);
+
+                        mobSMS.onDestroy();
+                        //RequestApiData.getInstance().getRegistData(nick, passwordStr, passwordStr,
+                        //        AnalyticalRegistInfo.class, RegisterActivity.this);
+
+
                 } else {
                     Toast.makeText(RegisterActivity.this, "输入信息未完全", Toast.LENGTH_SHORT).show();
                 }
@@ -97,7 +92,7 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
 
     @Override
     public void onResponeStart(String apiName) {
-        // TODO Auto-generated method stub
+        //
         Toast.makeText(RegisterActivity.this, "正在请求数据...", Toast.LENGTH_SHORT).show();
     }
 
@@ -108,7 +103,7 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
 
     @Override
     public void onSuccess(String apiName, Object object) {
-        // TODO Auto-generated method stub
+        //
         //注册接口
         if (UrlConstance.KEY_REGIST_INFO.equals(apiName)) {
             if (object != null && object instanceof AnalyticalRegistInfo) {
@@ -121,9 +116,9 @@ public class RegisterActivity extends Activity implements HttpResponeCallBack {
                     baseUser.setNickname(info.getNickname());
                     baseUser.setUserhead(info.getUserhead());
                     baseUser.setUserid(String.valueOf(info.getUserid()));
-                    //ItLanBaoApplication.getInstance().setBaseUser(baseUser);
-                    //UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
-                    //UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
+                    ItLanBaoApplication.getInstance().setBaseUser(baseUser);
+                    UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
+                    UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
                     //UserPreference.save(KeyConstance.IS_USER_PASSWORD, password.getText().toString());
 
 

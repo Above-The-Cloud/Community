@@ -50,7 +50,7 @@ public class LoginService {
             }
 
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
             System.out.println("111111");
         } catch (ProtocolException e) {

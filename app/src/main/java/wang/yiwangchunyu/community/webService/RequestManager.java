@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import wang.yiwangchunyu.community.ItLanbaoLibApplication;
 import wang.yiwangchunyu.community.utils.NetworkUtils;
 
 
@@ -88,7 +89,7 @@ public class RequestManager {
         initRequestQueue();
 
         //将公共的接口前缀和接口名称拼接
-        //eg:拼接成注册的接口  http://www.itlanbao.com/api/app/users/user_register_Handler.ashx
+        //eg:拼接成注册的接口
         StringBuilder builder = new StringBuilder(app_url);
         builder.append(url);
 
@@ -114,7 +115,7 @@ public class RequestManager {
 
                     @Override
                     public void onResponse(String response) {
-                        // TODO Auto-generated method stub
+
 //					        这个位置先公共解析处理共同异常
                         try {
                             if (response != null && callback != null) {
@@ -125,7 +126,7 @@ public class RequestManager {
                             }
 
                         } catch (Exception e) {
-                            // TODO: handle exception
+
                             if (callback != null) {
                                 //回调请求失败--解析异常
                                 callback.onFailure(url, e, 0, "解析异常");
