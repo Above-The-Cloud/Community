@@ -17,6 +17,7 @@ import android.widget.Toast;
 import wang.yiwangchunyu.community.constant.Constant;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.utils.MD5Util;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -116,7 +117,7 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
             Log.w(TAG, "login: LoginService.loginByPost-------" + "\n"
                     + "userid: " + user_id + "\n" + "passPwd: " + userPwd);
 
-            RequestApiData.getInstance().getLoginData(user_id, userPwd, UserBaseInfo.class, LoginActivity.this);
+            RequestApiData.getInstance().getLoginData(user_id, MD5Util.getMD5Str(userPwd), UserBaseInfo.class, LoginActivity.this);
 
 
         }

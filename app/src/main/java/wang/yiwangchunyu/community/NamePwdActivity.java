@@ -15,6 +15,7 @@ import wang.yiwangchunyu.community.constant.KeyConstance;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.users.UserPreference;
+import wang.yiwangchunyu.community.utils.MD5Util;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -59,7 +60,7 @@ public class NamePwdActivity extends AppCompatActivity implements View.OnClickLi
                 if(nickName.getText().toString().length()>0){
                     if(pwd.getText().toString().equals(doublecheckpwd.getText().toString())){
 
-                        RequestApiData.getInstance().getRegistData(user_id, user_name, user_password, UserBaseInfo.class, NamePwdActivity.this);
+                        RequestApiData.getInstance().getRegistData(user_id, user_name, MD5Util.getMD5Str(user_password), UserBaseInfo.class, NamePwdActivity.this);
 
                         Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
                     }else{

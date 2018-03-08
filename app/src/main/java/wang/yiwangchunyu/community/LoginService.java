@@ -20,6 +20,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import wang.yiwangchunyu.community.utils.StreamTools;
+
 
 public class LoginService {
     private static final String TAG = "LoginService";

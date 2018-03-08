@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.utils;
 
 /**
  * Created by yiwangchunyu on 2018/2/11.
