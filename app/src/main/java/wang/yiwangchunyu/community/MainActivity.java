@@ -16,11 +16,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me;
     private ViewPager vp;
-    private OneFragment oneFragment;
-    private TwoFragment twoFragment;
+    private OneFragment twoFragment;
+    private TwoFragment oneFragment;
     private ThreeFragment threeFragment;
     private FouthFragment fouthFragmen;
-    private List<Fragment> mFragmentList = new ArrayList<Fragment>();
+    private ArrayList<Fragment> mFragmentList = new ArrayList<Fragment>();
     private FragmentAdapter mFragmentAdapter;
 
     String[] titles = new String[]{"任务", "通知", "发现", "我的"};
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         item_me.setOnClickListener(this);
 
         vp = (ViewPager) findViewById(R.id.mainViewPager);
-        oneFragment = new OneFragment();
-        twoFragment = new TwoFragment();
+        oneFragment = new TwoFragment();
+        twoFragment = new OneFragment();
         threeFragment = new ThreeFragment();
         fouthFragmen = new FouthFragment();
         //给FragmentList添加数据
