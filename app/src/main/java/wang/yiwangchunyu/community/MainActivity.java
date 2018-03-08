@@ -1,83 +1,162 @@
 package wang.yiwangchunyu.community;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.view.View;
+import android.widget.TextView;
 
-import static android.widget.RadioGroup.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnCheckedChangeListener{
-    private static final String TAG = "MainActivity";
-    private RadioGroup rg_tab_bar;
-    private RadioButton rb_channel;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me;
+    private ViewPager vp;
+    private OneFragment oneFragment;
+    private TwoFragment twoFragment;
+    private ThreeFragment threeFragment;
+    private FouthFragment fouthFragmen;
+    private List<Fragment> mFragmentList = new ArrayList<Fragment>();
+    private FragmentAdapter mFragmentAdapter;
 
-    //Fragment Object
-    private MyFragment fg1,fg2,fg3,fg4;
-    private FragmentManager fManager;
+    String[] titles = new String[]{"任务", "通知", "发现", "我的"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //去除工具栏
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-        fManager = getFragmentManager();
-        rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
-        rg_tab_bar.setOnCheckedChangeListener(this);
-        //获取第一个单选按钮，并设置其为选中状态
-        rb_channel = (RadioButton) findViewById(R.id.tab_menul);
-        rb_channel.setChecked(true);
+        initViews();
+
+        mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
+        vp.setOffscreenPageLimit(4);//ViewPager的缓存为4帧
+        vp.setAdapter(mFragmentAdapter);
+        vp.setCurrentItem(0);//初始设置ViewPager选中第一帧
+        item_weixin.setTextColor(Color.parseColor("#66CDAA"));
+
+        //ViewPager的监听事件
+        vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                /*此方法在页面被选中时调用*/
+                title.setText(titles[position]);
+                changeTextColor(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                /*此方法是在状态改变的时候调用，其中arg0这个参数有三种状态（0，1，2）。
+                arg0 ==1的时辰默示正在滑动，
+                arg0==2的时辰默示滑动完毕了，
+                arg0==0的时辰默示什么都没做。*/
+            }
+        });
     }
 
+    /**
+     * 初始化布局View
+     */
+    private void initViews() {
+        title = (TextView) findViewById(R.id.title);
+        item_weixin = (TextView) findViewById(R.id.item_weixin);
+        item_tongxunlu = (TextView) findViewById(R.id.item_tongxunlu);
+        item_faxian = (TextView) findViewById(R.id.item_faxian);
+        item_me = (TextView) findViewById(R.id.item_me);
 
+        item_weixin.setOnClickListener(this);
+        item_tongxunlu.setOnClickListener(this);
+        item_faxian.setOnClickListener(this);
+        item_me.setOnClickListener(this);
+
+        vp = (ViewPager) findViewById(R.id.mainViewPager);
+        oneFragment = new OneFragment();
+        twoFragment = new TwoFragment();
+        threeFragment = new ThreeFragment();
+        fouthFragmen = new FouthFragment();
+        //给FragmentList添加数据
+        mFragmentList.add(oneFragment);
+        mFragmentList.add(twoFragment);
+        mFragmentList.add(threeFragment);
+        mFragmentList.add(fouthFragmen);
+    }
+
+    /**
+     * 点击底部Text 动态修改ViewPager的内容
+     */
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        FragmentTransaction fTransaction = fManager.beginTransaction();
-        hideAllFragment(fTransaction);
-        switch (checkedId){
-            case R.id.tab_menul:
-                if(fg1 == null){
-                    fg1 = new MyFragment("第一个Fragment");
-                    fTransaction.add(R.id.ly_content,fg1);
-                }else{
-                    fTransaction.show(fg1);
-                }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.item_weixin:
+                vp.setCurrentItem(0, true);
                 break;
-            case R.id.tab_menu2:
-                if(fg2 == null){
-                    fg2 = new MyFragment("第二个Fragment");
-                    fTransaction.add(R.id.ly_content,fg2);
-                }else{
-                    fTransaction.show(fg2);
-                }
+            case R.id.item_tongxunlu:
+                vp.setCurrentItem(1, true);
                 break;
-            case R.id.tab_menu3:
-                if(fg3 == null){
-                    fg3 = new MyFragment("第三个Fragment");
-                    fTransaction.add(R.id.ly_content,fg3);
-                }else{
-                    fTransaction.show(fg3);
-                }
+            case R.id.item_faxian:
+                vp.setCurrentItem(2, true);
                 break;
-            case R.id.tab_menu4:
-                if(fg4 == null){
-                    fg4 = new MyFragment("第四个Fragment");
-                    fTransaction.add(R.id.ly_content,fg4);
-                }else{
-                    fTransaction.show(fg4);
-                }
+            case R.id.item_me:
+                vp.setCurrentItem(3, true);
                 break;
         }
-        fTransaction.commit();
     }
 
-    //隐藏所有Fragment
-    private void hideAllFragment(FragmentTransaction fragmentTransaction){
-        if(fg1 != null)fragmentTransaction.hide(fg1);
-        if(fg2 != null)fragmentTransaction.hide(fg2);
-        if(fg3 != null)fragmentTransaction.hide(fg3);
-        if(fg4 != null)fragmentTransaction.hide(fg4);
+
+    public class FragmentAdapter extends FragmentPagerAdapter {
+
+        List<Fragment> fragmentList = new ArrayList<Fragment>();
+
+        public FragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+            super(fm);
+            this.fragmentList = fragmentList;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
     }
 
+    /*
+     *由ViewPager的滑动修改底部导航Text的颜色
+     */
+    private void changeTextColor(int position) {
+        if (position == 0) {
+            item_weixin.setTextColor(Color.parseColor("#66CDAA"));
+            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+            item_faxian.setTextColor(Color.parseColor("#000000"));
+            item_me.setTextColor(Color.parseColor("#000000"));
+        } else if (position == 1) {
+            item_tongxunlu.setTextColor(Color.parseColor("#66CDAA"));
+            item_weixin.setTextColor(Color.parseColor("#000000"));
+            item_faxian.setTextColor(Color.parseColor("#000000"));
+            item_me.setTextColor(Color.parseColor("#000000"));
+        } else if (position == 2) {
+            item_faxian.setTextColor(Color.parseColor("#66CDAA"));
+            item_weixin.setTextColor(Color.parseColor("#000000"));
+            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+            item_me.setTextColor(Color.parseColor("#000000"));
+        } else if (position == 3) {
+            item_me.setTextColor(Color.parseColor("#66CDAA"));
+            item_weixin.setTextColor(Color.parseColor("#000000"));
+            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+            item_faxian.setTextColor(Color.parseColor("#000000"));
+        }
+    }
 }
