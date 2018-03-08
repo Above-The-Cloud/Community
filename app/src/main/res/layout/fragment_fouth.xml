@@ -1,13 +1,102 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zsg="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FouthFragment">
+    android:background="#ebebef"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_blur"
+            android:background="@drawable/bg1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ImageView
+            android:background="@drawable/head"
+            android:id="@+id/iv_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_blur"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/user_line"
+                android:layout_width="1dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="15dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/user_line"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:text="李沫沫"/>
+
+            <TextView
+                android:id="@+id/user_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@id/user_line"
+                android:text="世纪佳缘小区"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="'我的'界面"
-        android:textSize="25sp"/>
-</FrameLayout>
+        android:background="@color/white"
+        zsg:show_bottomline="true"
+        zsg:show_leftimg="@drawable/shoucang"
+        zsg:show_text="我的收藏" />
+
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        zsg:show_bottomline="true"
+        zsg:show_leftimg="@drawable/lishi"
+        zsg:show_text="历史任务" />
+
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        zsg:show_bottomline="false"
+        zsg:show_leftimg="@drawable/qianbao"
+        zsg:show_text="我的钱包" />
+
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        zsg:show_bottomline="true"
+        zsg:show_leftimg="@drawable/update"
+        zsg:show_text="版本更新" />
+
+    <wang.yiwangchunyu.community.item_view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        zsg:show_bottomline="false"
+        zsg:show_leftimg="@drawable/about"
+        zsg:show_text="关于" />
+</LinearLayout>
