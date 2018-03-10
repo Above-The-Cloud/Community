@@ -19,6 +19,10 @@
         completions."
     </string>
     <string name="account_empty">用户名不合法</string>
+    <string name="error_invalid_username">用户名不合法（不能包含除汉字，字母，数字，下划线外的字符）,长度为5-16位</string>
+    <string name="error_invalid_pass">密码不合法（只允许包含数字和英文字母）8-16位</string>
+    <string name="error_invalid_Email">邮箱不合法</string>
+    <string name="error_invalid_address">住址不合法</string>
     <string name="pwd_empty">密码不合法</string>
     <string name="login_success">登录成功</string>
     <string name="login_fail">登陆失败</string>

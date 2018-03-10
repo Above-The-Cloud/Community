@@ -15,6 +15,7 @@ import wang.yiwangchunyu.community.constant.KeyConstance;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.users.UserPreference;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -56,19 +57,35 @@ public class NamePwdActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.submit:
                 String user_name = nickName.getText().toString();
                 String user_password = pwd.getText().toString();
-                if(nickName.getText().toString().length()>0){
-                    if(pwd.getText().toString().equals(doublecheckpwd.getText().toString())){
+                String user_email = email.getText().toString();
+                String user_address = address.getText().toString();
 
-                        RequestApiData.getInstance().getRegistData(user_id, user_name, user_password, UserBaseInfo.class, NamePwdActivity.this);
-
-                        Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(this, "两次输入密码不相同", Toast.LENGTH_SHORT).show();
+                if(Utils.isUserName(user_name)){
+                    if(Utils.isPassWord(user_password)){
+                        if(pwd.getText().toString().equals(doublecheckpwd.getText().toString())){
+                            if(Utils.isEmail(user_email)){
+                                if(Utils.isAddress(user_address)){
+                                    RequestApiData.getInstance().getRegistData(user_id, user_name, user_password, UserBaseInfo.class, NamePwdActivity.this);
+                                    Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
+                                } else{
+                                    Toast.makeText(this, getString(R.string.error_invalid_address), Toast.LENGTH_SHORT).show();
+                                }
+                            } else{
+                                Toast.makeText(this, getString(R.string.error_invalid_Email), Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(this, "两次输入密码不相同", Toast.LENGTH_SHORT).show();
+                            pwd.setText("");
+                            doublecheckpwd.setText("");
+                        }
+                    } else{
+                        Toast.makeText(this, getString(R.string.error_invalid_pass), Toast.LENGTH_SHORT).show();
+                        pwd.setText("");
+                        doublecheckpwd.setText("");
                     }
                 }else{
-                    Toast.makeText(this, "昵称不合法", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.error_invalid_username), Toast.LENGTH_SHORT).show();
                 }
-
         }
     }
 

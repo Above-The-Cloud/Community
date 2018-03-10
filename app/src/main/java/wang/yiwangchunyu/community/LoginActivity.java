@@ -17,6 +17,7 @@ import android.widget.Toast;
 import wang.yiwangchunyu.community.constant.Constant;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -127,19 +128,20 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
         finish();
 
     }
+
     public boolean isUserNameAndPwdValid() {
-        //TODO:表单验证不足
-        if (mAccount.getText().toString().trim().equals("")) {
-            Toast.makeText(this, getString(R.string.account_empty),
+        if (!Utils.isUserName(mAccount.getText().toString().trim())) {
+            Toast.makeText(this, getString(R.string.error_invalid_username),
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (mPwd.getText().toString().trim().equals("")) {
-            Toast.makeText(this, getString(R.string.pwd_empty),
+        } else if (!Utils.isPassWord(mPwd.getText().toString().trim())) {
+            Toast.makeText(this, getString(R.string.error_invalid_pass),
                     Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
     @Override
     protected void onResume() {
 //        if (mUserDataManager == null) {
