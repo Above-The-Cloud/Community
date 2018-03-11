@@ -32,7 +32,7 @@ public class RegisterUserInfoActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_pwd);
+        setContentView(R.layout.activity_register_user_info);
         Intent intent = getIntent();
         user_id = intent.getStringExtra("userid");
 

@@ -24,7 +24,6 @@ import java.util.List;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-import cn.smssdk.gui.RegisterPage;
 import wang.yiwangchunyu.community.constant.Constant;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
@@ -51,12 +50,9 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_mob);
+        setContentView(R.layout.activity_get_identifing_code);
         userBaseInfo = new UserBaseInfo();
-//        MobSDK.init(this, "1e5a7235099cc", "25e7e16707c24845a80b2afcbcee49f1");
-//        MobSDK.init(this, "1cc1ae7ec8300", "1a5fa945644ac0bd071a0df8f92eac07");
-//        Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
-//            SMSSDK.setAskPermisionOnReadContact(true);
+
         MobSDK.init(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -87,10 +83,8 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
         }
 
         rawData = SMSSDK.getGroupedCountryList();
-        findViewById(R.id.tv_test).setOnClickListener(this);
         findViewById(R.id.tv_test1).setOnClickListener(this);
         findViewById(R.id.tv_test_vcode_valiable).setOnClickListener(this);
-        findViewById(R.id.tv_test3).setOnClickListener(this);
         etVCode = (EditText) findViewById(R.id.et_v_code);
         etVGetcode = (EditText) findViewById(R.id.et_v_getcode);
         etVGetcode.setText("xx");
@@ -191,25 +185,7 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
         String phone = etVGetcode.getText().toString();
 
         switch (v.getId()){
-            case R.id.tv_test:
-//打开注册页面
-                RegisterPage registerPage = new RegisterPage();
-                registerPage.setRegisterCallback(new EventHandler() {
-                    public void afterEvent(int event, int result, Object data) {
-// 解析注册结果
-                        if (result == SMSSDK.RESULT_COMPLETE) {
-                            @SuppressWarnings("unchecked")
-                            HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
-                            String country = (String) phoneMap.get("country");
-                            String phone = (String) phoneMap.get("phone");
-
-// 提交用户信息（此方法可以不调用）
-//                            registerUser(country, phone);
-                        }
-                    }
-                });
-                registerPage.show(this);
-                break;
+//
             case R.id.tv_test1:
                 //获取验证码
                 if (TextUtils.isEmpty(phone))
@@ -221,11 +197,7 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
                 //SMSSDK.getVerificationCode("86",phone,null);
 //                SMSSDK.getVoiceVerifyCode("86",phone);
                 break;
-            case R.id.tv_test3:
-//                //获取支持的国家
-//                Toast.makeText(this,"show",Toast.LENGTH_SHORT).show();
-                SMSSDK.getSupportedCountries();
-                break;
+
 
             case R.id.tv_test_vcode_valiable:
 
@@ -254,75 +226,6 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
     }
 
 
-
-
-//    private void initSearchEngine() {
-//        this.sEngine = new SearchEngine();
-//        ArrayList countries = new ArrayList();
-//        Iterator var2 = this.rawData.entrySet().iterator();
-//
-//        while(var2.hasNext()) {
-//            Map.Entry ent = (Map.Entry)var2.next();
-//            ArrayList cl = (ArrayList)ent.getValue();
-//            Iterator var5 = cl.iterator();
-//
-//            while(var5.hasNext()) {
-//                String[] paire = (String[])var5.next();
-//                countries.add(paire[0]);
-//            }
-//        }
-//
-//        this.sEngine.setIndex(countries);
-//    }
-
-    //    public void search(String token) {
-//        ArrayList res = this.sEngine.match(token);
-//        boolean isEmptyToken = false;
-//        if(res == null || res.size() <= 0) {
-//            res = new ArrayList();
-//            isEmptyToken = true;
-//        }
-//
-//        HashMap resMap = new HashMap();
-//        Iterator var5 = res.iterator();
-//
-//        while(var5.hasNext()) {
-//            String ent = (String)var5.next();
-//            resMap.put(ent, ent);
-//        }
-//
-//        this.titles = new ArrayList();
-//        this.countries = new ArrayList();
-//        var5 = this.rawData.entrySet().iterator();
-//
-//        label37:
-//        while(var5.hasNext()) {
-//            Map.Entry ent1 = (Map.Entry)var5.next();
-//            ArrayList cl = (ArrayList)ent1.getValue();
-//            list = new ArrayList();
-//            Iterator var9 = cl.iterator();
-//
-//            while(true) {
-//                String[] paire;
-//                do {
-//                    if(!var9.hasNext()) {
-//                        if(list.size() > 0) {
-//                            this.titles.add(String.valueOf(ent1.getKey()));
-//                            this.countries.add(list);
-//                        }
-//                        continue label37;
-//                    }
-//
-//                    paire = (String[])var9.next();
-//                } while(!isEmptyToken && !resMap.containsKey(paire[0]));
-//
-//                list.add(paire);
-//
-//            }
-//
-//        }
-//
-//    }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {

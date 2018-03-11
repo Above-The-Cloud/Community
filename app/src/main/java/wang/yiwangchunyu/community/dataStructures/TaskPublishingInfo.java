@@ -17,6 +17,15 @@ public class TaskPublishingInfo {
     private int liked;
     private Date publish_time;
     private String code;//状态码 0：正常
+    private String msg;
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public Date getPublish_time() {
         return publish_time;
