@@ -65,7 +65,7 @@ public class RegisterUserInfoActivity extends AppCompatActivity implements View.
                         if(pwd.getText().toString().equals(doublecheckpwd.getText().toString())){
                             if(Utils.isEmail(user_email)){
                                 if(Utils.isAddress(user_address)){
-                                    RequestApiData.getInstance().getRegistData(user_id, user_name, MD5Util.getMD5Str(user_password), UserBaseInfo.class, RegisterUserInfoActivity.this);
+                                    RequestApiData.getInstance().getRegistData(user_id, user_name, user_email, user_address, MD5Util.getMD5Str(user_password), UserBaseInfo.class, RegisterUserInfoActivity.this);
                                     Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
                                 } else{
                                     Toast.makeText(this, getString(R.string.error_invalid_address), Toast.LENGTH_SHORT).show();

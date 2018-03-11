@@ -37,7 +37,7 @@ public class RequestApiData {
 	 * 请求方式：POST
 	 */
 	public void getRegistData(String userid, String nickname
-			,String password, Class<UserBaseInfo> clazz,
+			,String password, String userEmail, String userAddress, Class<UserBaseInfo> clazz,
 		   HttpResponeCallBack callback) {
 		 mCallBack = callback;
 		 //这是每一个接口的唯一标示
@@ -47,12 +47,15 @@ public class RequestApiData {
 		 parameter.put("user_name", nickname);
 		 parameter.put("user_id",userid);
 		 parameter.put("user_password",password);
-
+		parameter.put("user_address",userAddress);
+		parameter.put("user_email", userEmail);
 		//拼接参数信息，昵称，邮箱，密码，公钥，并用md5进行加密
         StringBuilder builder = new StringBuilder();
         builder.append(nickname);
         builder.append(userid);
         builder.append(password);
+		builder.append(userEmail);
+		builder.append(userAddress);
         builder.append(UrlConstance.PUBLIC_KEY);
 
         parameter.put(UrlConstance.ACCESSTOKEN_KEY, MD5Util.getMD5Str(builder.toString()));
