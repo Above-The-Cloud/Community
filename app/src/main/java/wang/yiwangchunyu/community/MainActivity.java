@@ -14,16 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me;
+    private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me, item_fabu;
     private ViewPager vp;
     private OneFragment twoFragment;
     private TwoFragment oneFragment;
     private ThreeFragment threeFragment;
     private FouthFragment fouthFragmen;
+    private FabuFragment fabuFragment;
     private ArrayList<Fragment> mFragmentList = new ArrayList<Fragment>();
     private FragmentAdapter mFragmentAdapter;
 
-    String[] titles = new String[]{"任务", "通知", "发现", "我的"};
+    String[] titles = new String[]{"任务", "通知", "发布","发现", "我的"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initViews();
 
         mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
-        vp.setOffscreenPageLimit(4);//ViewPager的缓存为4帧
+        vp.setOffscreenPageLimit(5);//ViewPager的缓存为4帧
         vp.setAdapter(mFragmentAdapter);
         vp.setCurrentItem(0);//初始设置ViewPager选中第一帧
         item_weixin.setTextColor(Color.parseColor("#66CDAA"));
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         title = (TextView) findViewById(R.id.title);
         item_weixin = (TextView) findViewById(R.id.item_weixin);
         item_tongxunlu = (TextView) findViewById(R.id.item_tongxunlu);
+        item_fabu = (TextView)findViewById(R.id.item_fabu);
         item_faxian = (TextView) findViewById(R.id.item_faxian);
         item_me = (TextView) findViewById(R.id.item_me);
 
@@ -77,15 +79,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         item_tongxunlu.setOnClickListener(this);
         item_faxian.setOnClickListener(this);
         item_me.setOnClickListener(this);
+        item_fabu.setOnClickListener(this);
 
         vp = (ViewPager) findViewById(R.id.mainViewPager);
         oneFragment = new TwoFragment();
         twoFragment = new OneFragment();
         threeFragment = new ThreeFragment();
         fouthFragmen = new FouthFragment();
+        fabuFragment = new FabuFragment();
+
         //给FragmentList添加数据
         mFragmentList.add(oneFragment);
         mFragmentList.add(twoFragment);
+        mFragmentList.add(fabuFragment);
         mFragmentList.add(threeFragment);
         mFragmentList.add(fouthFragmen);
     }
@@ -103,11 +109,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 vp.setCurrentItem(1, true);
                 break;
             case R.id.item_faxian:
-                vp.setCurrentItem(2, true);
-                break;
-            case R.id.item_me:
                 vp.setCurrentItem(3, true);
                 break;
+            case R.id.item_me:
+                vp.setCurrentItem(4, true);
+                break;
+            case R.id.item_fabu:
+                vp.setCurrentItem(2,true);
         }
     }
 
@@ -142,21 +150,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             item_tongxunlu.setTextColor(Color.parseColor("#000000"));
             item_faxian.setTextColor(Color.parseColor("#000000"));
             item_me.setTextColor(Color.parseColor("#000000"));
+            item_fabu.setTextColor(Color.parseColor("#000000"));
         } else if (position == 1) {
             item_tongxunlu.setTextColor(Color.parseColor("#66CDAA"));
             item_weixin.setTextColor(Color.parseColor("#000000"));
             item_faxian.setTextColor(Color.parseColor("#000000"));
             item_me.setTextColor(Color.parseColor("#000000"));
+            item_fabu.setTextColor(Color.parseColor("#000000"));
+
         } else if (position == 2) {
+            item_fabu.setTextColor(Color.parseColor("#66CDAA"));
+            item_weixin.setTextColor(Color.parseColor("#000000"));
+            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+            item_faxian.setTextColor(Color.parseColor("#000000"));
+            item_me.setTextColor(Color.parseColor("#000000"));
+
+        }else if (position == 3) {
             item_faxian.setTextColor(Color.parseColor("#66CDAA"));
             item_weixin.setTextColor(Color.parseColor("#000000"));
             item_tongxunlu.setTextColor(Color.parseColor("#000000"));
             item_me.setTextColor(Color.parseColor("#000000"));
-        } else if (position == 3) {
+            item_fabu.setTextColor(Color.parseColor("#000000"));
+
+        } else if (position == 4) {
             item_me.setTextColor(Color.parseColor("#66CDAA"));
             item_weixin.setTextColor(Color.parseColor("#000000"));
             item_tongxunlu.setTextColor(Color.parseColor("#000000"));
             item_faxian.setTextColor(Color.parseColor("#000000"));
+            item_fabu.setTextColor(Color.parseColor("#000000"));
+
         }
+
     }
 }

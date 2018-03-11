@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import wang.yiwangchunyu.community.constant.Constant;
 import wang.yiwangchunyu.community.constant.UrlConstance;
+import wang.yiwangchunyu.community.usercenter.CircleImageView;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.utils.MD5Util;

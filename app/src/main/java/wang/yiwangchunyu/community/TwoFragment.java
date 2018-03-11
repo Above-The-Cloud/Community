@@ -34,6 +34,10 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
+import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
+import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
+import wang.yiwangchunyu.community.recycleview.Recycler_Item;
 
 public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface {
 

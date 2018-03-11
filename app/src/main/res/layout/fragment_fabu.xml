@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <EditText
+        android:id="@+id/item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="任务标题"
+        />
+
+    <EditText
+        android:id="@+id/item_restriction"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:hint="任务要求"
+        />
+
+    <EditText
+        android:id="@+id/item_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:hint="任务描述"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="报酬"/>
+
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:id="@+id/item_fabubutton"
+        android:text="发布"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

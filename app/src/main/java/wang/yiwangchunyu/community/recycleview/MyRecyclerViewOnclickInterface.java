@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.recycleview;
 
 /**
  * Created by Administrator on 2018/3/8.

@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.usercenter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

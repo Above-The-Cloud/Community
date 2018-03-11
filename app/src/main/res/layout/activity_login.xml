@@ -15,7 +15,7 @@
         android:layout_height="800dp"
         android:layout_centerVertical="true">
 
-        <wang.yiwangchunyu.community.CircleImageView
+        <wang.yiwangchunyu.community.usercenter.CircleImageView
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:id="@+id/logo"

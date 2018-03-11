@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.recycleview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +12,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import wang.yiwangchunyu.community.R;
+
 /**
- * Created by CC on 2016/12/27.
+ * Created by XinyuJiang on 2018/3/8.
  */
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
 

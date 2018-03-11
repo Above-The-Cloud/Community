@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.usercenter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import wang.yiwangchunyu.community.R;
 
 /**
  * 创建人: Fang.Mr

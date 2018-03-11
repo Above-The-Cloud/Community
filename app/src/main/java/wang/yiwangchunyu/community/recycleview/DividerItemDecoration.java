@@ -1,7 +1,7 @@
-package wang.yiwangchunyu.community;
+package wang.yiwangchunyu.community.recycleview;
 
 /**
- * Created by Administrator on 2018/3/8.
+ * Created by XinyuJiang on 2018/3/8.
  */
 
 import android.content.Context;

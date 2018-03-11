@@ -59,7 +59,7 @@
 
     </RelativeLayout>
 
-    <wang.yiwangchunyu.community.item_view
+    <wang.yiwangchunyu.community.usercenter.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -67,7 +67,7 @@
         zsg:show_leftimg="@drawable/shoucang"
         zsg:show_text="我的收藏" />
 
-    <wang.yiwangchunyu.community.item_view
+    <wang.yiwangchunyu.community.usercenter.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -75,7 +75,7 @@
         zsg:show_leftimg="@drawable/lishi"
         zsg:show_text="历史任务" />
 
-    <wang.yiwangchunyu.community.item_view
+    <wang.yiwangchunyu.community.usercenter.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -83,7 +83,7 @@
         zsg:show_leftimg="@drawable/qianbao"
         zsg:show_text="我的钱包" />
 
-    <wang.yiwangchunyu.community.item_view
+    <wang.yiwangchunyu.community.usercenter.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -92,7 +92,7 @@
         zsg:show_leftimg="@drawable/update"
         zsg:show_text="版本更新" />
 
-    <wang.yiwangchunyu.community.item_view
+    <wang.yiwangchunyu.community.usercenter.item_view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
