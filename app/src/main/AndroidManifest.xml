@@ -41,10 +41,10 @@
 
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".TestMobActivity">
+        <activity android:name=".GetIdentifingCodeActivity">
 
         </activity>
-        <activity android:name=".NamePwdActivity">
+        <activity android:name=".RegisterUserInfoActivity">
 
         </activity>
     </application>

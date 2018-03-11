@@ -31,7 +31,7 @@ import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
-public class TestMobActivity extends Activity implements View.OnClickListener, HttpResponeCallBack {
+public class GetIdentifingCodeActivity extends Activity implements View.OnClickListener, HttpResponeCallBack {
     private HashMap<Character, ArrayList<String[]>> rawData;
     private EditText etVCode;
     private EditText etVGetcode;
@@ -107,7 +107,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                         //提交验证码成功
 
 
-                        Intent intent = new Intent(TestMobActivity.this,NamePwdActivity.class) ;
+                        Intent intent = new Intent(GetIdentifingCodeActivity.this,RegisterUserInfoActivity.class) ;
                         intent.putExtra("userid", userBaseInfo.getUserid());
                         startActivity(intent);
                         finish();
@@ -115,7 +115,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(TestMobActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(GetIdentifingCodeActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -123,7 +123,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(TestMobActivity.this,"语音验证发送",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(GetIdentifingCodeActivity.this,"语音验证发送",Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -138,7 +138,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(TestMobActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(GetIdentifingCodeActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -170,7 +170,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(TestMobActivity.this,des,Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(GetIdentifingCodeActivity.this,des,Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -216,7 +216,7 @@ public class TestMobActivity extends Activity implements View.OnClickListener, H
                     Toast.makeText(this,"phone can't be null",Toast.LENGTH_SHORT).show();
                 //TODO: 表单验证，手机号正则表达式
                 //访问数据库， 用户是否已经存在
-                RequestApiData.getInstance().getUserInfo(phone, UserBaseInfo.class, TestMobActivity.this);
+                RequestApiData.getInstance().getUserInfo(phone, UserBaseInfo.class, GetIdentifingCodeActivity.this);
 
                 //SMSSDK.getVerificationCode("86",phone,null);
 //                SMSSDK.getVoiceVerifyCode("86",phone);

@@ -12,7 +12,7 @@ public class TaskPublishingInfo {
     private String category;
     private String title;
     private String content;
-    private int price;
+    private int commission;
     private int viewed;
     private int liked;
     private Date publish_time;
@@ -66,12 +66,12 @@ public class TaskPublishingInfo {
         this.content = content;
     }
 
-    public int getPrice() {
-        return price;
+    public int getCommission() {
+        return commission;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCommission(int commission) {
+        this.commission = commission;
     }
 
     public int getViewed() {

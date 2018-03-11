@@ -3,7 +3,6 @@ package wang.yiwangchunyu.community;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +14,13 @@ import wang.yiwangchunyu.community.constant.KeyConstance;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.users.UserPreference;
-import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.utils.MD5Util;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
-public class NamePwdActivity extends AppCompatActivity implements View.OnClickListener, HttpResponeCallBack {
-    private static final String TAG = "NamePwdActivity";
+public class RegisterUserInfoActivity extends AppCompatActivity implements View.OnClickListener, HttpResponeCallBack {
+    private static final String TAG = "RegisterUserInfoActivity";
     private EditText nickName;
     private EditText pwd;
     private EditText doublecheckpwd;
@@ -66,7 +65,7 @@ public class NamePwdActivity extends AppCompatActivity implements View.OnClickLi
                         if(pwd.getText().toString().equals(doublecheckpwd.getText().toString())){
                             if(Utils.isEmail(user_email)){
                                 if(Utils.isAddress(user_address)){
-                                    RequestApiData.getInstance().getRegistData(user_id, user_name, user_password, UserBaseInfo.class, NamePwdActivity.this);
+                                    RequestApiData.getInstance().getRegistData(user_id, user_name, MD5Util.getMD5Str(user_password), UserBaseInfo.class, RegisterUserInfoActivity.this);
                                     Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
                                 } else{
                                     Toast.makeText(this, getString(R.string.error_invalid_address), Toast.LENGTH_SHORT).show();
@@ -119,15 +118,15 @@ public class NamePwdActivity extends AppCompatActivity implements View.OnClickLi
                     //UserPreference.save(KeyConstance.IS_USER_ACCOUNT, info.getEmail());
                     UserPreference.save(KeyConstance.IS_USER_PASSWORD, pwd.getText().toString());
 
-                    Log.d(TAG, "onSuccess: startActivity MainActivity");
-                    Intent intent = new Intent(NamePwdActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(NamePwdActivity.this, "注册成功...", Toast.LENGTH_SHORT).show();
 
-                    NamePwdActivity.this.finish();
+                    Intent intent = new Intent(RegisterUserInfoActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(RegisterUserInfoActivity.this, "注册成功...", Toast.LENGTH_SHORT).show();
+
+                    RegisterUserInfoActivity.this.finish();
 
                 } else {
-                    Toast.makeText(NamePwdActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUserInfoActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                 }
             }
         }

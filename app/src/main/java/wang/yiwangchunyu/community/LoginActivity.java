@@ -124,7 +124,7 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
         }
     }
     public void register() {           //注册
-        Intent intent_Login_to_Register = new Intent(LoginActivity.this,TestMobActivity.class) ;    //切换Login Activity至User Activity
+        Intent intent_Login_to_Register = new Intent(LoginActivity.this,GetIdentifingCodeActivity.class) ;    //切换Login Activity至User Activity
         startActivity(intent_Login_to_Register);
         finish();
 
