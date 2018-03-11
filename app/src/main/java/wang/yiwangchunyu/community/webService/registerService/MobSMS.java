@@ -19,8 +19,7 @@ public class MobSMS {
 
                     // 请注意，此时只是完成了发送验证码的请求，验证码短信还需要几秒钟之后才送达
                 } else{
-                    // TODO 处理错误的结果
-                    //Toast.makeText(RegisterActivity.this, "输入手机号有误", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

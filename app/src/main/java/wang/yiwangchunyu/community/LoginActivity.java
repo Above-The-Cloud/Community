@@ -115,8 +115,7 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
             String userPwd = mPwd.getText().toString().trim();
             SharedPreferences.Editor editor =login_sp.edit();
 //            int result=mUserDataManager.findUserByNameAndPwd(userName, userPwd);
-            Log.w(TAG, "login: LoginService.loginByPost-------" + "\n"
-                    + "userid: " + user_id + "\n" + "passPwd: " + userPwd);
+
 
             RequestApiData.getInstance().getLoginData(user_id, MD5Util.getMD5Str(userPwd), UserBaseInfo.class, LoginActivity.this);
 

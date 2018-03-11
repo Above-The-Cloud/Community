@@ -40,7 +40,6 @@
             android:windowSoftInputMode="stateHidden|adjustResize">
 
         </activity>
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".GetIdentifingCodeActivity">
 
         </activity>
