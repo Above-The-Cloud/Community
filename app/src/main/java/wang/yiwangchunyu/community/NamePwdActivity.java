@@ -16,6 +16,7 @@ import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.users.UserPreference;
 import wang.yiwangchunyu.community.utils.Utils;
+import wang.yiwangchunyu.community.utils.MD5Util;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
