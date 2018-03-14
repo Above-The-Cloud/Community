@@ -19,6 +19,17 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:padding="20dp"-->
         <!--android:text="获取国家列表" />-->
+    <wang.yiwangchunyu.community.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/logo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:background="@drawable/bg1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,16 +40,19 @@
             android:id="@+id/et_v_getcode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
+            android:padding="20dp"
             android:hint="请输入手机号"
             android:inputType="number" />
 
         <TextView
             android:id="@+id/tv_test1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_weight="2"
             android:padding="20dp"
+            android:textSize="20dp"
             android:text="发送验证码" />
     </LinearLayout>
 
@@ -48,19 +62,39 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/et_v_code"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:inputType="number"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请输入验证码"/>
         <TextView
             android:id="@+id/tv_test_vcode_valiable"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:gravity="center"
             android:padding="20dp"
+            android:textSize="20dp"
             android:text="验证"
             />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view1"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:text="WELCOME to"
+        android:textSize="40dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view2"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:text="COMMUNITY!"
+        android:textSize="50dp"/>
 
 </LinearLayout>
