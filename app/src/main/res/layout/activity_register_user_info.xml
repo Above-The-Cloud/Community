@@ -7,6 +7,15 @@
     tools:context="wang.yiwangchunyu.community.RegisterUserInfoActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view1"
+        android:textColor="@color/text_yellow"
+        android:gravity="center"
+        android:text="WELCOME"
+        android:textSize="40dp"/>
+
     <EditText
         android:id="@+id/nickname"
         android:layout_width="match_parent"
@@ -74,4 +83,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="注册" />
+
+
 </LinearLayout>
