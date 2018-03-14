@@ -9,6 +9,7 @@ import java.util.Date;
 public class TaskPublishingInfo {
     private String publishId;
     private String userId;
+    private String restriction;
     private String category;
     private String title;
     private String content;
@@ -26,6 +27,10 @@ public class TaskPublishingInfo {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public String  getRestriction(){ return restriction ;}
+
+    public void setRestriction(String restriction){ this.restriction = restriction; }
 
     public Date getPublish_time() {
         return publish_time;
