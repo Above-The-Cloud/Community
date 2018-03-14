@@ -63,6 +63,7 @@ public class FabuFragment extends Fragment{
     private View view;
     private Uri imageUri;
     public static final int TAKE_PHOTO = 1;
+    public static final int CHOOSE_PHOTO = 2;
 
     /*private String title;
     private String content;
@@ -159,6 +160,7 @@ public class FabuFragment extends Fragment{
                     Intent intent = new Intent(getContext(),
                             TestPicActivity.class);
                     startActivity(intent);
+
                     dismiss();
                 }
             });
