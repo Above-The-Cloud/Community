@@ -1,10 +1,14 @@
 package wang.yiwangchunyu.community.webService;
 
+import android.graphics.Bitmap;
+
 import java.util.HashMap;
 
 import wang.yiwangchunyu.community.constant.UrlConstance;
+import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.utils.MD5Util;
+import wang.yiwangchunyu.community.webService.fileHandler.FileUploader;
  
 /*
  * 网络接口
@@ -115,5 +119,52 @@ public class RequestApiData {
 		//请求数据接口
 		RequestManager.post(UrlConstance.APP_URL, tagUrl, parameter, clazz, callback);
 	}
+	public void getPublishTaskInfo(TaskPublishingInfo task, Class<HttpResponse> clazz, HttpResponeCallBack callback){
+		mCallBack = callback;
+		//这是每一个接口的唯一标示
+		String tagUrl = UrlConstance.KEY_PUBLISH_INFO;//登录接口
+		HashMap<String, String> parameter = new HashMap<String, String>();
+		parameter.put("user_id", task.getUserId());
+		parameter.put("title", task.getTitle());
+		parameter.put("restriction", task.getRestriction());
+		parameter.put("content", task.getContent());
+		parameter.put("category",task.getCategory());
+		parameter.put("commission", String.valueOf(task.getCommission()));
+		//拼接参数信息，userid，公钥，并用md5进行加密
+		StringBuilder builder = new StringBuilder();
+		builder.append(task.getUserId());
+		builder.append(UrlConstance.PUBLIC_KEY);
 
+		parameter.put(UrlConstance.ACCESSTOKEN_KEY,MD5Util.getMD5Str(builder.toString()));
+
+		//请求数据接口
+		RequestManager.post(UrlConstance.APP_URL, tagUrl, parameter, clazz, callback);
+		HttpResponeCallBack imageCallback = new HttpResponeCallBack() {
+			@Override
+			public void onResponeStart(String apiName) {
+
+			}
+
+			@Override
+			public void onLoading(String apiName, long count, long current) {
+
+			}
+
+			@Override
+			public void onSuccess(String apiName, Object object) {
+
+			}
+
+			@Override
+			public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
+			}
+		};
+		if(task.getImages()!=null){
+			for(Bitmap image: task.getImages()){
+				FileUploader.sendImage(image,task.getUserId(),imageCallback);
+			}
+		}
+
+	}
 }

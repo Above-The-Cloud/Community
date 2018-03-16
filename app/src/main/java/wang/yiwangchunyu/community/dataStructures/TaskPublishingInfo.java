@@ -1,6 +1,9 @@
 package wang.yiwangchunyu.community.dataStructures;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yiwangchunyu on 2018/3/9.
@@ -19,6 +22,15 @@ public class TaskPublishingInfo {
     private Date publish_time;
     private String code;//状态码 0：正常
     private String msg;
+    private List<Bitmap> images;
+
+    public List<Bitmap> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Bitmap> images) {
+        this.images = images;
+    }
 
     public String getMsg() {
         return msg;

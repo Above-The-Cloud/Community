@@ -37,6 +37,9 @@ import wang.yiwangchunyu.community.Task.Bimp;
 import wang.yiwangchunyu.community.Task.FileUtils;
 import wang.yiwangchunyu.community.Task.TestPicActivity;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
+import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.webService.HttpResponse;
+import wang.yiwangchunyu.community.webService.RequestApiData;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -44,7 +47,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by XinyuJiang on 2018/3/11.
  */
 
-public class FabuFragment extends Fragment{
+public class FabuFragment extends Fragment implements HttpResponeCallBack{
 
     private TaskPublishingInfo taskPublishingInfo;//任务实例
     private GridView noScrollgridview;
@@ -118,6 +121,26 @@ public class FabuFragment extends Fragment{
                 Toast.makeText(getContext(),"任务发布成功！",Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onResponeStart(String apiName) {
+
+    }
+
+    @Override
+    public void onLoading(String apiName, long count, long current) {
+
+    }
+
+    @Override
+    public void onSuccess(String apiName, Object object) {
+
+    }
+
+    @Override
+    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
     }
 
     public class PopupWindows extends PopupWindow {
@@ -559,5 +582,8 @@ public class FabuFragment extends Fragment{
                 break;
         }
     }*/
-
+    //TODO:发布调用接口
+    public void upload(TaskPublishingInfo task, Class<HttpResponse> clazz, HttpResponeCallBack callback){
+        RequestApiData.getInstance().getPublishTaskInfo(task, clazz, callback);
+    }
 }

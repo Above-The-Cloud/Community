@@ -21,5 +21,11 @@ public class UrlConstance {
 
    //获取用户基本信息
    public static final String KEY_USER_BASE_INFO ="GetUserInfo";
+
+   //上传图片
+   public static final String KEY_IMAGE_UPLOADER = "Imageupload";
+
+   //上传发布信息
+   public static  final String KEY_PUBLISH_INFO = "PublishInfo";
    
 }
