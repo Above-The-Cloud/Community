@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,8 @@ import wang.yiwangchunyu.community.constant.Constant;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.usercenter.CircleImageView;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
-import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.utils.MD5Util;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -34,7 +35,7 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
     private Button mLoginButton;                      //登录按钮
     //private Button mCancleButton;                     //注销按钮
     private CheckBox mRememberCheck;
-    private CircleImageView circleImageView;        //logo图片
+    private ImageView logo_imageView;        //logo图片
 
     private SharedPreferences login_sp;
     private String userNameValue,passwordValue;
@@ -61,7 +62,7 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
         mRegisterButton = (Button) findViewById(R.id.login_btn_register);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
         //mCancleButton = (Button) findViewById(R.id.login_btn_cancle);
-        circleImageView = (CircleImageView) findViewById(R.id.logo);
+        logo_imageView = (ImageView) findViewById(R.id.logo);
         loginView=findViewById(R.id.login_view);
         loginSuccessView=findViewById(R.id.login_success_view);
         loginSuccessShow=(TextView) findViewById(R.id.login_success_show);
