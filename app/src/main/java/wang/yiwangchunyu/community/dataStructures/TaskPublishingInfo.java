@@ -23,6 +23,7 @@ public class TaskPublishingInfo {
     private String code;//状态码 0：正常
     private String msg;
     private List<Bitmap> images;
+    private Bitmap image;
 
     public List<Bitmap> getImages() {
         return images;
@@ -71,6 +72,10 @@ public class TaskPublishingInfo {
     public String getCategory() {
         return category;
     }
+
+    public Bitmap getImage(){return image; }
+
+    public void setImage(Bitmap image){ this.image = image;}
 
     public void setCategory(String category) {
         this.category = category;

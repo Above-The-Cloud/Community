@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by XinyuJiang on 2018/3/11.
  */
 
-public class FabuFragment extends Fragment implements HttpResponeCallBack{
+public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClickListener{
 
     private TaskPublishingInfo taskPublishingInfo;//任务实例
     private GridView noScrollgridview;
@@ -74,6 +75,7 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack{
     private Uri imageUri;
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
+    private Bitmap tempbitmap;
 
     /*private String title;
     private String content;
@@ -108,27 +110,10 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack{
         item_commission = (EditText) view.findViewById(R.id.item_commision);
         Release = (Button) view.findViewById(R.id.activity_selectimg_send);
         add_photo = (ImageView) view.findViewById(R.id.add_photo);
+        add_photo.setOnClickListener(this);
+        Release.setOnClickListener(this);
         picture = (ImageView) view.findViewById(R.id.picture);
 
-        add_photo.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-// 一个自定义的布局，作为显示的内容
-                new PopupWindows(getContext());
-
-            }
-        });
-        Release.setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //传递数据
-                taskPublishingInfo.setTitle(item_titile.getText().toString());
-                taskPublishingInfo.setRestriction(item_restriction.getText().toString());
-                taskPublishingInfo.setContent(item_content.getText().toString());
-                //taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
-                Toast.makeText(getContext(),"任务发布成功！",Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
@@ -149,6 +134,35 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack{
     @Override
     public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.activity_selectimg_send:
+                //传递数据
+            {taskPublishingInfo.setTitle(item_titile.getText().toString());
+                taskPublishingInfo.setRestriction(item_restriction.getText().toString());
+                taskPublishingInfo.setContent(item_content.getText().toString());
+                taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
+                taskPublishingInfo.setImage(tempbitmap);
+                /*FragmentManager manager = getFragmentManager();
+                manager
+                    .beginTransaction()
+                    .addToBackStack(null)  //将当前fragment加入到返回栈中
+                    .replace(R.id.fabu, new TwoFragment()).commit();*/
+                Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
+                startActivity(intent_Fabu_to_Two);
+                getActivity().finish();
+                //Toast.makeText(getContext(),"任务发布成功laaaaaaaaaa！",Toast.LENGTH_LONG).show();
+                upload(taskPublishingInfo, HttpResponse.class, this);}
+
+            case R.id.add_photo:
+            { // 一个自定义的布局，作为显示的内容
+                new PopupWindows(view.getContext());}
+
+
+    }
     }
 
     public class PopupWindows extends PopupWindow {
@@ -506,6 +520,7 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack{
                 if(resultCode == RESULT_OK){
                     try{
                         Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(imageUri));
+                        tempbitmap = bitmap;
                         picture.setImageBitmap(bitmap);
                     }catch(FileNotFoundException e){
                         Toast.makeText(this.getActivity(), "拍照不成功", Toast.LENGTH_LONG).show();
@@ -575,6 +590,7 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack{
     private void displayImage(String imagePath){
         if (imagePath != null){
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            tempbitmap = bitmap;
             picture.setImageBitmap(bitmap);
         }else {
             Toast.makeText(getContext(),"failed to get image",Toast.LENGTH_SHORT).show();
