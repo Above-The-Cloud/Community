@@ -44,6 +44,7 @@ import com.loopj.android.http.RequestParams;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
@@ -136,9 +137,12 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                 taskPublishingInfo.setRestriction(item_restriction.getText().toString());
                 taskPublishingInfo.setContent(item_content.getText().toString());
                 taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
-                //ArrayList<Bitmap> images = new ArrayList<Bitmap>();
-                //images.add(tempbitmap);
-                //taskPublishingInfo.setImages(images);
+                if(tempbitmap!=null){
+                    ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+                    images.add(tempbitmap);
+                    taskPublishingInfo.setImages(images);
+                }
+
                 /*FragmentManager manager = getFragmentManager();
                 manager
                     .beginTransaction()
@@ -684,6 +688,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
             for(Bitmap bitmap: task.getImages()){
                 filecount++;
                 params.add("image"+filecount, Utils.bitmap2String(bitmap));
+                Log.d(TAG, "upload: "+"image"+filecount+"->"+ Utils.bitmap2String(bitmap));
             }
         }
 
