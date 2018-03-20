@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -84,6 +85,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
     private Bitmap tempbitmap;
+    private PopupWindows popupWindows;
 
     /*private String title;
     private String content;
@@ -131,36 +133,43 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         switch (view.getId()) {
             case R.id.activity_selectimg_send:
                 //传递数据
-            {   taskPublishingInfo.setUserId("18918053907");
-                taskPublishingInfo.setCategory("所有");
-                taskPublishingInfo.setTitle(item_titile.getText().toString());
-                taskPublishingInfo.setRestriction(item_restriction.getText().toString());
-                taskPublishingInfo.setContent(item_content.getText().toString());
-                taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
-                if(tempbitmap!=null){
-                    ArrayList<Bitmap> images = new ArrayList<Bitmap>();
-                    images.add(tempbitmap);
-                    taskPublishingInfo.setImages(images);
-                }
+            {
+                String jgnbr = item_commission.getText().toString();
+                if(Utils.isNumeric(jgnbr)){
+                    taskPublishingInfo.setUserId("18918053907");
+                    taskPublishingInfo.setCategory("所有");
+                    taskPublishingInfo.setTitle(item_titile.getText().toString());
+                    taskPublishingInfo.setRestriction(item_restriction.getText().toString());
+                    taskPublishingInfo.setContent(item_content.getText().toString());
+                    taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
+                    if(tempbitmap!=null){
+                        ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+                        images.add(tempbitmap);
+                        taskPublishingInfo.setImages(images);
+                    }
+                    Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
+                    startActivity(intent_Fabu_to_Two);
+                    getActivity().finish();
+                    upload(taskPublishingInfo, HttpResponse.class, this);}
+                else
+                    {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 
-                /*FragmentManager manager = getFragmentManager();
-                manager
-                    .beginTransaction()
-                    .addToBackStack(null)  //将当前fragment加入到返回栈中
-                    .replace(R.id.fabu, new TwoFragment()).commit();*/
-                Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
-                startActivity(intent_Fabu_to_Two);
-                getActivity().finish();
-                //Toast.makeText(getContext(),"任务发布成功laaaaaaaaaa！",Toast.LENGTH_LONG).show();
-                upload(taskPublishingInfo, HttpResponse.class, this);}
+                break;
+            }
 
             case R.id.add_photo:
             { // 一个自定义的布局，作为显示的内容
-                new PopupWindows(view.getContext());
+                popupWindows = new PopupWindows(view.getContext());
             }
-
-
+        }
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (popupWindows!= null && popupWindows.isShowing())
+            popupWindows.dismiss();
+        popupWindows = null;
     }
 
     public class PopupWindows extends PopupWindow {
@@ -217,63 +226,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
 
         }
     }
-
-        /*public void showpopupWindows(Context mContext) {
-
-            //Toast.makeText(view.getContext(),"测试测试测试",Toast.LENGTH_LONG).show();
-
-            View view = LayoutInflater.from(mContext).inflate(
-                    R.layout.item_popupwindows, null);
-
-            Button bt1 = (Button) view
-                    .findViewById(R.id.item_popupwindows_camera);
-            Button bt2 = (Button) view
-                    .findViewById(R.id.item_popupwindows_Photo);
-            Button bt3 = (Button) view
-                    .findViewById(R.id.item_popupwindows_cancel);
-            bt1.setOnClickListener(new OnClickListener() {//拍照
-                public void onClick(View v) {
-                    photo();
-                    //dismiss();
-                }
-            });
-            bt2.setOnClickListener(new OnClickListener() {//相册
-                public void onClick(View v) {
-                    //Intent intent = new Intent(getActivity(),
-                    //        TestPicActivity.class);
-                    //startActivity(intent);
-                    //dismiss();
-                }
-            });
-            bt3.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    //dismiss();
-                }
-            });
-            final PopupWindow popupWindow = new PopupWindow(view,
-                    LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
-
-            popupWindow.setTouchable(true);
-
-            popupWindow.setTouchInterceptor(new OnTouchListener() {
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-                    Log.i("mengdd", "onTouch : ");
-
-                    return false;
-                    // 这里如果返回true的话，touch事件将被拦截
-                    // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
-                }
-            });
-            // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-            // 我觉得这里是API的一个bug
-            //popupWindow.setBackgroundDrawable(new BitmapDrawable());
-
-            // 设置好参数之后再show
-            popupWindow.showAsDropDown(view);
-        }*/
 
 
     /*public void Init() {
@@ -452,61 +404,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         return path;
     }
 
-    /*protected void onRestart() {
-        adapter.update();
-        super.onRestart();
-    }*/
-
-    /*public class PopupWindows extends PopupWindow {
-
-        public PopupWindows(Context mContext, View parent) {
-
-            View view = View
-                    .inflate(mContext, R.layout.item_popupwindows, null);
-            view.startAnimation(AnimationUtils.loadAnimation(mContext,
-                    R.anim.fade_ins));
-            LinearLayout ll_popup = (LinearLayout) view
-                    .findViewById(R.id.ll_popup);
-            ll_popup.startAnimation(AnimationUtils.loadAnimation(mContext,
-                    R.anim.push_bottom_in_2));
-
-            setWidth(LayoutParams.FILL_PARENT);
-            setHeight(LayoutParams.FILL_PARENT);
-            setBackgroundDrawable(new BitmapDrawable());
-            setFocusable(true);
-            setOutsideTouchable(true);
-            setContentView(view);
-            showAtLocation(parent, Gravity.BOTTOM, 0, 0);
-            update();
-
-            Button bt1 = (Button) view
-                    .findViewById(R.id.item_popupwindows_camera);
-            Button bt2 = (Button) view
-                    .findViewById(R.id.item_popupwindows_Photo);
-            Button bt3 = (Button) view
-                    .findViewById(R.id.item_popupwindows_cancel);
-            bt1.setOnClickListener(new View.OnClickListener() {//拍照
-                public void onClick(View v) {
-                    photo();
-                    dismiss();
-                }
-            });
-            bt2.setOnClickListener(new View.OnClickListener() {//相册
-                public void onClick(View v) {
-                    Intent intent = new Intent(this,
-                            TestPicActivity.class);
-                    startActivity(intent);
-                    dismiss();
-                }
-            });
-            bt3.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    dismiss();
-                }
-            });
-
-        }
-    }*/
 
     private static final int TAKE_PICTURE = 0x000000;
     private String path = "";
@@ -625,26 +522,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PHOTO);
 
-
-
-        /*String status = Environment.getExternalStorageState();
-        if (status.equals(Environment.MEDIA_MOUNTED)) {
-            try {
-                File dir = new File(Environment.getExternalStorageDirectory() + "/" + localTempImgDir);
-                if (!dir.exists())
-                    dir.mkdirs();
-                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                f = new File(dir, new Date().getTime() + ".jpg");// localTempImgDir和localTempImageFileName是自己定义的名字
-                Uri u = Uri.fromFile(f);
-                intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, u);
-                startActivityForResult(intent, TAKE_PICTURE);
-            } catch (Exception e) {
-                Toast.makeText(this.getActivity(), "没有找到储存目录", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(this.getActivity(), "没有储存卡", Toast.LENGTH_LONG).show();
-        }*/
     }
 
 

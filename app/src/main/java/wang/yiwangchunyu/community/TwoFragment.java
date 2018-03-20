@@ -6,8 +6,11 @@ package wang.yiwangchunyu.community;
 
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,6 +48,9 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @BindView(R.id.id_recyclerview)//绑定RecycyleView
     RecyclerView mRecyclerview;
 
+    @BindView(R.id.srl_one)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     private MyRecyclerViewAdapter mAdapter;
     private ArrayList<Recycler_Item> dataList;
 
@@ -71,6 +77,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
         //mQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://news-at.zhihu.com/api/4/news/latest", null, new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -160,6 +167,29 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         //添加分割线
         mRecyclerview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mAdapter.setOnItemClickLitener(this);
+
+        //初始化下拉控件颜色
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+        android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+            public void onRefresh() {
+                new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        SystemClock.sleep(2000);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        Toast.makeText(getActivity(), "下拉刷新成功", Toast.LENGTH_SHORT).show();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }.execute();
+            }
+        });
     }
 
     private void getInfoFromNet(){
@@ -204,7 +234,6 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(getActivity(),"碰到了一点问题",Toast.LENGTH_SHORT);
-                //此处的showToast()；是已经在BaseActivity中写好的，可以直接拿来用
             }
         });
         mQueue.add(jsonObjectRequest);//开始任务

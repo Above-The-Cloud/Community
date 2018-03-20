@@ -197,6 +197,6 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
 
     @Override
     public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
-
+            Toast.makeText(this,"网络错误！",Toast.LENGTH_SHORT);
     }
 }

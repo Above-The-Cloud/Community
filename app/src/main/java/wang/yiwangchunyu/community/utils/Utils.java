@@ -21,6 +21,14 @@ public class Utils {
         return m.matches();
     }
 
+    public static boolean isNumeric(String str){
+
+        Pattern pattern = Pattern.compile("[0-9]*");
+
+        return pattern.matcher(str).matches();
+
+    }
+
     public static boolean isAddress(String address){
 
         String reg_address = "[\\u4e00-\\u9fff0-9a-zA-Z]{1,100}";
