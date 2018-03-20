@@ -1,5 +1,9 @@
 package wang.yiwangchunyu.community.utils;
 
+import android.graphics.Bitmap;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,4 +50,25 @@ public class Utils {
         Matcher m = p.matcher(password);
         return m.matches();
     }
+
+    /**
+     * @return imgStr
+     */
+    public static String bitmap2String(Bitmap bitmap) {
+
+        if(bitmap==null){
+
+            return null;
+        }
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        boolean b = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        if(b==false){
+            return null;
+        }
+        byte[] bs = stream.toByteArray();
+        String s = Base64.encodeToString(bs, Base64.DEFAULT);
+
+        return s;
+    }
+
 }

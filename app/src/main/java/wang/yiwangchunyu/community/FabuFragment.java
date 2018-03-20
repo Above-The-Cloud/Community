@@ -19,9 +19,9 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,16 +38,22 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 
+import cz.msebera.android.httpclient.Header;
 import wang.yiwangchunyu.community.Task.Bimp;
 import wang.yiwangchunyu.community.Task.FileUtils;
+import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
-import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponse;
-import wang.yiwangchunyu.community.webService.RequestApiData;
+import wang.yiwangchunyu.community.webService.androidAsyncHttp.MyCLient;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,8 +61,9 @@ import static android.app.Activity.RESULT_OK;
  * Created by XinyuJiang on 2018/3/11.
  */
 
-public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClickListener{
+public class FabuFragment extends Fragment implements  OnClickListener{
 
+    private static final String TAG = "FabuFragment";
     private TaskPublishingInfo taskPublishingInfo;//任务实例
     private GridView noScrollgridview;
     private GridAdapter adapter;
@@ -92,6 +99,7 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClic
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -116,36 +124,21 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClic
 
     }
 
-    @Override
-    public void onResponeStart(String apiName) {
-
-    }
-
-    @Override
-    public void onLoading(String apiName, long count, long current) {
-
-    }
-
-    @Override
-    public void onSuccess(String apiName, Object object) {
-
-    }
-
-    @Override
-    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
-
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_selectimg_send:
                 //传递数据
-            {taskPublishingInfo.setTitle(item_titile.getText().toString());
+            {   taskPublishingInfo.setUserId("18918053907");
+                taskPublishingInfo.setCategory("所有");
+                taskPublishingInfo.setTitle(item_titile.getText().toString());
                 taskPublishingInfo.setRestriction(item_restriction.getText().toString());
                 taskPublishingInfo.setContent(item_content.getText().toString());
                 taskPublishingInfo.setCommission(Integer.parseInt(item_commission.getText().toString()));
-                taskPublishingInfo.setImage(tempbitmap);
+                //ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+                //images.add(tempbitmap);
+                //taskPublishingInfo.setImages(images);
                 /*FragmentManager manager = getFragmentManager();
                 manager
                     .beginTransaction()
@@ -159,7 +152,8 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClic
 
             case R.id.add_photo:
             { // 一个自定义的布局，作为显示的内容
-                new PopupWindows(view.getContext());}
+                new PopupWindows(view.getContext());
+            }
 
 
     }
@@ -673,8 +667,43 @@ public class FabuFragment extends Fragment implements HttpResponeCallBack,OnClic
 
     }
     //TODO:发布调用接口
-    public void upload(TaskPublishingInfo task, Class<HttpResponse> clazz, HttpResponeCallBack callback){
-        RequestApiData.getInstance().getPublishTaskInfo(task, clazz, callback);
+    public void upload(TaskPublishingInfo task, Class<HttpResponse> clazz, FabuFragment callback){
+
+        HashMap<String, String> parameter = new HashMap<String, String>();
+        parameter.put("user_id", task.getUserId());
+        parameter.put("title", task.getTitle());
+        parameter.put("restriction", task.getRestriction());
+        parameter.put("content", task.getContent());
+        parameter.put("category",task.getCategory());
+        parameter.put("commission", String.valueOf(task.getCommission()));
+
+        RequestParams params = new RequestParams(parameter);
+
+        int filecount=0;
+        if(task.getImages()!=null){
+            for(Bitmap bitmap: task.getImages()){
+                filecount++;
+                params.add("image"+filecount, Utils.bitmap2String(bitmap));
+            }
+        }
+
+        params.add("filecount",String.valueOf(filecount));
+
+        MyCLient.post(UrlConstance.KEY_PUBLISH_INFO, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.d(TAG, "publish post onSuccess statusCode: "+"\n"+statusCode);
+                Log.d(TAG, "headers: "+headers);
+                Log.d(TAG, "responseBody: "+ responseBody);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d(TAG, "publish post onFailure statusCode: "+"\n"+statusCode);
+                Log.d(TAG, "headers: "+headers);
+                Log.d(TAG, "responseBody: "+ responseBody);
+            }
+        });
 
     }
 }

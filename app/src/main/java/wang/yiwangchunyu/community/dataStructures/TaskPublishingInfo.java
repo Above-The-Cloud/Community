@@ -2,8 +2,8 @@ package wang.yiwangchunyu.community.dataStructures;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by yiwangchunyu on 2018/3/9.
@@ -22,14 +22,14 @@ public class TaskPublishingInfo {
     private Date publish_time;
     private String code;//状态码 0：正常
     private String msg;
-    private List<Bitmap> images;
-    private Bitmap image;
+    private ArrayList<Bitmap> images;
 
-    public List<Bitmap> getImages() {
+
+    public ArrayList<Bitmap> getImages() {
         return images;
     }
 
-    public void setImages(List<Bitmap> images) {
+    public void setImages(ArrayList<Bitmap> images) {
         this.images = images;
     }
 
@@ -73,9 +73,6 @@ public class TaskPublishingInfo {
         return category;
     }
 
-    public Bitmap getImage(){return image; }
-
-    public void setImage(Bitmap image){ this.image = image;}
 
     public void setCategory(String category) {
         this.category = category;

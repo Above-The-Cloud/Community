@@ -1,14 +1,11 @@
 package wang.yiwangchunyu.community.webService;
 
-import android.graphics.Bitmap;
-
 import java.util.HashMap;
 
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.utils.MD5Util;
-import wang.yiwangchunyu.community.webService.fileHandler.FileUploader;
  
 /*
  * 网络接口
@@ -139,32 +136,7 @@ public class RequestApiData {
 
 		//请求数据接口
 		RequestManager.post(UrlConstance.APP_URL, tagUrl, parameter, clazz, callback);
-		HttpResponeCallBack imageCallback = new HttpResponeCallBack() {
-			@Override
-			public void onResponeStart(String apiName) {
 
-			}
-
-			@Override
-			public void onLoading(String apiName, long count, long current) {
-
-			}
-
-			@Override
-			public void onSuccess(String apiName, Object object) {
-
-			}
-
-			@Override
-			public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
-
-			}
-		};
-		if(task.getImages()!=null){
-			for(Bitmap image: task.getImages()){
-				FileUploader.sendImage(image,task.getUserId(),imageCallback);
-			}
-		}
 
 	}
 }

@@ -38,7 +38,9 @@ public class ItLanBaoApplication extends ItLanbaoLibApplication {
 		this.baseUser = baseUser;
 	}
 
-
+	public UserBaseInfo getBaseUser() {
+		return baseUser;
+	}
 
 	/**
 	 * 获取ItLanBaoApplication实例
