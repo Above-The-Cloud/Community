@@ -4,8 +4,6 @@ package wang.yiwangchunyu.community;
  * Created by Administrator on 2018/3/8.
  */
 
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -32,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -218,7 +215,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
                         //创建list中的每一个对象，并设置数据
                         listItem.setTitle(item.getString("title"));
                         listItem.setImgurl(images.getString(0));
-                        listItem.setDate(getDate());
+                        //listItem.setDate(getDate());
                         listItem.setId(item.getString("id"));
                         dataList.add(listItem);
                     }
@@ -239,17 +236,17 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         mQueue.add(jsonObjectRequest);//开始任务
     }
 
-    private String getDate(){
-        //获取当前需要加载的数据的日期
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.DAY_OF_MONTH, -otherdate);//otherdate天前的日子
-
-        String date = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
-        //将日期转化为20170520这样的格式
-        return date;
-
-    }
+//    private String getDate(){
+//        //获取当前需要加载的数据的日期
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(new Date());
+//        c.add(Calendar.DAY_OF_MONTH, -otherdate);//otherdate天前的日子
+//
+//        String date = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
+//        //将日期转化为20170520这样的格式
+//        return date;
+//
+//    }date
 
 
     @Override
