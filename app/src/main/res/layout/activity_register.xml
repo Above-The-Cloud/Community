@@ -7,26 +7,30 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg1"
     tools:context=".LoginActivity">
     <RelativeLayout
         android:id="@+id/register_view"
-        android:layout_width="400dp"
-        android:layout_height="800dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:background="@drawable/bg1"
         >
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:id="@+id/logo"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignWithParentIfMissing="false"
-            android:background="@drawable/bg1" />
+        <RelativeLayout
+            android:id="@+id/register_text"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:gravity="bottom|center"
+                android:text="欢迎注册"
+                android:textSize="90px"
+                android:textColor="@color/text_white"
+                />
+        </RelativeLayout>
 
         <EditText
             android:layout_width="400dp"
@@ -35,38 +39,10 @@
             android:id="@+id/register_edit_account"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:hint="请输入您的用户名"
-            android:layout_below="@+id/logo"
+            android:layout_below="@+id/register_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp" />
-
-        <EditText
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/register_edit_repeat_pwd"
-            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-            android:hint="再次输入您的密码"
-            android:layout_below="@+id/register_edit_pwd"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:text="create account"
-            android:id="@+id/register_btn_login"
-            android:onClick="finish_login"
-            android:background="@drawable/shape"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="28dp"
-            android:layout_marginStart="28dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="7dp" />
 
         <EditText
             android:layout_width="400dp"
@@ -80,18 +56,17 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="100dp"
+        <EditText
+            android:layout_width="400dp"
             android:layout_height="60dp"
-            android:text="SEND"
-            android:id="@+id/register_send_identifying_code"
-            android:onClick="finish_login"
-            android:background="@drawable/shape"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_below="@+id/register_edit_repeat_pwd"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/register_edit_repeat_pwd"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="再次输入您的密码"
+            android:layout_below="@+id/register_edit_pwd"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="250dp"
@@ -105,6 +80,19 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="获取验证码"
+            android:id="@+id/register_send_identifying_code"
+            android:onClick="finish_login"
+            android:background="@drawable/shape"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/register_edit_repeat_pwd"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
         <EditText
             android:layout_width="400dp"
             android:layout_height="60dp"
@@ -116,6 +104,21 @@
             android:layout_below="@+id/register_edit_phonenumber"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <Button
+            android:gravity="center"
+            android:layout_width="400dp"
+            android:layout_height="40dp"
+            android:text="下一步"
+            android:id="@+id/register_btn_login"
+            android:onClick="finish_login"
+            android:background="@drawable/shape"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_below="@id/register_edit_identifying_code"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
 
     </RelativeLayout>
     <RelativeLayout
