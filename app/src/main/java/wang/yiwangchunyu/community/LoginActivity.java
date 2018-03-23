@@ -81,6 +81,8 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
             mAccount.setText(name);
             mPwd.setText(pwd);
             mRememberCheck.setChecked(true);
+        } else if(name != ""){
+            mAccount.setText(name);
         }
 
         mRegisterButton.setOnClickListener(mListener);                      //采用OnClickListener方法设置不同按钮按下之后的监听事件
@@ -116,14 +118,17 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
             String user_id = mAccount.getText().toString().trim();    //获取当前输入的用户名和密码信息
             String userPwd = mPwd.getText().toString().trim();
             SharedPreferences.Editor editor =login_sp.edit();
+            if(mRememberCheck.isChecked()){
+                editor.putString("USER_NAME", user_id).putString("PASSWORD", userPwd).putBoolean("mRememberCheck", true);
+            } else{
+                editor.putBoolean("mRememberCheck", false).putString("USER_NAME", user_id);
+            }
+            editor.apply();
 //            int result=mUserDataManager.findUserByNameAndPwd(userName, userPwd);
-
-
             RequestApiData.getInstance().getLoginData(user_id, MD5Util.getMD5Str(userPwd), UserBaseInfo.class, LoginActivity.this);
-
-
         }
     }
+
     public void register() {           //注册
         Intent intent_Login_to_Register = new Intent(LoginActivity.this,GetIdentifingCodeActivity.class) ;    //切换Login Activity至User Activity
         startActivity(intent_Login_to_Register);
