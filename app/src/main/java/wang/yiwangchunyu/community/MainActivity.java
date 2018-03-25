@@ -1,5 +1,6 @@
 package wang.yiwangchunyu.community;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -67,6 +68,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 初始化布局View
      */
+
+    public void toTaskDetails()
+    {
+        Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+        startActivity(intent);
+    }
+
     private void initViews() {
         title = (TextView) findViewById(R.id.title);
         item_weixin = (TextView) findViewById(R.id.item_weixin);

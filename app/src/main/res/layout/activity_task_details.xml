@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="#ededed">
+
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal|center"
+        android:singleLine="true"
+        android:text="任务详情"
+        android:background="#FFFFFF"
+        android:textColor="@color/text_topbar"
+        android:textSize="20dp" />
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="标题"
+                    android:textColor="@color/view_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:gravity="center|center"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="所有"
+                    android:background="@drawable/shape_rectangle"
+                    android:textColor="@color/view_blue"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#FF9900"
+                    android:text="￥"
+                    android:textSize="13sp"
+                    android:paddingLeft="8dp"
+                    android:background="#FFFFFF"/>
+
+                <TextView
+                    android:id="@+id/commision"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textColor="#FF9900"
+                    android:textSize="13sp"
+                    />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_marginTop="1dp"
+                android:background="#FFFFFF">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_pic"
+                    android:paddingLeft="8dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:src="@drawable/bg1"
+                    />
+
+                <TextView
+                    android:id="@+id/profile"
+                    android:text="华东师范大学中北小区"
+                    android:layout_marginTop="0.5dp"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/view_blue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="任务要求"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/view_blue"
+                    android:textSize="16dp"
+                    />
+
+                <TextView
+                    android:id="@+id/restriction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/bg_black"
+                    android:lineSpacingExtra="11dp"
+                    android:text="凡是能扩展人的信息功能的技术，都可以称作信息技术。
+信息技术“包含通信、计算机与计算机语言、计算机游戏、电子技术、光纤技术等”。
+现代信息技术“以计算机技术、微电子技术和通信技术为特征”。
+信息技术是指在计算机和通信技术支持下用以获取、加工、存储、变换、显示和传输文字、数值、图像以及声音信息，包括提供设备和提供信息服务两大方面的方法与设备的总称。
+信息技术是人类在生产斗争和科学实验中认识自然和改造自然过程中所积累起来的获取信息，传递信息，存储信息，处理信息以及使信息标准化的经验、知识、技能和体现这些经验、知识、技能的劳动资料有目的的结合过程。
+信息技术是管理、开发和利用信息资源的有关方法、手段与操作程序的总称。
+信息技术是指能够扩展人类信息器官功能的一类技术的总称。
+信息技术指“应用在信息加工和处理中的科学，技术与工程的训练方法和管理技巧；上述方法和技巧的应用；计算机及其与人、机的相互作用，与人相应的社会、经济和文化等诸种事物。”
+信息技术包括信息传递过程中的各个方面，即信息的产生、收集、交换、存储、传输、显示、识别、提取、控制、加工和利用等技术。
+信息技术是研究如何获取信息、处理信息、传输信息和使用信息的技术。"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="任务描述"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/view_blue"
+                    android:textSize="16dp"
+                    />
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="#FFFFFF"
+                    android:textColor="@color/bg_black"
+                    android:lineSpacingExtra="11dp"
+                    android:text="凡是能扩展人的信息功能的技术，都可以称作信息技术。
+信息技术“包含通信、计算机与计算机语言、计算机游戏、电子技术、光纤技术等”。
+现代信息技术“以计算机技术、微电子技术和通信技术为特征”。
+信息技术是指在计算机和通信技术支持下用以获取、加工、存储、变换、显示和传输文字、数值、图像以及声音信息，包括提供设备和提供信息服务两大方面的方法与设备的总称。
+信息技术是人类在生产斗争和科学实验中认识自然和改造自然过程中所积累起来的获取信息，传递信息，存储信息，处理信息以及使信息标准化的经验、知识、技能和体现这些经验、知识、技能的劳动资料有目的的结合过程。
+信息技术是管理、开发和利用信息资源的有关方法、手段与操作程序的总称。
+信息技术是指能够扩展人类信息器官功能的一类技术的总称。
+信息技术指“应用在信息加工和处理中的科学，技术与工程的训练方法和管理技巧；上述方法和技巧的应用；计算机及其与人、机的相互作用，与人相应的社会、经济和文化等诸种事物。”
+信息技术包括信息传递过程中的各个方面，即信息的产生、收集、交换、存储、传输、显示、识别、提取、控制、加工和利用等技术。
+信息技术是研究如何获取信息、处理信息、传输信息和使用信息的技术。"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/sixin"
+            android:layout_width="0dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button"
+            android:text="私信"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/lingqu"
+            android:layout_width="0dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button"
+            android:text="领取"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
