@@ -9,42 +9,117 @@
         android:id="@+id/item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:hint="任务标题"
+        android:background="@null"
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="1dp"
+        android:background="@color/view_gray"/>
 
     <EditText
         android:id="@+id/item_restriction"
+        android:gravity="top"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="25"
-        android:hint="任务要求"
+        android:layout_weight="35"
+        android:hint="对接受方有何要求"
+        android:background="@null"
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/view_gray"/>
 
     <EditText
         android:id="@+id/item_content"
+        android:gravity="top"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="25"
-        android:hint="任务描述"
+        android:layout_weight="35"
+        android:hint="描述一下你的任务"
+        android:background="@null"
         />
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/add_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_add_pic"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/view_gray"/>
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="报酬"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="报酬"/>
-
+        <ImageView
+            android:id="@+id/item_dollor"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/rmb" />
 
         <EditText
             android:id="@+id/item_commision"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"/>
-    </LinearLayout>
+            android:gravity="center"
+            android:padding="5dp"
+            android:hint="0.00"
+            android:background="@null"
+            android:layout_toRightOf="@id/item_dollor"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/view_gray" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/view_gray" />
 
     <!--<GridView
         android:id="@+id/noScrollgridview"
@@ -57,33 +132,63 @@
         android:verticalSpacing="5dp" >
     </GridView>
 -->
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
-    <ImageView
-        android:id="@+id/add_photo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/bt_add_pic"/>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/classify" />
+
+
+        <TextView
+            android:id="@+id/item_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/item_img"
+            android:gravity="center_vertical"
+            android:text="任务分类"
+            android:textColor="#050000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_toLeftOf="@id/item_iright"
+            android:text="请选择分类"
+            android:textSize="17sp"
+            android:textColor="@color/text_gray"
+            android:layout_centerVertical="true"
+            android:gravity="center"/>
+
+        <ImageView
+            android:id="@+id/item_iright"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/right" />
+
+    </RelativeLayout>
 
     <Button
-        android:layout_width="320dp"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:id="@+id/activity_selectimg_send"
         android:text="发布"
         android:textSize="20dp"
         android:textColor="#ffffff"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         />
 
 </LinearLayout>
