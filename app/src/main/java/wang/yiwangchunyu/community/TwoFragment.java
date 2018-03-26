@@ -34,10 +34,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import wang.yiwangchunyu.community.dataStructures.TasksArrayList;
 import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
 import wang.yiwangchunyu.community.recycleview.Recycler_Item;
+import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.webService.RequestApiData;
 
 public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface {
 
@@ -63,6 +66,8 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     private ArrayList<String> images;//存放banner中的图片
 
     private ArrayList<String> ids;//存放每一项的id
+
+    TasksArrayList tasksArrayList;
 
     private void initBanner() {
         //初始化banner
@@ -257,5 +262,33 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemLongClick(View view, int position) {
         Toast.makeText(getActivity(), "onItemLongClick" + dataList.get(position), Toast.LENGTH_SHORT).show();
+    }
+    public TasksArrayList getTasksInfo(){
+
+        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksArrayList.class, new HttpResponeCallBack() {
+            @Override
+            public void onResponeStart(String apiName) {
+
+            }
+
+            @Override
+            public void onLoading(String apiName, long count, long current) {
+
+            }
+
+            @Override
+            public void onSuccess(String apiName, Object object) {
+                tasksArrayList = (TasksArrayList) object;
+
+            }
+
+            @Override
+            public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
+            }
+        });
+
+
+        return tasksArrayList;
     }
 }

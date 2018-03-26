@@ -27,5 +27,8 @@ public class UrlConstance {
 
    //上传发布信息
    public static  final String KEY_PUBLISH_INFO = "PublishInfo";
+
+   //获取发布信息
+   public static  final String KEY_GET_PUBLISH_INFO = "GetTasksInfo";
    
 }

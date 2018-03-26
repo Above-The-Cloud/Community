@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -136,7 +135,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
             {
                 String jgnbr = item_commission.getText().toString();
                 if(Utils.isNumeric(jgnbr)){
-                    taskPublishingInfo.setUserId("18918053907");
+                    taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
                     taskPublishingInfo.setCategory("所有");
                     taskPublishingInfo.setTitle(item_titile.getText().toString());
                     taskPublishingInfo.setRestriction(item_restriction.getText().toString());
