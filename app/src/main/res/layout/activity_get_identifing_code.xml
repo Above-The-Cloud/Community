@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     >
-    <!--<TextView-->
-        <!--android:id="@+id/tv_test"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="20dp"-->
-        <!--android:text="短信sdk有GUI使用 "-->
-        <!--/>-->
 
-    <!--<TextView-->
-        <!--android:id="@+id/tv_test3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="20dp"-->
-        <!--android:text="获取国家列表" />-->
-    <ImageView
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/logo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="false"
-        android:background="@drawable/bg1" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:gravity="bottom|center"
+                android:text="欢迎注册"
+                android:textSize="90px"
+                android:textColor="@color/text_white"
+                />
+        </RelativeLayout>
+
 
         <EditText
-            android:id="@+id/et_v_getcode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:padding="20dp"
-            android:hint="请输入手机号"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/tv_test1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="2"
-            android:padding="20dp"
-            android:textSize="20dp"
-            android:text="发送验证码" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/et_v_code"
-            android:layout_weight="2"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
             android:inputType="number"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="请输入验证码"/>
+            android:ems="10"
+            android:id="@+id/et_v_getcode"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="输入您的手机号"
+            android:layout_below="@id/welcome_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"/>
+
         <TextView
-            android:id="@+id/tv_test_vcode_valiable"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:gravity="center"
-            android:padding="20dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="获取验证码"
+            android:id="@+id/tv_test1"
+            android:onClick="finish_login"
+            android:background="@drawable/shape"
+            android:textSize="15dp"
+            android:textColor="@color/text_white"
+            android:layout_below="@id/welcome_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_v_code"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:hint="输入您的验证码"
+            android:layout_below="@id/et_v_getcode"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"/>
+
+
+
+        <Button
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="下一步"
+            android:id="@+id/tv_test_vcode_valiable"
+            android:onClick="finish_login"
+            android:background="@drawable/shape"
             android:textSize="20dp"
-            android:text="验证"
-            />
-    </LinearLayout>
+            android:textColor="#ffffff"
+            android:layout_below="@id/et_v_code"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view1"
-        android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:text="WELCOME to"
-        android:textSize="40dp"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:textColor="@color/bg_white"
+            android:text="注册即代表同意[Community]的服务条款"
+            android:layout_below="@id/tv_test_vcode_valiable"
+            android:layout_marginTop="17dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_view2"
-        android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:text="COMMUNITY!"
-        android:textSize="50dp"/>
+    </RelativeLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

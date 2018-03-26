@@ -63,7 +63,6 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
         mRegisterButton = (Button) findViewById(R.id.login_btn_register);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
         //mCancleButton = (Button) findViewById(R.id.login_btn_cancle);
-        logo_imageView = (ImageView) findViewById(R.id.logo);
         loginView=findViewById(R.id.login_view);
         loginSuccessView=findViewById(R.id.login_success_view);
         loginSuccessShow=(TextView) findViewById(R.id.login_success_show);
@@ -133,7 +132,6 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
     public void register() {           //注册
         Intent intent_Login_to_Register = new Intent(LoginActivity.this,GetIdentifingCodeActivity.class) ;    //切换Login Activity至User Activity
         startActivity(intent_Login_to_Register);
-        finish();
 
     }
 

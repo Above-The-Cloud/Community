@@ -8,51 +8,45 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg1"
     tools:context=".LoginActivity">
-
-    <RelativeLayout
-        android:id="@+id/login_success_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="15.0px"
-        android:layout_marginRight="15.0px"
-        android:layout_marginTop="62.0px"
-        android:background="#ff3f3f3f"
-        android:paddingBottom="10.0px"
-        android:paddingTop="21.0px"
-        android:visibility="gone" >
-
-        <TextView
-            android:id="@+id/login_success_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#ff3f3f3f"
-            android:textSize="20.0dip" />
-    </RelativeLayout>
 
 
     <RelativeLayout
         android:id="@+id/login_view"
-        android:layout_width="400dp"
-        android:layout_height="800dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:id="@+id/logo"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+        <RelativeLayout
+            android:id="@+id/logo_text"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:gravity="center|center"
+                android:text="Community"
+                android:textSize="90px"
+                android:textColor="@color/text_white"
+                />
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/login_edit_account"
+            android:layout_width="400dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignWithParentIfMissing="false"
-            android:background="@drawable/bg1" />
+            android:layout_below="@+id/logo_text"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@android:drawable/ic_menu_myplaces"
+            android:hint="请输入您的手机号"
+            android:inputType="textPersonName" />
 
         <EditText
             android:layout_width="400dp"
@@ -67,21 +61,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"/>
 
-        <EditText
-            android:id="@+id/login_edit_account"
-            android:layout_width="400dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/logo"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@android:drawable/ic_menu_myplaces"
-            android:hint="请输入您的手机号"
-            android:inputType="textPersonName" />
-
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="20dp"
             android:text="修改密码"
             android:id="@+id/login_text_change_pwd"
@@ -89,12 +71,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:textSize="15dp"
-            android:textColor="#32CD99"
+            android:textColor="@color/text_white"
             android:layout_marginTop="12dp"/>
-
-
-
-
 
         <CheckBox
             android:layout_width="100dp"
@@ -102,41 +80,41 @@
             android:text="记住密码"
             android:id="@+id/Login_Remember"
             android:checked="false"
-            android:textColor="#32CD99"
+            android:textColor="@color/text_white"
             android:textSize="15dp"
-            android:layout_below="@+id/login_edit_pwd"
+            android:layout_alignBaseline="@+id/login_text_change_pwd"
+            android:layout_alignBottom="@+id/login_text_change_pwd"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="12dp" />
+            android:layout_alignParentStart="true" />
+
 
         <Button
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="sign in"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="登陆"
             android:id="@+id/login_btn_login"
             android:onClick="finish_login"
             android:background="@drawable/shape"
             android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="26dp"
-            android:layout_marginStart="26dp"
+            android:textColor="@color/text_white"
+
             android:layout_marginTop="23dp"
             android:layout_below="@+id/Login_Remember"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <Button
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="sign up"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="注册"
             android:id="@+id/login_btn_register"
             android:onClick="resetpwd"
             android:background="@drawable/shape"
             android:textSize="20dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/text_white"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="26dp"
-            android:layout_marginRight="26dp"
             android:layout_marginTop="23dp"
             android:layout_below="@+id/login_btn_login"
             android:layout_alignParentLeft="true"
@@ -153,20 +131,18 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:id="@+id/wechat_login"
-                app:civ_border_width="1dp"
+                app:civ_border_width="0dp"
                 android:src="@drawable/wechat"
-                app:civ_border_color="#ffffff"
                 android:layout_weight="1"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:id="@+id/qq_login"
-                app:civ_border_width="1dp"
+                app:civ_border_width="0dp"
                 android:src="@drawable/qq"
-                app:civ_border_color="#ffffff"
                 android:layout_weight="1"
                 android:layout_marginRight="43dp"
                 android:layout_marginEnd="43dp"
@@ -178,9 +154,8 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:id="@+id/weibo_login"
-                app:civ_border_width="1dp"
+                app:civ_border_width="0dp"
                 android:src="@drawable/weibo"
-                app:civ_border_color="#ffffff"
                 android:layout_weight="1.00"
                 android:layout_marginLeft="43dp"
                 android:layout_marginStart="43dp"
@@ -189,6 +164,8 @@
                 android:layout_toEndOf="@+id/wechat_login" />
 
         </RelativeLayout>
+
+
 
 
     </RelativeLayout>

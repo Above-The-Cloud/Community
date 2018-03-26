@@ -256,7 +256,8 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "onItemShortClick"+dataList.get(position), Toast.LENGTH_SHORT).show();
+        MainActivity activity = (MainActivity) getActivity();
+        activity.toTaskDetails();
     }
 
     @Override
