@@ -2,6 +2,7 @@ package wang.yiwangchunyu.community;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,7 +41,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         vp.setOffscreenPageLimit(5);//ViewPager的缓存为4帧
         vp.setAdapter(mFragmentAdapter);
         vp.setCurrentItem(0);//初始设置ViewPager选中第一帧
-        item_weixin.setTextColor(Color.parseColor(view_blue));
+        Drawable drawable1 = getResources().getDrawable(
+                R.drawable.icon_renwu_after);
+        // / 这一步必须要做,否则不会显示.
+        drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                drawable1.getMinimumHeight());
+        item_weixin.setCompoundDrawables(null, drawable1,null, null);
 
         //ViewPager的监听事件
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -155,38 +161,173 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void changeTextColor(int position) {
         if (position == 0) {
-            item_weixin.setTextColor(Color.parseColor(view_blue));
-            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+            Drawable drawable1 = getResources().getDrawable(
+                    R.drawable.icon_renwu_after);
+            // / 这一步必须要做,否则不会显示.
+            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                    drawable1.getMinimumHeight());
+            item_weixin.setCompoundDrawables(null, drawable1,null, null);
+
+            Drawable drawable2 = getResources().getDrawable(
+                    R.drawable.icon_tongzhi);
+            // / 这一步必须要做,否则不会显示.
+            drawable2.setBounds(0, 0, drawable2.getMinimumWidth(),
+                    drawable2.getMinimumHeight());
+            item_tongxunlu.setCompoundDrawables(null, drawable2,null, null);
+
+            Drawable drawable3 = getResources().getDrawable(
+                    R.drawable.icon_faxian);
+            // / 这一步必须要做,否则不会显示.
+            drawable3.setBounds(0, 0, drawable3.getMinimumWidth(),
+                    drawable3.getMinimumHeight());
+            item_faxian.setCompoundDrawables(null, drawable3,null, null);
+
+            Drawable drawable4 = getResources().getDrawable(
+                    R.drawable.icon_my);
+            // / 这一步必须要做,否则不会显示.
+            drawable4.setBounds(0, 0, drawable4.getMinimumWidth(),
+                    drawable4.getMinimumHeight());
+            item_me.setCompoundDrawables(null, drawable4,null, null);
+
+
+            /*item_tongxunlu.setTextColor(Color.parseColor("#000000"));
             item_faxian.setTextColor(Color.parseColor("#000000"));
             item_me.setTextColor(Color.parseColor("#000000"));
-            item_fabu.setTextColor(Color.parseColor("#000000"));
+            item_fabu.setTextColor(Color.parseColor("#000000"));*/
         } else if (position == 1) {
-            item_tongxunlu.setTextColor(Color.parseColor(view_blue));
+            Drawable drawable1 = getResources().getDrawable(
+                    R.drawable.icon_renwu);
+            // / 这一步必须要做,否则不会显示.
+            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                    drawable1.getMinimumHeight());
+            item_weixin.setCompoundDrawables(null, drawable1,null, null);
+
+            Drawable drawable2 = getResources().getDrawable(
+                    R.drawable.icon_tongzhi_after);
+            // / 这一步必须要做,否则不会显示.
+            drawable2.setBounds(0, 0, drawable2.getMinimumWidth(),
+                    drawable2.getMinimumHeight());
+            item_tongxunlu.setCompoundDrawables(null, drawable2,null, null);
+
+            Drawable drawable3 = getResources().getDrawable(
+                    R.drawable.icon_faxian);
+            // / 这一步必须要做,否则不会显示.
+            drawable3.setBounds(0, 0, drawable3.getMinimumWidth(),
+                    drawable3.getMinimumHeight());
+            item_faxian.setCompoundDrawables(null, drawable3,null, null);
+
+            Drawable drawable4 = getResources().getDrawable(
+                    R.drawable.icon_my);
+            // / 这一步必须要做,否则不会显示.
+            drawable4.setBounds(0, 0, drawable4.getMinimumWidth(),
+                    drawable4.getMinimumHeight());
+            item_me.setCompoundDrawables(null, drawable4,null, null);
+            /*item_tongxunlu.setTextColor(Color.parseColor(view_blue));
             item_weixin.setTextColor(Color.parseColor("#000000"));
             item_faxian.setTextColor(Color.parseColor("#000000"));
             item_me.setTextColor(Color.parseColor("#000000"));
-            item_fabu.setTextColor(Color.parseColor("#000000"));
+            item_fabu.setTextColor(Color.parseColor("#000000"));*/
 
         } else if (position == 2) {
-            item_fabu.setTextColor(Color.parseColor(view_blue));
-            item_weixin.setTextColor(Color.parseColor("#000000"));
-            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
-            item_faxian.setTextColor(Color.parseColor("#000000"));
-            item_me.setTextColor(Color.parseColor("#000000"));
+
+            Drawable drawable1 = getResources().getDrawable(
+                    R.drawable.icon_renwu);
+            // / 这一步必须要做,否则不会显示.
+            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                    drawable1.getMinimumHeight());
+            item_weixin.setCompoundDrawables(null, drawable1,null, null);
+
+            Drawable drawable2 = getResources().getDrawable(
+                    R.drawable.icon_tongzhi);
+            // / 这一步必须要做,否则不会显示.
+            drawable2.setBounds(0, 0, drawable2.getMinimumWidth(),
+                    drawable2.getMinimumHeight());
+            item_tongxunlu.setCompoundDrawables(null, drawable2,null, null);
+
+            Drawable drawable3 = getResources().getDrawable(
+                    R.drawable.icon_faxian);
+            // / 这一步必须要做,否则不会显示.
+            drawable3.setBounds(0, 0, drawable3.getMinimumWidth(),
+                    drawable3.getMinimumHeight());
+            item_faxian.setCompoundDrawables(null, drawable3,null, null);
+
+            Drawable drawable4 = getResources().getDrawable(
+                    R.drawable.icon_my);
+            // / 这一步必须要做,否则不会显示.
+            drawable4.setBounds(0, 0, drawable4.getMinimumWidth(),
+                    drawable4.getMinimumHeight());
+            item_me.setCompoundDrawables(null, drawable4,null, null);
+
 
         }else if (position == 3) {
-            item_faxian.setTextColor(Color.parseColor(view_blue));
-            item_weixin.setTextColor(Color.parseColor("#000000"));
-            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
-            item_me.setTextColor(Color.parseColor("#000000"));
-            item_fabu.setTextColor(Color.parseColor("#000000"));
+            Drawable drawable1 = getResources().getDrawable(
+                    R.drawable.icon_renwu);
+            // / 这一步必须要做,否则不会显示.
+            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                    drawable1.getMinimumHeight());
+            item_weixin.setCompoundDrawables(null, drawable1,null, null);
+
+            Drawable drawable2 = getResources().getDrawable(
+                    R.drawable.icon_tongzhi);
+            // / 这一步必须要做,否则不会显示.
+            drawable2.setBounds(0, 0, drawable2.getMinimumWidth(),
+                    drawable2.getMinimumHeight());
+            item_tongxunlu.setCompoundDrawables(null, drawable2,null, null);
+
+            Drawable drawable3 = getResources().getDrawable(
+                    R.drawable.icon_faxian_after);
+            // / 这一步必须要做,否则不会显示.
+            drawable3.setBounds(0, 0, drawable3.getMinimumWidth(),
+                    drawable3.getMinimumHeight());
+            item_faxian.setCompoundDrawables(null, drawable3,null, null);
+
+            Drawable drawable4 = getResources().getDrawable(
+                    R.drawable.icon_my);
+            // / 这一步必须要做,否则不会显示.
+            drawable4.setBounds(0, 0, drawable4.getMinimumWidth(),
+                    drawable4.getMinimumHeight());
+            item_me.setCompoundDrawables(null, drawable4,null, null);
+
+//            item_faxian.setTextColor(Color.parseColor(view_blue));
+//            item_weixin.setTextColor(Color.parseColor("#000000"));
+//            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+//            item_me.setTextColor(Color.parseColor("#000000"));
+//            item_fabu.setTextColor(Color.parseColor("#000000"));
 
         } else if (position == 4) {
-            item_me.setTextColor(Color.parseColor(view_blue));
-            item_weixin.setTextColor(Color.parseColor("#000000"));
-            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
-            item_faxian.setTextColor(Color.parseColor("#000000"));
-            item_fabu.setTextColor(Color.parseColor("#000000"));
+            Drawable drawable1 = getResources().getDrawable(
+                    R.drawable.icon_renwu);
+            // / 这一步必须要做,否则不会显示.
+            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
+                    drawable1.getMinimumHeight());
+            item_weixin.setCompoundDrawables(null, drawable1,null, null);
+
+            Drawable drawable2 = getResources().getDrawable(
+                    R.drawable.icon_tongzhi);
+            // / 这一步必须要做,否则不会显示.
+            drawable2.setBounds(0, 0, drawable2.getMinimumWidth(),
+                    drawable2.getMinimumHeight());
+            item_tongxunlu.setCompoundDrawables(null, drawable2,null, null);
+
+            Drawable drawable3 = getResources().getDrawable(
+                    R.drawable.icon_faxian);
+            // / 这一步必须要做,否则不会显示.
+            drawable3.setBounds(0, 0, drawable3.getMinimumWidth(),
+                    drawable3.getMinimumHeight());
+            item_faxian.setCompoundDrawables(null, drawable3,null, null);
+
+            Drawable drawable4 = getResources().getDrawable(
+                    R.drawable.icon_my_after);
+            // / 这一步必须要做,否则不会显示.
+            drawable4.setBounds(0, 0, drawable4.getMinimumWidth(),
+                    drawable4.getMinimumHeight());
+            item_me.setCompoundDrawables(null, drawable4,null, null);
+
+//            item_me.setTextColor(Color.parseColor(view_blue));
+//            item_weixin.setTextColor(Color.parseColor("#000000"));
+//            item_tongxunlu.setTextColor(Color.parseColor("#000000"));
+//            item_faxian.setTextColor(Color.parseColor("#000000"));
+//            item_fabu.setTextColor(Color.parseColor("#000000"));
 
         }
 

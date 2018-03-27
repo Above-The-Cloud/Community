@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -54,7 +53,7 @@ import wang.yiwangchunyu.community.Task.FileUtils;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
 import wang.yiwangchunyu.community.utils.Utils;
-import wang.yiwangchunyu.community.webService.HttpResponse;
+import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.webService.androidAsyncHttp.MyCLient;
 
 import static android.app.Activity.RESULT_OK;
@@ -136,7 +135,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
             {
                 String jgnbr = item_commission.getText().toString();
                 if(Utils.isNumeric(jgnbr)){
-                    taskPublishingInfo.setUserId("18918053907");
+                    taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
                     taskPublishingInfo.setCategory("所有");
                     taskPublishingInfo.setTitle(item_titile.getText().toString());
                     taskPublishingInfo.setRestriction(item_restriction.getText().toString());
@@ -150,9 +149,9 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                     Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
                     startActivity(intent_Fabu_to_Two);
                     getActivity().finish();
-                    upload(taskPublishingInfo, HttpResponse.class, this);}
+                    upload(taskPublishingInfo, TasksResponse.class, this);}
                 else
-                    {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
+                {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 
                 break;
             }
@@ -235,7 +234,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         adapter.update();
         noScrollgridview.setAdapter(adapter);
         noScrollgridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 if (arg2 == Bimp.bmp.size()) {
@@ -250,7 +248,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         });
         activity_selectimg_send = (TextView) getActivity().findViewById(R.id.activity_selectimg_send);
         activity_selectimg_send.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 List<String> list = new ArrayList<String>();
                 for (int i = 0; i < Bimp.drr.size(); i++) {
@@ -548,7 +545,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
 
     }
     //TODO:发布调用接口
-    public void upload(TaskPublishingInfo task, Class<HttpResponse> clazz, FabuFragment callback){
+    public void upload(TaskPublishingInfo task, Class<TasksResponse> clazz, FabuFragment callback){
 
         HashMap<String, String> parameter = new HashMap<String, String>();
         parameter.put("user_id", task.getUserId());
