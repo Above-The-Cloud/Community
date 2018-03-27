@@ -4,6 +4,8 @@
 
 package wang.yiwangchunyu.community.webService;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Request.Priority;
@@ -22,6 +24,8 @@ import java.util.Map.Entry;
 
 import wang.yiwangchunyu.community.ItLanbaoLibApplication;
 import wang.yiwangchunyu.community.utils.NetworkUtils;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -115,12 +119,14 @@ public class RequestManager {
 
                     @Override
                     public void onResponse(String response) {
-
+                        Log.d(TAG, "onResponse: -------------------------------------------------------------------"+response);
 //					        这个位置先公共解析处理共同异常
                         try {
                             if (response != null && callback != null) {
                                 Gson gson = new Gson();
                                 //回调请求成功，同时url和解析的对象
+                                Log.d(TAG, "onResponse: -------------------------------------------------------------------"+gson.fromJson(response, clazz));
+
                                 callback.onSuccess(url, gson.fromJson(response, clazz));
 
                             }

@@ -4,8 +4,7 @@ import java.util.HashMap;
 
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
-import wang.yiwangchunyu.community.dataStructures.TasksArrayList;
-import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
+import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
 import wang.yiwangchunyu.community.utils.MD5Util;
  
@@ -118,7 +117,7 @@ public class RequestApiData {
 		//请求数据接口
 		RequestManager.post(UrlConstance.APP_URL, tagUrl, parameter, clazz, callback);
 	}
-	public void getPublishTaskInfo(TaskPublishingInfo task, Class<HttpResponse> clazz, HttpResponeCallBack callback){
+	public void getPublishTaskInfo(TaskPublishingInfo task, Class<TasksResponse> clazz, HttpResponeCallBack callback){
 		mCallBack = callback;
 		//这是每一个接口的唯一标示
 		String tagUrl = UrlConstance.KEY_PUBLISH_INFO;//登录接口
@@ -141,10 +140,10 @@ public class RequestApiData {
 
 
 	}
-	public void getPublishTaskInfoFromServer(Class<TasksArrayList> clazz, HttpResponeCallBack callback) {
+	public void getPublishTaskInfoFromServer(Class<TasksResponse> clazz, HttpResponeCallBack callback) {
 		mCallBack = callback;
 		//这是每一个接口的唯一标示
-		String tagUrl = UrlConstance.KEY_GET_PUBLISH_INFO;//登录接口
+		String tagUrl = UrlConstance.KEY_GET_PUBLISH_INFO;
 		HashMap<String, String> parameter = new HashMap<String, String>();
 		StringBuilder builder = new StringBuilder();
 		builder.append(UrlConstance.PUBLIC_KEY);

@@ -23,6 +23,15 @@ public class TasksShowOnIndex {
     private String code;//状态码 0：正常
     private String msg;
     private ArrayList<String> imagesUrl;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getUserName() {
         return userName;

@@ -34,7 +34,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
-import wang.yiwangchunyu.community.dataStructures.TasksArrayList;
+import wang.yiwangchunyu.community.dataStructures.TasksResponse;
+import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
 import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
@@ -42,7 +43,9 @@ import wang.yiwangchunyu.community.recycleview.Recycler_Item;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
-public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface {
+import static wang.yiwangchunyu.community.constant.UrlConstance.KEY_GET_PUBLISH_INFO;
+
+public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface,HttpResponeCallBack {
 
 
     @BindView(R.id.id_recyclerview)//绑定RecycyleView
@@ -67,7 +70,6 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
     private ArrayList<String> ids;//存放每一项的id
 
-    TasksArrayList tasksArrayList;
 
     private void initBanner() {
         //初始化banner
@@ -158,6 +160,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     }
 
     private void initData() {
+        getTasksInfo();
         dataList = new ArrayList<Recycler_Item>();
         getInfoFromNet();
 
@@ -264,32 +267,37 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     public void onItemLongClick(View view, int position) {
         Toast.makeText(getActivity(), "onItemLongClick" + dataList.get(position), Toast.LENGTH_SHORT).show();
     }
-    public TasksArrayList getTasksInfo(){
 
-        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksArrayList.class, new HttpResponeCallBack() {
-            @Override
-            public void onResponeStart(String apiName) {
+    //从服务器获取所有用户发布的信息，onsuccess
+    public void getTasksInfo(){
 
-            }
+        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksResponse.class, this);
 
-            @Override
-            public void onLoading(String apiName, long count, long current) {
+    }
 
-            }
+    @Override
+    public void onResponeStart(String apiName) {
 
-            @Override
-            public void onSuccess(String apiName, Object object) {
-                tasksArrayList = (TasksArrayList) object;
+    }
 
-            }
+    @Override
+    public void onLoading(String apiName, long count, long current) {
 
-            @Override
-            public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+    }
 
-            }
-        });
+    @Override
+    public void onSuccess(String apiName, Object object) {
+        Toast.makeText(getActivity(),"onSuccess！",Toast.LENGTH_SHORT);
+        if(apiName.equals(KEY_GET_PUBLISH_INFO)) {
+             TasksResponse hr = (TasksResponse) object;
+            ArrayList<TasksShowOnIndex> tasksArr = (ArrayList<TasksShowOnIndex>)hr.getData();
 
+            //TODO: showTasks(tasksArr);
+        }
+    }
 
-        return tasksArrayList;
+    @Override
+    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
     }
 }

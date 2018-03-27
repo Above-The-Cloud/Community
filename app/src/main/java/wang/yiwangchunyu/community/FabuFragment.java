@@ -53,7 +53,7 @@ import wang.yiwangchunyu.community.Task.FileUtils;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
 import wang.yiwangchunyu.community.utils.Utils;
-import wang.yiwangchunyu.community.webService.HttpResponse;
+import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.webService.androidAsyncHttp.MyCLient;
 
 import static android.app.Activity.RESULT_OK;
@@ -149,7 +149,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                     Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
                     startActivity(intent_Fabu_to_Two);
                     getActivity().finish();
-                    upload(taskPublishingInfo, HttpResponse.class, this);}
+                    upload(taskPublishingInfo, TasksResponse.class, this);}
                 else
                     {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 
@@ -547,7 +547,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
 
     }
     //TODO:发布调用接口
-    public void upload(TaskPublishingInfo task, Class<HttpResponse> clazz, FabuFragment callback){
+    public void upload(TaskPublishingInfo task, Class<TasksResponse> clazz, FabuFragment callback){
 
         HashMap<String, String> parameter = new HashMap<String, String>();
         parameter.put("user_id", task.getUserId());
