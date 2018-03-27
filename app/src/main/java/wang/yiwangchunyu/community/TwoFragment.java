@@ -4,8 +4,6 @@ package wang.yiwangchunyu.community;
  * Created by Administrator on 2018/3/8.
  */
 
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -32,17 +30,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import wang.yiwangchunyu.community.dataStructures.TasksResponse;
+import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
 import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
 import wang.yiwangchunyu.community.recycleview.Recycler_Item;
+import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
+import wang.yiwangchunyu.community.webService.RequestApiData;
 
-public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface {
+import static wang.yiwangchunyu.community.constant.UrlConstance.KEY_GET_PUBLISH_INFO;
+
+public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface,HttpResponeCallBack {
 
 
     @BindView(R.id.id_recyclerview)//绑定RecycyleView
@@ -66,6 +69,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     private ArrayList<String> images;//存放banner中的图片
 
     private ArrayList<String> ids;//存放每一项的id
+
 
     private void initBanner() {
         //初始化banner
@@ -156,6 +160,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     }
 
     private void initData() {
+        getTasksInfo();
         dataList = new ArrayList<Recycler_Item>();
         getInfoFromNet();
 
@@ -218,7 +223,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
                         //创建list中的每一个对象，并设置数据
                         listItem.setTitle(item.getString("title"));
                         listItem.setImgurl(images.getString(0));
-                        listItem.setDate(getDate());
+                        //listItem.setDate(getDate());
                         listItem.setId(item.getString("id"));
                         dataList.add(listItem);
                     }
@@ -239,17 +244,17 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         mQueue.add(jsonObjectRequest);//开始任务
     }
 
-    private String getDate(){
-        //获取当前需要加载的数据的日期
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.DAY_OF_MONTH, -otherdate);//otherdate天前的日子
-
-        String date = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
-        //将日期转化为20170520这样的格式
-        return date;
-
-    }
+//    private String getDate(){
+//        //获取当前需要加载的数据的日期
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(new Date());
+//        c.add(Calendar.DAY_OF_MONTH, -otherdate);//otherdate天前的日子
+//
+//        String date = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
+//        //将日期转化为20170520这样的格式
+//        return date;
+//
+//    }date
 
 
     @Override
@@ -261,5 +266,38 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemLongClick(View view, int position) {
         Toast.makeText(getActivity(), "onItemLongClick" + dataList.get(position), Toast.LENGTH_SHORT).show();
+    }
+
+    //从服务器获取所有用户发布的信息，onsuccess
+    public void getTasksInfo(){
+
+        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksResponse.class, this);
+
+    }
+
+    @Override
+    public void onResponeStart(String apiName) {
+
+    }
+
+    @Override
+    public void onLoading(String apiName, long count, long current) {
+
+    }
+
+    @Override
+    public void onSuccess(String apiName, Object object) {
+        Toast.makeText(getActivity(),"onSuccess！",Toast.LENGTH_SHORT);
+        if(apiName.equals(KEY_GET_PUBLISH_INFO)) {
+             TasksResponse hr = (TasksResponse) object;
+            ArrayList<TasksShowOnIndex> tasksArr = (ArrayList<TasksShowOnIndex>)hr.getData();
+
+            //TODO: showTasks(tasksArr);
+        }
+    }
+
+    @Override
+    public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
+
     }
 }

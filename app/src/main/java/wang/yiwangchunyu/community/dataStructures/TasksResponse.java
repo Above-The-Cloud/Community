@@ -1,14 +1,16 @@
-package wang.yiwangchunyu.community.webService;
+package wang.yiwangchunyu.community.dataStructures;
+
+import java.util.List;
 
 /**
  * Created by yiwangchunyu on 2018/3/16.
  */
 
-public class HttpResponse {
+public class TasksResponse {
     private String ret;//请求状态码  0：正常， 1：用户不存在
     private String errcode;//错误码
     private String msg;
-    private Object data;
+    private List<TasksShowOnIndex> data;
 
     public String getRet() {
         return ret;
@@ -34,11 +36,11 @@ public class HttpResponse {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public List<TasksShowOnIndex> getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(List<TasksShowOnIndex> data) {
         this.data = data;
     }
 }

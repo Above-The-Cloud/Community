@@ -47,16 +47,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            t8
         </activity>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
-        <activity android:name=".GetIdentifingCodeActivity"></activity>
-        <activity android:name=".RegisterUserInfoActivity"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+        </activity>
+        <activity android:name=".GetIdentifingCodeActivity">
+
+        </activity>
+        <activity android:name=".RegisterUserInfoActivity">
+
+        </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
+
+        </activity>
+
         <activity android:name=".TaskDetails"></activity>
+
     </application>
 
 </manifest>

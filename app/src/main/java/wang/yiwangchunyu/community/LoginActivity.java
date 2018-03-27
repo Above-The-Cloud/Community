@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import wang.yiwangchunyu.community.constant.Constant;
+import wang.yiwangchunyu.community.constant.KeyConstance;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
+import wang.yiwangchunyu.community.users.UserPreference;
 import wang.yiwangchunyu.community.utils.MD5Util;
 import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
@@ -169,12 +171,12 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
 
     @Override
     public void onResponeStart(String apiName) {
-
+        Toast.makeText(LoginActivity.this, "正在加载数据中", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoading(String apiName, long count, long current) {
-
+        Toast.makeText(LoginActivity.this, "Loading...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -189,6 +191,12 @@ public class LoginActivity extends Activity implements HttpResponeCallBack{     
                     finish();
                     Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
 
+                    //登录成功，保存登录信息
+                    ItLanBaoApplication.getInstance().setBaseUser(info);//保存到Application中
+                    //保存到SP中
+                    UserPreference.save(KeyConstance.IS_USER_ID, String.valueOf(info.getUserid()));
+
+                    UserPreference.save(KeyConstance.IS_USER_PASSWORD, mPwd.getText().toString());
                 } else {
                     Toast.makeText(this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
 

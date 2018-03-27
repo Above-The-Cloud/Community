@@ -8,7 +8,7 @@ import wang.yiwangchunyu.community.webService.RequestApiData;
  */
 public class ItLanBaoApplication extends ItLanbaoLibApplication {
 
-	private UserBaseInfo baseUser;//用户基本信息
+	private static UserBaseInfo baseUser;//用户基本信息
 
 	private RequestApiData requestApi;
 	private static ItLanBaoApplication instance;
