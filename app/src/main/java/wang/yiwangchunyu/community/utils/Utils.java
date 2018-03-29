@@ -1,11 +1,16 @@
 package wang.yiwangchunyu.community.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import wang.yiwangchunyu.community.utils.threadUtils.MyImageRunnable;
+import wang.yiwangchunyu.community.utils.threadUtils.MyImageThread;
 
 /**
  * @author Administrator
@@ -19,6 +24,27 @@ public class Utils {
         Pattern p = Pattern.compile(reg_email);
         Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    public static Bitmap convertStringToIcon(String st)
+    {
+        // OutputStream out;
+        Bitmap bitmap = null;
+        try
+        {
+            // out = new FileOutputStream("/sdcard/aa.jpg");
+            byte[] bitmapArray;
+            bitmapArray = Base64.decode(st, Base64.DEFAULT);
+            bitmap =
+                    BitmapFactory.decodeByteArray(bitmapArray, 0,
+                            bitmapArray.length);
+            // bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            return bitmap;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public static boolean isNumeric(String str){
@@ -79,4 +105,12 @@ public class Utils {
         return s;
     }
 
+    //将网络图片转换成bitmap
+    public static void getHttpBitmap(String url, ImageView imageView) {
+
+        MyImageRunnable mir =new MyImageRunnable(url,imageView);
+        MyImageThread mit = new MyImageThread();
+        mit.start();
+
+    }
 }

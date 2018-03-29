@@ -155,7 +155,7 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                     getActivity().finish();
                     upload(taskPublishingInfo, TasksResponse.class, this);}
                 else
-                    {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
+                {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 
                 break;
             }
@@ -238,7 +238,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         adapter.update();
         noScrollgridview.setAdapter(adapter);
         noScrollgridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
                 if (arg2 == Bimp.bmp.size()) {
@@ -253,7 +252,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
         });
         activity_selectimg_send = (TextView) getActivity().findViewById(R.id.activity_selectimg_send);
         activity_selectimg_send.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 List<String> list = new ArrayList<String>();
                 for (int i = 0; i < Bimp.drr.size(); i++) {

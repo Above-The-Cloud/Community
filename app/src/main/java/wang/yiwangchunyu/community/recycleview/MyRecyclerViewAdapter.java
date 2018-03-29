@@ -1,6 +1,7 @@
 package wang.yiwangchunyu.community.recycleview;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 import wang.yiwangchunyu.community.R;
+import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
+
+import static wang.yiwangchunyu.community.utils.Utils.convertStringToIcon;
+//import static wang.yiwangchunyu.community.utils.Utils.getBitmapFromURL;
 
 /**
  * Created by XinyuJiang on 2018/3/8.
@@ -21,7 +24,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     private Context context;
-    private ArrayList<Recycler_Item> mDatas;
+    private ArrayList<TasksShowOnIndex> mDatas;
     MyViewHolder holder = null;//viewholder,可以提高recycleview的性能
 
     private MyRecyclerViewOnclickInterface mOnItemClickLitener;
@@ -30,7 +33,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public MyRecyclerViewAdapter(Context context, ArrayList<Recycler_Item> mDatas) {
+    public MyRecyclerViewAdapter(Context context, ArrayList<TasksShowOnIndex> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
     }
@@ -49,10 +52,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         //此方法内可以对布局中的控件进行操作
         if (getItemViewType(position)==TYPE_HEADER) return;
         final int pos=getRealPosition(holder);
+        TasksShowOnIndex tasksShowOnIndex = mDatas.get(pos);
+        holder.title.setText(tasksShowOnIndex.getTitle());
+        //holder.img.setImageBitmap(tasksShowOnIndex.getImagesUrl());
+        holder.headTitle.setText(tasksShowOnIndex.getTitle());
+        holder.commision.setText(String.valueOf(tasksShowOnIndex.getCommission()));
+        holder.releaser_name.setText(tasksShowOnIndex.getUserName());
+        holder.time.setText(tasksShowOnIndex.getTime().substring(0,16));
+        holder.address.setText("华东师范大学中北小区");
+        holder.content.setText(tasksShowOnIndex.getContent());
+        if (!tasksShowOnIndex.getImagesUrl().isEmpty())
+            //.imageView.setImageBitmap(getBitmapFromURL(tasksShowOnIndex.getImagesUrl().get(0)));
 
-        holder.title.setText(mDatas.get(position).getTitle());
 
-        Glide.with(context).load(mDatas.get(position).getImgurl()).into(holder.img);
+//        Glide.with(context).load(mDatas.get(position).getIm()).into(holder.img);
 
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null) {
@@ -90,6 +103,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView title;//标题
         ImageView img;//显示的图片
         TextView headTitle;//头部标题
+        TextView commision;//报酬
+        TextView address;//发布地址
+        TextView releaser_name;//发布者Id
+        TextView content;//内容
+        TextView time;//发布时间
+        ImageView imageView;//发布时的图片
 
 
         public MyViewHolder(View view) {
@@ -97,7 +116,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             title= (TextView) itemView.findViewById(R.id.item_title);
             img= (ImageView) itemView.findViewById(R.id.item_image);
             headTitle= (TextView) itemView.findViewById(R.id.item_headtitle);
-
+            commision= (TextView) itemView.findViewById(R.id.commision);
+            address = (TextView) itemView.findViewById(R.id.address);
+            releaser_name= (TextView) itemView.findViewById(R.id.releaser_name);
+            content = (TextView) itemView.findViewById(R.id.content);
+            time = (TextView) itemView.findViewById(R.id.data);
+            imageView = (ImageView)itemView.findViewById(R.id.picture);
         }
     }
 

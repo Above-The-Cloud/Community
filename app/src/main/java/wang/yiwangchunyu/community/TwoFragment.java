@@ -18,22 +18,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bingoogolapple.bgabanner.BGABanner;
+import cn.bingoogolapple.bgabanner.BGABannerUtil;
 import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
 import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
@@ -49,18 +40,14 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
 
     @BindView(R.id.id_recyclerview)//绑定RecycyleView
-    RecyclerView mRecyclerview;
+            RecyclerView mRecyclerview;
 
     @BindView(R.id.srl_one)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private MyRecyclerViewAdapter mAdapter;
-    private ArrayList<Recycler_Item> dataList;
-
 
     private int otherdate=0;//从今日算起，倒数第几天 eg:昨天 就是1 前天就是 2
-
-    private RequestQueue mQueue;
 
     private ArrayList<Recycler_Item> bannerList;//banner控件
 
@@ -72,97 +59,41 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
 
     private void initBanner() {
-        //初始化banner
-        titles=new ArrayList<>();
-        ids=new ArrayList<>();
-        images=new ArrayList<>();
 
-        bannerList = new ArrayList<>();
-
-        //mQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://news-at.zhihu.com/api/4/news/latest", null, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    //解析banner中的数据
-                    JSONArray topinfos = response.getJSONArray("top_stories");
-                    Log.d("TAG", "onResponse: "+topinfos);
-                    for (int i = 0; i < topinfos.length(); i++) {
-                        JSONObject item = topinfos.getJSONObject(i);
-                        Recycler_Item item1 = new Recycler_Item();
-                        item1.setImgurl(item.getString("image"));
-                        item1.setTitle(item.getString("title"));
-                        item1.setId(item.getString("id"));
-                        bannerList.add(item1);
-                        titles.add(item1.getTitle());
-                        images.add(item1.getImgurl());
-                        ids.add(item1.getId());
-                    }
-
-
-                    setHeader(mRecyclerview, images, titles, ids);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        mQueue.add(jsonObjectRequest);
 
 
     }
 
-    private void setHeader(RecyclerView view, ArrayList<String> urls, ArrayList<String> titles, final ArrayList<String> ids) {
-        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.headview, view, false);
-        //找到banner所在的布局
-        BGABanner banner = (BGABanner) header.findViewById(R.id.banner);
-        //绑定banner
-        banner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-
-
-            @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-                Glide.with(TwoFragment.this)
-                        .load(model)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView);
-            }
-        });
-        banner.setDelegate(new BGABanner.Delegate() {
-            @Override
-            public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
-                //此处可设置banner子项的点击事件
-
-            }
-        });
-        banner.setData(urls, titles);
-        mAdapter.setHeadView(header);//向适配器中添加banner
-    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_two, container, false);
+
+        Log.d("Header",view.toString());
         ButterKnife.bind(this, view);
-        initData();
-        initBanner();
+
+        //initBanner();
+        Log.d("TAG","加载布局管理器");
+        getTasksInfo();
+//        initBanner();
         return view;
     }
 
-    private void initData() {
-        getTasksInfo();
-        dataList = new ArrayList<Recycler_Item>();
-        getInfoFromNet();
+//    private View getPageView(@DrawableRes int resid) {
+//        ImageView imageView = new ImageView(this.getActivity());
+//        imageView.setImageResource(resid);
+//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        return imageView;
+//    }
+
+    private void showTasks(ArrayList<TasksShowOnIndex> dataList) {
+        for (int i = 0 ; i < dataList.size(); i ++)
+            Log.d("TIME",dataList.get(i).getTime());
+        //initTasks(dataList);
+        Log.d("TAG","加载适配器");
+
 
         mAdapter = new MyRecyclerViewAdapter(getActivity(), dataList);
         //设置布局管理器
@@ -175,9 +106,9 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
         //初始化下拉控件颜色
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-        android.R.color.holo_orange_light, android.R.color.holo_red_light);
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
+            @Override
             public void onRefresh() {
                 new AsyncTask<Void, Void, Void>() {
 
@@ -195,67 +126,28 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
                 }.execute();
             }
         });
-    }
 
-    private void getInfoFromNet(){
-        //获取网络数据
-        mQueue = Volley.newRequestQueue(this.getActivity());
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://news-at.zhihu.com/api/4/news/latest", null, new Response.Listener<JSONObject>() {
+        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.headview, mRecyclerview, false);
+        Log.d("Header",header.toString());
+        BGABanner banner = (BGABanner) header.findViewById(R.id.banner);
+        Log.d("Header",banner.toString());
+        List<View> views = new ArrayList<>();
+        views.add(BGABannerUtil.getItemImageView(getActivity(),R.mipmap.head_1));
+        views.add(BGABannerUtil.getItemImageView(getActivity(),R.mipmap.head_2));
+        views.add(BGABannerUtil.getItemImageView(getActivity(),R.mipmap.head_3));
+        banner.setData(views);
+        banner.setDelegate(new BGABanner.Delegate<ImageView, String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-
-                    JSONArray list = null;
-                    try {
-                        list = response.getJSONArray("stories");
-                        //获取返回数据的内容
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //开始解析数据
-                    for (int i = 0; i < list.length(); i++) {
-                        JSONObject item = list.getJSONObject(i);
-
-                        JSONArray images = item.getJSONArray("images");
-                        Recycler_Item listItem = new Recycler_Item();
-                        //创建list中的每一个对象，并设置数据
-                        listItem.setTitle(item.getString("title"));
-                        listItem.setImgurl(images.getString(0));
-                        //listItem.setDate(getDate());
-                        listItem.setId(item.getString("id"));
-                        dataList.add(listItem);
-                    }
-                    mAdapter.notifyDataSetChanged();//通知适配器 刷新数据啦 啊喂
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
+                Toast.makeText(banner.getContext(), "点击了" + position, Toast.LENGTH_SHORT).show();
+                if (position==2){
+                    banner.stopAutoPlay();
                 }
-
-            }
-        }, new Response.ErrorListener() {
-            //如果遇到异常，在这里通知用户
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(getActivity(),"碰到了一点问题",Toast.LENGTH_SHORT);
             }
         });
-        mQueue.add(jsonObjectRequest);//开始任务
+        mAdapter.setHeadView(header);
+
     }
-
-//    private String getDate(){
-//        //获取当前需要加载的数据的日期
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(new Date());
-//        c.add(Calendar.DAY_OF_MONTH, -otherdate);//otherdate天前的日子
-//
-//        String date = new SimpleDateFormat("yyyyMMdd").format(c.getTime());
-//        //将日期转化为20170520这样的格式
-//        return date;
-//
-//    }date
-
 
     @Override
     public void onItemClick(View view, int position) {
@@ -265,12 +157,13 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
     @Override
     public void onItemLongClick(View view, int position) {
-        Toast.makeText(getActivity(), "onItemLongClick" + dataList.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "onItemLongClick", Toast.LENGTH_SHORT).show();
     }
 
     //从服务器获取所有用户发布的信息，onsuccess
     public void getTasksInfo(){
 
+        Log.d("TAG", "从服务器获取用户发布信息 ");
         RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksResponse.class, this);
 
     }
@@ -288,11 +181,11 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onSuccess(String apiName, Object object) {
         Toast.makeText(getActivity(),"onSuccess！",Toast.LENGTH_SHORT);
+        Log.d("TAG","成功回调");
         if(apiName.equals(KEY_GET_PUBLISH_INFO)) {
-             TasksResponse hr = (TasksResponse) object;
+            TasksResponse hr = (TasksResponse) object;
             ArrayList<TasksShowOnIndex> tasksArr = (ArrayList<TasksShowOnIndex>)hr.getData();
-
-            //TODO: showTasks(tasksArr);
+            showTasks(tasksArr);
         }
     }
 
