@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -52,8 +53,8 @@ import wang.yiwangchunyu.community.Task.Bimp;
 import wang.yiwangchunyu.community.Task.FileUtils;
 import wang.yiwangchunyu.community.constant.UrlConstance;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
-import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.dataStructures.TasksResponse;
+import wang.yiwangchunyu.community.utils.Utils;
 import wang.yiwangchunyu.community.webService.androidAsyncHttp.MyCLient;
 
 import static android.app.Activity.RESULT_OK;
@@ -134,8 +135,8 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                 //传递数据
             {
                 String jgnbr = item_commission.getText().toString();
-                if(Utils.isNumeric(jgnbr)){
-                    taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
+                if(!jgnbr.isEmpty() && Utils.isNumeric(jgnbr)){
+                    taskPublishingInfo.setUserId(getActivity().getSharedPreferences("userInfo", 0).getString("USER_NAME", ""));
                     taskPublishingInfo.setCategory("所有");
                     taskPublishingInfo.setTitle(item_titile.getText().toString());
                     taskPublishingInfo.setRestriction(item_restriction.getText().toString());

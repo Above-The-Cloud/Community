@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="wang.yiwangchunyu.community">
 
-    <uses-sdk tools:overrideLibrary="cn.sharesdk" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-sdk tools:overrideLibrary="cn.sharesdk,cn.smssdk,cn.smssdk.gui" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

@@ -1,11 +1,19 @@
 package wang.yiwangchunyu.community.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.R.attr.bitmap;
 
 /**
  * @author Administrator
@@ -19,6 +27,27 @@ public class Utils {
         Pattern p = Pattern.compile(reg_email);
         Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    public static Bitmap convertStringToIcon(String st)
+    {
+        // OutputStream out;
+        Bitmap bitmap = null;
+        try
+        {
+            // out = new FileOutputStream("/sdcard/aa.jpg");
+            byte[] bitmapArray;
+            bitmapArray = Base64.decode(st, Base64.DEFAULT);
+            bitmap =
+                    BitmapFactory.decodeByteArray(bitmapArray, 0,
+                            bitmapArray.length);
+            // bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            return bitmap;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public static boolean isNumeric(String str){
@@ -78,5 +107,6 @@ public class Utils {
 
         return s;
     }
+
 
 }
