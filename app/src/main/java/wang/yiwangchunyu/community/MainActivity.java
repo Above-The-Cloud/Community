@@ -15,6 +15,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me, item_fabu;
     private ViewPager vp;
@@ -76,9 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化布局View
      */
 
-    public void toTaskDetails()
+    public void toTaskDetails(TasksShowOnIndex taskArr)
     {
         Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+        intent.putExtra("task_details",taskArr);
         startActivity(intent);
     }
 

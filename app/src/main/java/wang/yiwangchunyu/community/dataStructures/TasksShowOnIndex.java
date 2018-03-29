@@ -1,5 +1,6 @@
 package wang.yiwangchunyu.community.dataStructures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ import java.util.Date;
  * Created by yiwangchunyu on 2018/3/22.
  */
 
-public class TasksShowOnIndex {
+public class TasksShowOnIndex implements Serializable {
     private String publishId;
     private String userId;
     private String userName;

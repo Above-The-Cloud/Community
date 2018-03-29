@@ -33,7 +33,6 @@ import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
 import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
 import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
-import wang.yiwangchunyu.community.recycleview.Recycler_Item;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -52,13 +51,14 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
     private int otherdate=0;//从今日算起，倒数第几天 eg:昨天 就是1 前天就是 2
 
-    private ArrayList<Recycler_Item> bannerList;//banner控件
 
     private ArrayList<String> titles;//存放banner中的标题
 
     private ArrayList<String> images;//存放banner中的图片
 
     private ArrayList<String> ids;//存放每一项的id
+
+    private ArrayList<TasksShowOnIndex> tasksArr;
 
 
     private void initBanner() {
@@ -77,19 +77,11 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         Log.d("Header",view.toString());
         ButterKnife.bind(this, view);
 
-        //initBanner();
         Log.d("TAG","加载布局管理器");
         getTasksInfo();
-//        initBanner();
         return view;
     }
 
-//    private View getPageView(@DrawableRes int resid) {
-//        ImageView imageView = new ImageView(this.getActivity());
-//        imageView.setImageResource(resid);
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        return imageView;
-//    }
 
     private void showTasks(ArrayList<TasksShowOnIndex> dataList) {
         for (int i = 0 ; i < dataList.size(); i ++)
@@ -155,7 +147,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemClick(View view, int position) {
         MainActivity activity = (MainActivity) getActivity();
-        activity.toTaskDetails();
+        activity.toTaskDetails(tasksArr.get(position));
     }
 
     @Override
@@ -187,7 +179,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         Log.d("TAG","成功回调");
         if(apiName.equals(KEY_GET_PUBLISH_INFO)) {
             TasksResponse hr = (TasksResponse) object;
-            ArrayList<TasksShowOnIndex> tasksArr = (ArrayList<TasksShowOnIndex>)hr.getData();
+            tasksArr = (ArrayList<TasksShowOnIndex>)hr.getData();
             showTasks(tasksArr);
         }
     }
