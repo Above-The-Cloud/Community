@@ -112,16 +112,45 @@
                     android:src="@drawable/bg1"
                     />
 
-                <TextView
+                <RelativeLayout
                     android:id="@+id/profile"
-                    android:text="华东师范大学中北校区"
                     android:layout_marginTop="0.5dp"
-                    android:padding="12dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/view_blue"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"/>
+                    android:layout_weight="8">
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:padding="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/view_blue"
+                        android:text="华东师范大学中山北路校区"/>
+
+                    <ImageView
+                        android:id="@+id/fenge"
+                        android:layout_toRightOf="@id/address"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:background="@color/bg_black"
+                        android:textColor="@color/view_blue"
+                        android:text="|"/>
+
+                    <TextView
+                        android:id="@+id/releaser_name"
+                        android:layout_width="wrap_content"
+                        android:padding="12dp"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/view_blue"
+                        android:layout_toRightOf="@id/fenge"
+                        android:text="张三"/>
+
+                </RelativeLayout>
+
+
 
             </LinearLayout>
 
