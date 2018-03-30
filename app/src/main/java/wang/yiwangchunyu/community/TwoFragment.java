@@ -144,7 +144,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemClick(View view, int position) {
         MainActivity activity = (MainActivity) getActivity();
-        activity.toTaskDetails(tasksArr.get(position));
+        activity.toTaskDetails(tasksArr.get(position-1));
     }
 
     @Override
