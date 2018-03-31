@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //去除工具栏
+        //去除工具栏-
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         initViews();

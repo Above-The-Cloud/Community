@@ -27,9 +27,9 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.BGABannerUtil;
 import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
-import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
-import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
-import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
+import wang.yiwangchunyu.community.recycleview_two.DividerItemDecoration;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewAdapter;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewOnclickInterface;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -113,13 +113,14 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         Toast.makeText(getActivity(), "下拉刷新成功", Toast.LENGTH_SHORT).show();
+                        getTasksInfo();
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }.execute();
             }
         });
 
-        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.headview, mRecyclerview, false);
+        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.index_headview, mRecyclerview, false);
         Log.d("Header",header.toString());
         BGABanner banner = (BGABanner) header.findViewById(R.id.banner);
         Log.d("Header",banner.toString());
