@@ -136,10 +136,8 @@ public class FabuFragment extends Fragment implements  OnClickListener{
             {
                 String jgnbr = item_commission.getText().toString();
                 if(Utils.isNumeric(jgnbr)){
-                    SharedPreferences login_sp;
-                    login_sp =getActivity().getSharedPreferences("userInfo", 0);
-                    String name=login_sp.getString("USER_NAME", "");
-                    taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
+                    //taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
+                    taskPublishingInfo.setUserId(getActivity().getSharedPreferences("userInfo", 0).getString("USER_NAME", ""));
                     taskPublishingInfo.setCategory("所有");
                     taskPublishingInfo.setTitle(item_titile.getText().toString());
                     taskPublishingInfo.setRestriction(item_restriction.getText().toString());
@@ -152,8 +150,9 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                     }
                     Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
                     startActivity(intent_Fabu_to_Two);
-                    getActivity().finish();
-                    upload(taskPublishingInfo, TasksResponse.class, this);}
+                    upload(taskPublishingInfo, TasksResponse.class, this);
+                    Log.d("TAG","上传任务成功！");
+                }
                 else
                 {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 

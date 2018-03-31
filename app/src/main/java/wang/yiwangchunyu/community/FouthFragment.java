@@ -22,7 +22,6 @@ public class FouthFragment extends Fragment {
 
     private View view;
     private TextView userName;
-    private TextView userAddress;
     private String userId;
     private SharedPreferences login_sp;
 
@@ -37,7 +36,6 @@ public class FouthFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_fouth, container, false);
         login_sp = getActivity().getSharedPreferences("userInfo", 0);
         userName = (TextView)view.findViewById(R.id.user_name);
-        userAddress = (TextView)view.findViewById(R.id.user_address);
         userId = login_sp.getString("USER_NAME", "12345678910");
         userName.setText(userId);
         return view;

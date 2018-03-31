@@ -46,7 +46,8 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="17sp"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@id/user_line"/>
+                android:layout_toRightOf="@id/user_line"
+                android:text="ECNU"/>
         </RelativeLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
