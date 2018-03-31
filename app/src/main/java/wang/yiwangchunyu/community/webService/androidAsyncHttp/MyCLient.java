@@ -24,5 +24,8 @@ public class MyCLient{
     public static void post(String url,RequestParams params,AsyncHttpResponseHandler responseHand){
         client.post(BASE_URL+url,params,responseHand);
     }
+    public static void getImage(String url,RequestParams params,AsyncHttpResponseHandler responseHand){
+        client.post(url,params,responseHand);
+    }
 
 }

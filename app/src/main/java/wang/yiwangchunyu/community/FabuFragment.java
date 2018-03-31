@@ -126,8 +126,11 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                 //传递数据
             {
                 String jgnbr = item_commission.getText().toString();
-                if(!jgnbr.isEmpty() && Utils.isNumeric(jgnbr)){
-                    taskPublishingInfo.setUserId(getActivity().getSharedPreferences("userInfo", 0).getString("USER_NAME", ""));
+                if(Utils.isNumeric(jgnbr)){
+                    SharedPreferences login_sp;
+                    login_sp =getActivity().getSharedPreferences("userInfo", 0);
+                    String name=login_sp.getString("USER_NAME", "");
+                    taskPublishingInfo.setUserId(ItLanBaoApplication.getInstance().getBaseUser().getUserid());
                     taskPublishingInfo.setCategory("所有");
                     taskPublishingInfo.setTitle(item_titile.getText().toString());
                     taskPublishingInfo.setRestriction(item_restriction.getText().toString());

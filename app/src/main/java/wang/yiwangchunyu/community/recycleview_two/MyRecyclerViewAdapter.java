@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import wang.yiwangchunyu.community.R;
@@ -50,17 +51,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         if (getItemViewType(position)==TYPE_HEADER) return;
         final int pos=getRealPosition(holder);
         TasksShowOnIndex tasksShowOnIndex = mDatas.get(pos);
-        holder.title.setText(tasksShowOnIndex.getTitle());
+        try {
+            holder.title.setText(new String(tasksShowOnIndex.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.headTitle.setText(new String(tasksShowOnIndex.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.content.setText(new String(tasksShowOnIndex.getContent().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.releaser_name.setText(new String(tasksShowOnIndex.getUserName().getBytes("ISO-8859-1"),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         //holder.img.setImageBitmap(tasksShowOnIndex.getImagesUrl());
-        holder.headTitle.setText(tasksShowOnIndex.getTitle());
         holder.commision.setText(String.valueOf(tasksShowOnIndex.getCommission()));
-        holder.releaser_name.setText(tasksShowOnIndex.getUserName());
         holder.time.setText(tasksShowOnIndex.getTime().substring(0,16));
         holder.address.setText("华东师范大学中北小区");
-        holder.content.setText(tasksShowOnIndex.getContent());
         if (!tasksShowOnIndex.getImagesUrl().isEmpty())
             //.imageView.setImageBitmap(getBitmapFromURL(tasksShowOnIndex.getImagesUrl().get(0)));
-
 
 //        Glide.with(context).load(mDatas.get(position).getIm()).into(holder.img);
 

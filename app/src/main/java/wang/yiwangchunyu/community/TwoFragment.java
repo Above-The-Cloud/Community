@@ -145,8 +145,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemClick(View view, int position) {
         MainActivity activity = (MainActivity) getActivity();
-        Toast.makeText(getActivity(), "onItemClick", Toast.LENGTH_SHORT).show();
-        activity.toTaskDetails(tasksArr.get(position - 1));
+        activity.toTaskDetails(tasksArr.get(position-1));
     }
 
     @Override
@@ -185,6 +184,6 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
     @Override
     public void onFailure(String apiName, Throwable t, int errorNo, String strMsg) {
-
+        Toast.makeText(getActivity(),"Failure！",Toast.LENGTH_SHORT);
     }
 }

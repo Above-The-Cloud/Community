@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.UnsupportedEncodingException;
+
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
 
 public class TaskDetails extends AppCompatActivity {
@@ -44,11 +46,15 @@ public class TaskDetails extends AppCompatActivity {
         //imageView = (ImageView)findViewById(R.id.picture);
         catoGory = (TextView) findViewById(R.id.category);
 
-        title.setText(task_detail.getTitle());
+        try {
+            title.setText(new String(task_detail.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+            releaser_name.setText(new String(task_detail.getUserName().getBytes("ISO-8859-1"),"UTF-8"));
+            content.setText(new String(task_detail.getContent().getBytes("ISO-8859-1"),"UTF-8"));
+            restriction.setText(new String(task_detail.getRestriction().getBytes("ISO-8859-1"),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         commision.setText(Integer.toString(task_detail.getCommission()));
-        releaser_name.setText(task_detail.getUserName());
-        content.setText(task_detail.getContent());
-        restriction.setText(task_detail.getRestriction());
         //catoGory.setText(task_detail.getCategory());
 
     }
