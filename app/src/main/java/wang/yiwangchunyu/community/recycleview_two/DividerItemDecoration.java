@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community.recycleview;
+package wang.yiwangchunyu.community.recycleview_two;
 
 /**
  * Created by XinyuJiang on 2018/3/8.

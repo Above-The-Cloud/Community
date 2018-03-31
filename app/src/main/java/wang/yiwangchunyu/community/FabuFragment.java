@@ -87,15 +87,6 @@ public class FabuFragment extends Fragment implements  OnClickListener{
     private Bitmap tempbitmap;
     private PopupWindows popupWindows;
 
-    /*private String title;
-    private String content;
-    private int commission;
-    private String restriction;
-    private int viewed;
-    private int liked;
-    private Date publish_time;
-*/
-
 
     public FabuFragment() {
         // Required empty public constructor
@@ -149,8 +140,9 @@ public class FabuFragment extends Fragment implements  OnClickListener{
                     }
                     Intent intent_Fabu_to_Two = new Intent(getActivity(),MainActivity.class) ;    //切换Login Activity至User Activity
                     startActivity(intent_Fabu_to_Two);
+                    upload(taskPublishingInfo, TasksResponse.class, this);
                     getActivity().finish();
-                    upload(taskPublishingInfo, TasksResponse.class, this);}
+                }
                 else
                 {Toast.makeText(view.getContext(),"薪资必须为数字！",Toast.LENGTH_SHORT).show();}
 

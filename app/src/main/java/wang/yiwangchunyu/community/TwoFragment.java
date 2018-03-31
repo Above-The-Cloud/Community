@@ -7,7 +7,6 @@ package wang.yiwangchunyu.community;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +27,9 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.BGABannerUtil;
 import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
-import wang.yiwangchunyu.community.recycleview.DividerItemDecoration;
-import wang.yiwangchunyu.community.recycleview.MyRecyclerViewAdapter;
-import wang.yiwangchunyu.community.recycleview.MyRecyclerViewOnclickInterface;
+import wang.yiwangchunyu.community.recycleview_two.DividerItemDecoration;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewAdapter;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewOnclickInterface;
 import wang.yiwangchunyu.community.webService.HttpResponeCallBack;
 import wang.yiwangchunyu.community.webService.RequestApiData;
 
@@ -116,13 +113,14 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         Toast.makeText(getActivity(), "下拉刷新成功", Toast.LENGTH_SHORT).show();
+                        getTasksInfo();
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }.execute();
             }
         });
 
-        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.headview, mRecyclerview, false);
+        View header = LayoutInflater.from(this.getActivity()).inflate(R.layout.index_headview, mRecyclerview, false);
         Log.d("Header",header.toString());
         BGABanner banner = (BGABanner) header.findViewById(R.id.banner);
         Log.d("Header",banner.toString());
@@ -147,7 +145,8 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public void onItemClick(View view, int position) {
         MainActivity activity = (MainActivity) getActivity();
-        activity.toTaskDetails(tasksArr.get(position));
+        Toast.makeText(getActivity(), "onItemClick", Toast.LENGTH_SHORT).show();
+        activity.toTaskDetails(tasksArr.get(position - 1));
     }
 
     @Override

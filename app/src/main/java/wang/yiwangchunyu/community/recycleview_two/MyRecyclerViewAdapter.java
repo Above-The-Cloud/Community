@@ -1,7 +1,6 @@
-package wang.yiwangchunyu.community.recycleview;
+package wang.yiwangchunyu.community.recycleview_two;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,6 @@ import java.util.ArrayList;
 
 import wang.yiwangchunyu.community.R;
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
-
-import static wang.yiwangchunyu.community.utils.Utils.convertStringToIcon;
 //import static wang.yiwangchunyu.community.utils.Utils.getBitmapFromURL;
 
 /**
@@ -74,7 +71,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 @Override
                 public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    mOnItemClickLitener.onItemClick(v, pos);
                 }
             });
 
@@ -83,7 +80,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 @Override
                 public boolean onLongClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemLongClick(holder.itemView, pos);
+                    mOnItemClickLitener.onItemLongClick(v, pos);
                     //返回true可以让长按事件被消耗，避免出发点击事件
                     return true;
                 }
