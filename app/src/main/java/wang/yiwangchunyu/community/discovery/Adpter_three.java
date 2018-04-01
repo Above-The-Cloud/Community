@@ -1,9 +1,12 @@
 package wang.yiwangchunyu.community.discovery;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -71,7 +74,7 @@ public class Adpter_three extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((Holder) viewHolder).title.setText(data.getTitle());
             ((Holder) viewHolder).content.setText(data.getContent());
             ((Holder) viewHolder).price.setText(String.valueOf(data.getPrice()));
-
+            ((Holder) viewHolder).avatar.setImageResource(data.getBackground());
 
             if(mListener == null) return;
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +101,7 @@ public class Adpter_three extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView price;
         TextView title;
         TextView content;
+        ImageView avatar;
 
         public Holder(View itemView) {
             super(itemView);
@@ -105,6 +109,7 @@ public class Adpter_three extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             title = (TextView) itemView.findViewById(R.id.item_title);
             content = (TextView) itemView.findViewById(R.id.item_content);
             price = (TextView) itemView.findViewById(R.id.item_price);
+            avatar = (ImageView) itemView.findViewById(R.id.item_image);
         }
     }
 

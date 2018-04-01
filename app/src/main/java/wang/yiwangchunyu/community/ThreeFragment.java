@@ -59,23 +59,23 @@ public class ThreeFragment extends Fragment {
     }
 
     private void initShangjia(){
-        Shangjia shangjia1 = new Shangjia(80, "辣府","100元晚餐卷一张，可叠加，送餐上门配送费10元");
+        Shangjia shangjia1 = new Shangjia(80, "辣府","100元晚餐卷一张，可叠加，送餐上门配送费10元",R.mipmap.lafu);
         shangjiaArrayList.add(shangjia1);
-        Shangjia shangjia2 = new Shangjia(20, "金沙江浴场","30元浴场门票一张");
+        Shangjia shangjia2 = new Shangjia(20, "金沙江浴场","30元浴场门票一张",R.mipmap.yuchang);
         shangjiaArrayList.add(shangjia2);
-        Shangjia shangjia3 = new Shangjia(66, "Kanye秘制火锅","100元火锅卷一张，含五花牛肉一份，小羊肉一份，虾滑一份，鱼丸一份，素菜若干");
+        Shangjia shangjia3 = new Shangjia(66, "Kanye秘制火锅","100元火锅卷一张，含五花牛肉一份，小羊肉一份，虾滑一份，鱼丸一份，素菜若干",R.mipmap.kanye);
         shangjiaArrayList.add(shangjia3);
-        Shangjia shangjia4 = new Shangjia(100, "丽丽美甲","价值150元美甲体验券一张，不可叠加，新顾客限用，可上门服务");
+        Shangjia shangjia4 = new Shangjia(100, "橙子美甲","价值150元美甲体验券一张，不可叠加，新顾客限用，可上门服务",R.mipmap.meijia);
         shangjiaArrayList.add(shangjia4);
-        Shangjia shangjia5 = new Shangjia(99, "盲人按摩","刮痧体验券一张，可上门服务");
+        Shangjia shangjia5 = new Shangjia(99, "盲人按摩","刮痧体验券一张，可上门服务",R.mipmap.mangrenanmo);
         shangjiaArrayList.add(shangjia5);
-        Shangjia shangjia6 = new Shangjia(80, "辣府","100元晚餐卷一张，可叠加，送餐上门配送费10元");
+        Shangjia shangjia6 = new Shangjia(80, "辣府","66元午餐卷一张，可叠加，送餐上门配送费8元",R.mipmap.lafu);
         shangjiaArrayList.add(shangjia6);
-        Shangjia shangjia7 = new Shangjia(70, "菜场周大妈","三日份菜量，可送上门");
+        Shangjia shangjia7 = new Shangjia(70, "菜场周大妈","三日份菜量，可送上门",R.mipmap.caichang);
         shangjiaArrayList.add(shangjia7);
-        Shangjia shangjia8 = new Shangjia(20, "吴家粥铺","30元代金券");
+        Shangjia shangjia8 = new Shangjia(20, "吴家粥铺","30元代金券",R.mipmap.zhou);
         shangjiaArrayList.add(shangjia8);
-        Shangjia shangjia9 = new Shangjia(99, "肤泉","单人痘肌护理，可上门服务");
+        Shangjia shangjia9 = new Shangjia(99, "肤泉","单人痘肌护理，可上门服务",R.mipmap.hufu);
         shangjiaArrayList.add(shangjia9);
 
     }

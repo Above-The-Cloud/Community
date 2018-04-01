@@ -5,6 +5,12 @@ apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
+
+    aaptOptions{
+        cruncherEnabled = false;
+        useNewCruncher = false;
+    }
+
     defaultConfig {
         applicationId "wang.yiwangchunyu.community"
         minSdkVersion 15

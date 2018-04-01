@@ -11,10 +11,13 @@ public class Shangjia {
 
     private String content;
 
-    public Shangjia(int price, String title,String content){
+    private int background;
+
+    public Shangjia(int price, String title, String content, int background){
         this.price = price;
         this.title = title;
         this.content = content;
+        this.background = background;
     }
 
     public void setPrice(int price){
@@ -40,4 +43,8 @@ public class Shangjia {
     public String getContent(){
         return content;
     }
+
+    public int getBackground() {return background; }
+
+    public void setBackground(int background) {this.background = background;  }
 }
