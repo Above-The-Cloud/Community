@@ -37,7 +37,7 @@
 
 
         <EditText
-            android:layout_width="250dp"
+            android:layout_width="230dp"
             android:layout_height="60dp"
             android:inputType="number"
             android:ems="10"
@@ -46,6 +46,7 @@
             android:hint="输入您的手机号"
             android:layout_below="@id/welcome_text"
             android:layout_alignParentLeft="true"
+            android:paddingRight="10dp"
             android:layout_alignParentStart="true"
             android:layout_marginTop="20dp"/>
 
@@ -58,6 +59,7 @@
             android:onClick="finish_login"
             android:background="@drawable/shape"
             android:textSize="15dp"
+            android:layout_marginLeft="100dp"
             android:textColor="@color/text_white"
             android:layout_below="@id/welcome_text"
             android:layout_alignParentRight="true"
@@ -95,13 +97,14 @@
             android:layout_marginTop="20dp"/>
 
         <TextView
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="14dp"
-            android:textColor="@color/bg_white"
-            android:text="注册即代表同意[Community]的服务条款"
             android:layout_below="@id/tv_test_vcode_valiable"
-            android:layout_marginTop="17dp"/>
+            android:layout_marginTop="17dp"
+            android:gravity="center"
+            android:textSize="12dp"
+            android:text="注册即代表同意[Community]的服务条款"
+            android:textColor="@color/bg_white" />
 
     </RelativeLayout>
 

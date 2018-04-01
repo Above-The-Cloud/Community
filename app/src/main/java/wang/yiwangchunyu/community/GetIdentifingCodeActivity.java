@@ -87,7 +87,6 @@ public class GetIdentifingCodeActivity extends Activity implements View.OnClickL
         findViewById(R.id.tv_test_vcode_valiable).setOnClickListener(this);
         etVCode = (EditText) findViewById(R.id.et_v_code);
         etVGetcode = (EditText) findViewById(R.id.et_v_getcode);
-        etVGetcode.setText("xx");
         // 创建EventHandler对象
 
 
