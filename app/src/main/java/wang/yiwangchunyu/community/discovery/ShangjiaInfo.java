@@ -102,7 +102,8 @@ public class ShangjiaInfo extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShangjiaInfo.this, Appointment.class);
+                Intent intent = new Intent(ShangjiaInfo.this, Tohome.class);
+                intent.putExtra("title", shangjiaInfo.getTitle());
                 startActivity(intent);
             }
         });

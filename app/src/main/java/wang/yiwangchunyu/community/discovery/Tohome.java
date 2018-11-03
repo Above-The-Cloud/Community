@@ -31,7 +31,6 @@ public class Tohome extends AppCompatActivity {
     RadioGroup numberRG;
     RadioGroup dateRG;
     RadioGroup timeRG;
-    RadioGroup placeRG;
 
     RadioButton today;
 
@@ -49,11 +48,10 @@ public class Tohome extends AppCompatActivity {
         RadioButton number = (RadioButton)findViewById(numberRG.getCheckedRadioButtonId());
         RadioButton date = (RadioButton)findViewById(dateRG.getCheckedRadioButtonId());
         RadioButton time = (RadioButton)findViewById(timeRG.getCheckedRadioButtonId());
-        RadioButton place = (RadioButton)findViewById(placeRG.getCheckedRadioButtonId());
 
         confirm_info = (TextView) findViewById(R.id.confirm_info);
 
-        String Text = (number.getText()+",  "+date.getText()+time.getText()+",  "+place.getText());
+        String Text = (number.getText()+",  "+date.getText()+time.getText());
 
         confirm_info.setText(Text);
 
@@ -219,13 +217,6 @@ public class Tohome extends AppCompatActivity {
             }
         });
 
-        placeRG = (RadioGroup)findViewById(R.id.placeRG);
-        placeRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                selectRadioBtn();
-            }
-        });
 
 
         Calendar calendar = Calendar.getInstance();

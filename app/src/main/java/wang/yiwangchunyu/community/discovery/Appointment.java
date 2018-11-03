@@ -53,7 +53,7 @@ public class Appointment extends AppCompatActivity {
 
         confirm_info = (TextView) findViewById(R.id.confirm_info);
 
-        String Text = (number.getText()+",  "+date.getText()+time.getText()+",  "+place.getText());
+        String Text = (number.getText() + ",  " + date.getText()+time.getText() + ",  " + place.getText());
 
         confirm_info.setText(Text);
 

@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:layout_below="@+id/title_layout"
-        android:text="1人,  明天11:30,  包间"
+        android:text="1人,  今天10:00,  大厅"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="17sp"
