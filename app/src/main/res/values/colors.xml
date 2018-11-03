@@ -15,11 +15,15 @@
     <color name="text_gray">#EAEAEA</color>
     <color name="text_white">#FFFFFF</color>
     <color name="text_yellow">#FFC800</color>
+    <color name="confirm_yellow">#ffc800</color>
     <color name="text_topbar">#694E42</color>
     <color name="text_orange">#EE7600</color>
+    <color name="orange">#ee9700</color>
     <color name="text_blue">#7EC0EE</color>
     <color name="div_white">#E5E5E5</color>
     <color name="view_blue">#4876FF</color>
     <color name="view_gray">#e9e5e5</color>
     <color name="text_black">#1F1F1F</color>
+    <color name="warm_yellow">#FFC125</color>
+    <color name="red">#FF0000</color>
 </resources>

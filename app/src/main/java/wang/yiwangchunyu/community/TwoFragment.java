@@ -148,6 +148,8 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
         activity.toTaskDetails(tasksArr.get(position-1));
     }
 
+
+
     @Override
     public void onItemLongClick(View view, int position) {
         Toast.makeText(getActivity(), "onItemLongClick", Toast.LENGTH_SHORT).show();

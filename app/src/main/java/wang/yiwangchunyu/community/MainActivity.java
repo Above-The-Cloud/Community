@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
+import wang.yiwangchunyu.community.discovery.ShangjiaInfo;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView title, item_weixin, item_tongxunlu, item_faxian, item_me, item_fabu;
@@ -84,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("task_details",taskArr);
         startActivity(intent);
     }
+
+//    public void toShangjiaInfo()
+//    {
+//        Intent intent = new Intent(MainActivity.this, ShangjiaInfo.class);
+//        startActivity(intent);
+//    }
 
     private void initViews() {
         title = (TextView) findViewById(R.id.title);
