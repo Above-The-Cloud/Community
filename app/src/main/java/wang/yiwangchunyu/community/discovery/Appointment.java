@@ -53,7 +53,7 @@ public class Appointment extends AppCompatActivity {
 
         confirm_info = (TextView) findViewById(R.id.confirm_info);
 
-        String Text = (number.getText() + ",  " + date.getText()+time.getText() + ",  " + place.getText());
+        String Text = (number.getText() + ",  " + date.getText()+ " " + time.getText() + ",  " + place.getText());
 
         confirm_info.setText(Text);
 
@@ -120,7 +120,7 @@ public class Appointment extends AppCompatActivity {
         confirm_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(Appointment.this, ShangjiaInfo.class);
+
                 //时间是合法的，确认信息后跳转回主页面
                 if(isValidTime()){
                     //    通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
@@ -138,6 +138,7 @@ public class Appointment extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
+                            Intent intent = new Intent(Appointment.this, ShangjiaInfo.class);
                             startActivity(intent);
                         }
                     });

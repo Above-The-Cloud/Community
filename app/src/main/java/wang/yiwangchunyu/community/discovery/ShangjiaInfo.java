@@ -46,6 +46,8 @@ public class ShangjiaInfo extends AppCompatActivity {
 
     ImageView call;
 
+    String titleS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -65,6 +67,7 @@ public class ShangjiaInfo extends AppCompatActivity {
         });
 
         title = (TextView) findViewById(R.id.title);
+        titleS = shangjiaInfo.getTitle();
         title.setText(shangjiaInfo.getTitle());
 
         address = (TextView) findViewById(R.id.address);
@@ -93,7 +96,7 @@ public class ShangjiaInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShangjiaInfo.this, Appointment.class);
-                intent.putExtra("title", shangjiaInfo.getTitle());
+                intent.putExtra("title", titleS);
                 startActivity(intent);
             }
         });
@@ -103,7 +106,7 @@ public class ShangjiaInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShangjiaInfo.this, Tohome.class);
-                intent.putExtra("title", shangjiaInfo.getTitle());
+                intent.putExtra("title", titleS);
                 startActivity(intent);
             }
         });

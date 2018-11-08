@@ -250,15 +250,15 @@
             android:layout_width="0dp"
             android:layout_height="36sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="60dp"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="5sp"
             android:layout_weight="1"
-            android:background="@drawable/appointment_button"
+            android:background="@drawable/shape_button"
             android:text="预约到店"
             android:padding="3sp"
-            android:textColor="@color/view_blue" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/home"
@@ -266,14 +266,14 @@
             android:layout_height="36sp"
             android:layout_gravity="center"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@drawable/appointment_button"
+            android:background="@drawable/shape_button"
             android:text="预约上门"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="5sp"
             android:padding="3sp"
-            android:textColor="@color/view_blue" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

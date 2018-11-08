@@ -2,6 +2,7 @@ package wang.yiwangchunyu.community.discovery;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,13 +52,19 @@ public class Tohome extends AppCompatActivity {
 
         confirm_info = (TextView) findViewById(R.id.confirm_info);
 
-        String Text = (number.getText()+",  "+date.getText()+time.getText());
+        String Text = (number.getText()+",  "+date.getText()+" "+time.getText());
 
         confirm_info.setText(Text);
 
         return Text;
 
     }
+
+    HashMap<Integer,Integer> month_maxDate = new HashMap<Integer, Integer>();
+
+//    private void init(){
+//        month_maxDate.put()
+//    }
 
 
     private int calcDay(int day){
@@ -118,7 +125,7 @@ public class Tohome extends AppCompatActivity {
         confirm_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(Tohome.this, ShangjiaInfo.class);
+
                 //时间是合法的，确认信息后跳转回主页面
                 if(isValidTime()){
                     //    通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
@@ -136,6 +143,8 @@ public class Tohome extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
+
+                            Intent intent = new Intent(Tohome.this, ShangjiaInfo.class);
                             startActivity(intent);
                         }
                     });
