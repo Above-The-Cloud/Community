@@ -30,10 +30,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 public class ThreeFragment extends Fragment{
 
-    @BindView(R.id.lv)
-    ListView lv;
-    @BindView(R.id.srl)
-    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private Adpter_three mAdapter;
 

@@ -30,5 +30,17 @@ public class UrlConstance {
 
    //获取发布信息
    public static  final String KEY_GET_PUBLISH_INFO = "GetTasksInfo";
-   
+
+   //改变状态信息
+   public static final String KEY_CHANGE_STATUS = "task/accept.php";
+
+   //获取我的任务的状态信息
+   public static final String KEY_MY_PUBLSH_BY_STATUS = "task/getMyPublish.php";
+
+   //获取我的任务的点赞信息
+   public static final String KEY_LIKELIST_BY_UID = "task/getLikeListByUid.php";
+
+   public static final String APP_URL2 = "http://community.yiwangchunyu.wang:8088/";
+
+
 }

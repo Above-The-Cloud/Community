@@ -115,7 +115,7 @@
 
             <LinearLayout
                 android:id="@+id/user_msg"
-                android:layout_width="230dp"
+                android:layout_width="245dp"
                 android:layout_height="45dp"
                 android:orientation="vertical"
                 android:layout_toRightOf="@id/item_image"
@@ -163,14 +163,6 @@
             </LinearLayout>
 
 
-            <ImageView
-                android:id="@+id/picture"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_toRightOf="@id/user_msg"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="5dp"
- />
 
         </RelativeLayout>
 

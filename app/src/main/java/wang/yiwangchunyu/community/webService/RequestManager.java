@@ -10,13 +10,18 @@ import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.Request.Priority;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -136,6 +141,7 @@ public class RequestManager {
                             if (callback != null) {
                                 //回调请求失败--解析异常
                                 callback.onFailure(url, e, 0, "解析异常");
+                                e.printStackTrace();
                                 return;
                             }
                         }
@@ -179,6 +185,35 @@ public class RequestManager {
             api.with(entry.getKey(), entry.getValue());
         }
         return api;
+    }
+
+    public static void postv2(String uid,String publishid, String status) throws JSONException {
+        String s = "{";
+        s+= "uid:";
+        s+= uid;
+        s+=", publishid:";
+        s+= publishid;
+        s+=", status:";
+        s+= status;
+        s+= "}";
+
+        Log.d("拼接字符串：",s);
+
+
+        final JSONObject jsonObj = new JSONObject(s);
+
+        JsonObjectRequest jr = new JsonObjectRequest(Method.POST, "http://community.yiwangchunyu.wang:8088/task/accept.php", jsonObj, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Log.i("NetworkTest", jsonObj.toString()+jsonObject.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("NetworkTest", volleyError.toString());
+            }
+        });
+        addRequest(jr, "jsontest");
     }
 
 

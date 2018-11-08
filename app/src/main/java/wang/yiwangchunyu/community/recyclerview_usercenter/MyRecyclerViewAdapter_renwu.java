@@ -1,4 +1,4 @@
-package wang.yiwangchunyu.community.recycleview_two;
+package wang.yiwangchunyu.community.recyclerview_usercenter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,17 +13,20 @@ import java.util.ArrayList;
 
 import wang.yiwangchunyu.community.R;
 import wang.yiwangchunyu.community.dataStructures.TasksShowOnIndex;
-//import static wang.yiwangchunyu.community.utils.Utils.getBitmapFromURL;
+import wang.yiwangchunyu.community.dataStructures.TasksShowOnUsercenter;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewAdapter;
+import wang.yiwangchunyu.community.recycleview_two.MyRecyclerViewOnclickInterface;
 
 /**
- * Created by XinyuJiang on 2018/3/8.
+ * Created by xinyu jiang on 2018/11/8.
  */
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
+
+public class MyRecyclerViewAdapter_renwu extends RecyclerView.Adapter<MyRecyclerViewAdapter_renwu.MyViewHolder> {
 
 
     private Context context;
-    private ArrayList<TasksShowOnIndex> mDatas;
-    MyViewHolder holder = null;//viewholder,可以提高recycleview的性能
+    private ArrayList<TasksShowOnUsercenter> mDatas;
+    MyRecyclerViewAdapter_renwu.MyViewHolder holder = null;//viewholder,可以提高recycleview的性能
 
     private MyRecyclerViewOnclickInterface mOnItemClickLitener;
 
@@ -31,13 +34,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public MyRecyclerViewAdapter(Context context, ArrayList<TasksShowOnIndex> mDatas) {
+    public MyRecyclerViewAdapter_renwu(Context context, ArrayList<TasksShowOnUsercenter> mDatas) {
         this.context = context;
         this.mDatas = mDatas;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyRecyclerViewAdapter_renwu.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (headView!=null && viewType==TYPE_HEADER) return new MyViewHolder(headView);
 
         holder = new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.recyclerview_item, parent, false));
@@ -46,50 +49,49 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyRecyclerViewAdapter_renwu.MyViewHolder holder, int position) {
         //此方法内可以对布局中的控件进行操作
         if (getItemViewType(position)==TYPE_HEADER) return;
         final int pos=getRealPosition(holder);
-        TasksShowOnIndex tasksShowOnIndex = mDatas.get(pos);
+        TasksShowOnUsercenter tasksShowOnUsercenter = mDatas.get(pos);
         try {
-            holder.title.setText(new String(tasksShowOnIndex.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
-            holder.headTitle.setText(new String(tasksShowOnIndex.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
-            holder.content.setText(new String(tasksShowOnIndex.getContent().getBytes("ISO-8859-1"),"UTF-8"));
-            holder.releaser_name.setText(new String(tasksShowOnIndex.getUserName().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.title.setText(new String(tasksShowOnUsercenter.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.headTitle.setText(new String(tasksShowOnUsercenter.getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.content.setText(new String(tasksShowOnUsercenter.getContent().getBytes("ISO-8859-1"),"UTF-8"));
+            holder.releaser_name.setText(new String(tasksShowOnUsercenter.getUser_id().getBytes("ISO-8859-1"),"UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         //holder.img.setImageBitmap(tasksShowOnIndex.getImagesUrl());
-        holder.commision.setText(String.valueOf(tasksShowOnIndex.getCommission()));
-        holder.time.setText(tasksShowOnIndex.getTime().substring(0,16));
+        holder.commision.setText(String.valueOf(tasksShowOnUsercenter.getPrice()));
+        holder.time.setText(tasksShowOnUsercenter.getCtime().substring(0,16));
         holder.address.setText("华东师范大学中北小区");
-        if (!tasksShowOnIndex.getImagesUrl().isEmpty())
             //.imageView.setImageBitmap(getBitmapFromURL(tasksShowOnIndex.getImagesUrl().get(0)));
 
 //        Glide.with(context).load(mDatas.get(position).getIm()).into(holder.img);
 
-        // 如果设置了回调，则设置点击事件
-        if (mOnItemClickLitener != null) {
-            //点击监听
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(v, pos);
-                }
-            });
+            // 如果设置了回调，则设置点击事件
+            if (mOnItemClickLitener != null) {
+                //点击监听
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int pos = holder.getLayoutPosition();
+                        mOnItemClickLitener.onItemClick(v, pos);
+                    }
+                });
 
-            //长按监听
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemLongClick(v, pos);
-                    //返回true可以让长按事件被消耗，避免出发点击事件
-                    return true;
-                }
-            });
-        }
+                //长按监听
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        int pos = holder.getLayoutPosition();
+                        mOnItemClickLitener.onItemLongClick(v, pos);
+                        //返回true可以让长按事件被消耗，避免出发点击事件
+                        return true;
+                    }
+                });
+            }
 
     }
 
@@ -99,7 +101,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return headView==null? mDatas.size():mDatas.size()+1;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;//标题
         ImageView img;//显示的图片
@@ -130,10 +132,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public static final int TYPE_NORMAL = 1;//显示普通的item
     private View headView;//这家伙就是Banner
 
-    public void setHeadView(View headView){
-        this.headView=headView;
-        notifyItemInserted(0);
-    }
 
     public View getHeadView(){
         return headView;

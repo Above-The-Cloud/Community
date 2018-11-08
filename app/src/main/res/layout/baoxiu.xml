@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fabu"
+    android:weightSum="100">
+
+    <EditText
+        android:id="@+id/item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:hint="故障物品"
+        android:background="@null"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="1dp"
+        android:background="@color/view_gray"/>
+
+    <EditText
+        android:id="@+id/item_restriction"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:hint="故障描述"
+        android:background="@null"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/view_gray"/>
+
+    <EditText
+        android:id="@+id/item_content"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:hint="填写您希望的维修时间"
+        android:background="@null"
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/add_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_add_pic"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/view_gray"/>
+
+
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/view_gray" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/view_gray" />
+
+    <!--<GridView
+        android:id="@+id/noScrollgridview"
+        android:layout_width="290dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="5dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="5dp" >
+    </GridView>
+-->
+
+
+    <Button
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/activity_baoxiu"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="报修"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
+        android:layout_gravity="bottom"
+        />
+
+</LinearLayout>

@@ -38,10 +38,10 @@ import static wang.yiwangchunyu.community.constant.UrlConstance.KEY_GET_PUBLISH_
 public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterface,HttpResponeCallBack {
 
 
-    @BindView(R.id.id_recyclerview)//绑定RecycyleView
+    @BindView(R.id.id_recyclerview_two)//绑定RecycyleView
             RecyclerView mRecyclerview;
 
-    @BindView(R.id.srl_one)
+    @BindView(R.id.srl_two)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private MyRecyclerViewAdapter mAdapter;
@@ -69,7 +69,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_two, container, false);
+        View view = inflater.inflate(R.layout.fragment_one, container, false);
 
         Log.d("Header",view.toString());
         ButterKnife.bind(this, view);
@@ -81,6 +81,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
 
 
     private void showTasks(ArrayList<TasksShowOnIndex> dataList) {
+        Log.d("TAG","加载第一页的任务列表");
         for (int i = 0 ; i < dataList.size(); i ++)
             Log.d("TIME",dataList.get(i).getTime());
         //initTasks(dataList);
@@ -159,7 +160,7 @@ public class TwoFragment extends Fragment implements MyRecyclerViewOnclickInterf
     public void getTasksInfo(){
 
         Log.d("TAG", "从服务器获取用户发布信息 ");
-        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksResponse.class, this);
+        RequestApiData.getInstance().getPublishTaskInfoFromServer(TasksResponse.class,this);
 
     }
 

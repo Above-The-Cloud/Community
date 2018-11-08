@@ -60,7 +60,11 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".TaskDetails" />
         <activity android:name=".discovery.ShangjiaInfo" />
+        <activity android:name=".fuwu.baoxiu" />
         <activity android:name=".discovery.Appointment" />
+        <activity android:name=".usercenter.Likepage" />
+        <activity android:name=".usercenter.Renwupage" />
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

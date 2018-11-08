@@ -61,22 +61,25 @@
     </RelativeLayout>
 
     <wang.yiwangchunyu.community.usercenter.item_view
+        android:id="@+id/huozan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         zsg:show_bottomline="true"
         zsg:show_leftimg="@drawable/shoucang"
-        zsg:show_text="我的收藏" />
+        zsg:show_text="我的获赞" />
 
     <wang.yiwangchunyu.community.usercenter.item_view
+        android:id="@+id/renwu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         zsg:show_bottomline="true"
         zsg:show_leftimg="@drawable/lishi"
-        zsg:show_text="历史任务" />
+        zsg:show_text="我的任务" />
 
     <wang.yiwangchunyu.community.usercenter.item_view
+        android:id="@+id/qianbao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

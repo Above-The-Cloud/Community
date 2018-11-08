@@ -1,8 +1,14 @@
 package wang.yiwangchunyu.community.webService;
 
+import org.json.JSONException;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 import wang.yiwangchunyu.community.constant.UrlConstance;
+import wang.yiwangchunyu.community.dataStructures.ChangeStatusResponse;
+import wang.yiwangchunyu.community.dataStructures.MyTasksResponse;
+import wang.yiwangchunyu.community.dataStructures.ReceivedLikeResponse;
 import wang.yiwangchunyu.community.dataStructures.TaskPublishingInfo;
 import wang.yiwangchunyu.community.dataStructures.TasksResponse;
 import wang.yiwangchunyu.community.users.UserBaseInfo;
@@ -152,4 +158,46 @@ public class RequestApiData {
 		//请求数据接口
 		RequestManager.post(UrlConstance.APP_URL, tagUrl, parameter, clazz, callback);
 	}
+
+	//获得我发布的任务的状态信息
+	public void getPublishStatusFromServer(String userid, String status, Class<MyTasksResponse> clazz, HttpResponeCallBack callback) {
+		mCallBack = callback;
+		//这是每一个接口的唯一标示
+		String tagUrl = UrlConstance.KEY_MY_PUBLSH_BY_STATUS;
+		HashMap<String, String> parameter = new HashMap<String, String>();
+		parameter.put("uid",userid);
+		parameter.put("status", status);
+
+
+		//请求数据接口
+		RequestManager.post(UrlConstance.APP_URL2, tagUrl, parameter, clazz, callback);
+	}
+
+	//更改任务的状态
+	public void changeTaskStatus(String userid, String publish_id, String status, Class<ChangeStatusResponse> clazz, HttpResponeCallBack callback){
+		mCallBack = callback;
+		//这是每一个接口的唯一标示
+		String tagUrl = UrlConstance.KEY_CHANGE_STATUS;
+		HashMap<String, String> parameter = new HashMap<String, String>();
+		parameter.put("uid",userid);
+		parameter.put("publish_id",publish_id);
+		parameter.put("status", status);
+
+
+		//请求数据接口
+		RequestManager.post(UrlConstance.APP_URL2, tagUrl, parameter, clazz, callback);
+	}
+
+	//获得我发布的任务的状态信息
+	public void getLikeListByUid(String userid, Class<ReceivedLikeResponse> clazz, HttpResponeCallBack callback) throws JSONException {
+		mCallBack = callback;
+		//这是每一个接口的唯一标示
+		String tagUrl = UrlConstance.KEY_LIKELIST_BY_UID;
+		HashMap<String, String> parameter = new HashMap<String, String>();
+		parameter.put("uid",userid);
+
+		//请求数据接口
+		RequestManager.post(UrlConstance.APP_URL2, tagUrl, parameter, clazz, callback);
+	}
+
 }
