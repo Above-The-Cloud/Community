@@ -23,6 +23,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -150,11 +151,15 @@ public class Renwupage extends Activity implements HttpResponeCallBack,MyRecycle
     }
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onItemClick(View view, int position)  {
         Toast.makeText(this, "onItemClick", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, TaskDetails.class);
         TasksShowOnIndex tasksShowOnIndex = new TasksShowOnIndex();
-        tasksShowOnIndex.setTitle(tasksArr.get(position-1).getTitle());
+        try {
+            tasksShowOnIndex.setTitle(new String(tasksArr.get(position-1).getTitle().getBytes("ISO-8859-1"),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         tasksShowOnIndex.setCommission(Integer.parseInt(tasksArr.get(position-1).getPrice()));
         tasksShowOnIndex.setContent(tasksArr.get(position-1).getContent());
         tasksShowOnIndex.setRestriction(tasksArr.get(position-1).getRestriction());
